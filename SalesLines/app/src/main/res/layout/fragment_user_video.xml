@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@android:color/white">
+
+
+
+    <View
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Videos"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp" />
+
+    <View
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+    <TextView
+        android:id="@+id/tv_video1"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textColor="#4d5056"
+        android:padding="8dp"
+        android:text="\u25CF How to add lead"/>
+
+    <TextView
+        android:id="@+id/tv_video2"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textColor="#4d5056"
+        android:padding="8dp"
+        android:text="\u25CF How to update lead"/>
+    <TextView
+        android:id="@+id/tv_video3"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textColor="#4d5056"
+        android:padding="8dp"
+        android:text="\u25CF How to mark lead as sale"/>
+    <TextView
+        android:id="@+id/tv_video4"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textColor="#4d5056"
+        android:padding="8dp"
+        android:text="\u25CF How to change sync settings"/>
+
+
+</LinearLayout>

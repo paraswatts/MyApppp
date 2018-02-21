@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLine"></View>
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Update Lead "
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLine"></View>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Add Enquiry Number "
+
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/et_EnquiryNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittext"
+                    android:layout_margin="10dp"
+                    android:editable="false"
+                    android:elevation="5dp"
+                    android:focusable="false"
+                    android:gravity="center|left"
+                    android:hint="Add Enquiry Number"
+
+                    android:lines="4"
+                    android:paddingBottom="@dimen/paddingBottom"
+                    android:paddingLeft="@dimen/paddingLeft"
+                    android:paddingRight="@dimen/paddingRight"
+                    android:paddingTop="@dimen/paddingTop"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Comments After Call "
+
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/et_Comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/text_view_border"
+                    android:elevation="5dp"
+                    android:gravity="top|left"
+                    android:hint="Comments after call"
+                    android:lines="4"
+                    android:paddingBottom="@dimen/paddingBottom"
+                    android:paddingLeft="@dimen/paddingLeft"
+                    android:paddingRight="@dimen/paddingRight"
+                    android:paddingTop="@dimen/paddingTop" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Rating after call"
+                    android:textSize="15sp" />
+
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:stepSize="1.0"
+                    android:theme="@style/RatingBar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Lead status after call"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_LeadStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cb_H"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#ff6400" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#ff6400"
+                            android:paddingBottom="4dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:paddingTop="4dp"
+                            android:text="H"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+
+                        <CheckBox
+                            android:id="@+id/cb_W"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#fed000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#fed000"
+                            android:paddingBottom="4dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:paddingTop="4dp"
+                            android:text="W"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cb_C"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#02feff" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#02feff"
+                            android:paddingBottom="4dp"
+                            android:paddingLeft="8dp"
+
+
+                            android:paddingRight="8dp"
+                            android:paddingTop="4dp"
+                            android:text="C"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Demo given on"
+                    android:textSize="15sp" />
+
+
+                <LinearLayout
+                    android:id="@+id/rl_DemoDatePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_DemoDate"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edittext"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="0.50"
+                        android:background="@drawable/text_view_border"
+                        android:drawableEnd="@drawable/newcalender"
+                        android:drawableRight="@drawable/cursor_"
+                        android:editable="false"
+                        android:elevation="3dp"
+                        android:focusable="false"
+                        android:hint="DD/MM/YY"
+                        android:paddingBottom="@dimen/paddingBottom"
+                        android:paddingLeft="@dimen/paddingLeft"
+                        android:paddingRight="@dimen/paddingRight"
+                        android:paddingTop="@dimen/paddingTop"
+                        android:singleLine="true"
+
+                        android:textSize="15dp" />
+                    />
+                </LinearLayout>
+
+               <!-- <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="gone"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Demo given on"
+                        android:textSize="15sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_DemoDatePicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/edit_text_border1">
+
+                        <ImageView
+
+                            android:id="@+id/img_DemoDate"
+                            android:layout_width="@dimen/edittext"
+                            android:layout_height="@dimen/edittext"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/date_button" />
+
+                        <EditText
+                            android:id="@+id/et_DemoDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edittext"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toLeftOf="@+id/img_DemoDate"
+                            android:layout_toStartOf="@+id/img_DemoDate"
+                            android:background="@drawable/edit_text_border1"
+                            android:editable="false"
+                            android:elevation="3dp"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:hint="DD/MM/YY"
+                            android:paddingBottom="3dp"
+                            android:paddingTop="3dp"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>-->
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
+
+                    android:text="Lead Stage"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sp_Spinner_Lead_Stage"
+
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edittext"
+                        android:layout_marginBottom="4dp"
+
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/arrow_spinner"
+                        android:drawableRight="@drawable/cursor_"
+                        android:background="@drawable/text_view_border"
+
+                        android:editable="false"
+                        android:elevation="3dp"
+                        android:focusable="false"
+                        android:paddingBottom="@dimen/paddingBottom"
+                        android:paddingLeft="@dimen/paddingLeft"
+                        android:paddingRight="@dimen/paddingRight"
+                        android:paddingTop="@dimen/paddingTop"
+                        android:text="Lead Stage"
+                        android:textSize="15dp" />
+
+                    />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
+
+                    android:text="Interested Product"
+                    android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/sp_Spinner_Interested_Product"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edittext"
+                        android:layout_marginBottom="4dp"
+
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_view_border"
+
+                        android:editable="false"
+                        android:elevation="3dp"
+                        android:focusable="false"
+                        android:drawableEnd="@drawable/arrow_spinner"
+                        android:drawableRight="@drawable/cursor_"
+                        android:paddingBottom="@dimen/paddingBottom"
+                        android:paddingLeft="@dimen/paddingLeft"
+                        android:paddingRight="@dimen/paddingRight"
+                        android:paddingTop="@dimen/paddingTop"
+                        android:text="Interested Product"
+                        android:textSize="15dp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
+
+                    android:text="Next Interaction By"
+                    android:textSize="15sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/sp_Next_Intrection_By"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edittext"
+                        android:layout_marginBottom="4dp"
+
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_view_border"
+                        android:drawableRight="@drawable/cursor_"
+                        android:editable="false"
+                        android:elevation="3dp"
+                        android:drawableEnd="@drawable/arrow_spinner"
+
+                        android:focusable="false"
+                        android:paddingBottom="@dimen/paddingBottom"
+                        android:paddingLeft="@dimen/paddingLeft"
+                        android:paddingRight="@dimen/paddingRight"
+                        android:paddingTop="@dimen/paddingTop"
+                        android:text="-- Select --"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+
+               <!-- <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+
+
+                        android:text="Next Interaction On"
+                        android:textSize="15sp" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_OnDatePicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/edit_text_border1">
+
+                        <ImageView
+
+                            android:id="@+id/img_NextInteractionDate"
+                            android:layout_width="@dimen/edittext"
+                            android:layout_height="@dimen/edittext"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/date_button" />
+
+                        <EditText
+                            android:id="@+id/et_NextInteractionDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edittext"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toLeftOf="@+id/img_NextInteractionDate"
+                            android:layout_toStartOf="@+id/img_NextInteractionDate"
+                            android:background="@drawable/edit_text_border1"
+                            android:editable="false"
+                            android:elevation="3dp"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:hint="DD/MM/YY"
+                            android:paddingBottom="3dp"
+                            android:paddingTop="3dp"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Response of Interaction"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/sp_Response_Of_Iteraction"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edittext"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/text_view_border"
+                        android:drawableRight="@drawable/cursor_"
+                        android:editable="false"
+                        android:elevation="3dp"
+                        android:focusable="false"
+
+                        android:paddingBottom="@dimen/paddingBottom"
+                        android:paddingLeft="@dimen/paddingLeft"
+                        android:paddingRight="@dimen/paddingRight"
+                        android:paddingTop="@dimen/paddingTop"
+
+                        android:text="Interaction"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+-->
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+
+                    android:text="Next Interaction On"
+                    android:textSize="15sp" />
+
+
+                <LinearLayout
+                    android:id="@+id/rl_OnDatePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_NextInteractionDate"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edittext"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="0.50"
+                        android:background="@drawable/text_view_border"
+                        android:drawableEnd="@drawable/newcalender"
+                        android:drawableRight="@drawable/cursor_"
+                        android:editable="false"
+                        android:elevation="3dp"
+                        android:focusable="false"
+                        android:hint="DD/MM/YY"
+                        android:paddingBottom="@dimen/paddingBottom"
+                        android:paddingLeft="@dimen/paddingLeft"
+                        android:paddingRight="@dimen/paddingRight"
+                        android:paddingTop="@dimen/paddingTop"
+                        android:singleLine="true"
+
+                        android:textSize="15dp" />
+                    />
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Response of Interaction"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="8dp">
+
+                    <EditText
+                        android:id="@+id/sp_Response_Of_Iteraction"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edittext"
+                        android:layout_marginBottom="4dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/text_view_border"
+                        android:drawableEnd="@drawable/arrow_spinner"
+                        android:drawableRight="@drawable/cursor_"
+                        android:editable="false"
+                        android:elevation="3dp"
+                        android:focusable="false"
+                        android:paddingBottom="@dimen/paddingBottom"
+                        android:paddingLeft="@dimen/paddingLeft"
+                        android:paddingRight="@dimen/paddingRight"
+                        android:paddingTop="@dimen/paddingTop"
+                        android:singleLine="true"
+                        android:text=" -- Select --"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+                <Button
+
+                    android:id="@+id/btn_SaleClouser"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+
+                    android:background="@drawable/button_background"
+                    android:text="Sale close"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorLine"></View>
+
+                <Button
+                    android:id="@+id/btn_Update"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_background"
+                    android:text="Update"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

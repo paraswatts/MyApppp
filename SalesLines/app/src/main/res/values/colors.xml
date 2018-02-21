@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="orange">#ff6400</color>
+    <color name="yello">#fed000</color>
+    <color name="turquish">#02feff</color>
+    <color name="colorPrimary">#4dc412</color>
+    <color name="colorPrimaryDark">#2eb510</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="border">@android:color/darker_gray</color>
+    <color name="background">#717171</color>
+    <color name="colorLine">#d8dfb5</color>
+    <color name="google_blue">#3469e9</color>
+    <color name="google_red">#d20d24</color>
+    <color name="google_green">#009924</color>
+    <color name="google_yellow">#eeb110</color>
+    <color name="darkBlueGrey">#455A64</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red_">#FF0000</color>
+     <color name="seachback">#999999</color>
+    <color name="blueColorPrimary">#2196F3</color>
+    <color name="blueColorPrimaryDark">#1976D2</color>
+    <color name="blueColorPrimaryLight">#BBDEFB</color>
+    <color name="blueColorAccent">#FF4081</color>
+    <color name="blueTextColorPrimary">#212121</color>
+    <color name="blueTextColorSecondary">#727272</color>
+
+    <!-- Text -->
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorSecondary">#99000000</color>
+    <color name="textColorPrimaryInverse">#DE000000</color>
+    <color name="textColorSecondaryInverse">#9E9E9E</color>
+    <color name="textColorButton">#FFFFFF</color>
+    <color name="colorDisabled">#1A000000</color>
+    <color name="colorDivider">#0C000000</color>
+    <color name="colorBackgroundPanel">#FFE0E0E0</color>
+    <color name="colorBackgroundPanelInverse">#FF424242</color>
+    <color name="colorHighlightInverse">#424242</color>
+    <color name="colorShadow">#E0E0E0</color>
+    <color name="colorShadowInverse">#181818</color>
+
+    <!-- Theme 2 -->
+    <color name="colorPrimarySecond">#FF009877</color>
+    <color name="colorPrimaryDarkSecond">#F5007C77</color>
+    <color name="colorPrimaryLightSecond">#FFE0B277</color>
+    <color name="colorAccentSecond">#FF525277</color>
+    <color name="colorAccentLightSecond">#FF8A8077</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="fuchsia">#FF00FF</color>
+    <color name="red">#ff631c</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="gray">#808080</color>
+    <color name="olive">#808000</color>
+    <color name="purple">#800080</color>
+    <color name="maroon">#800000</color>
+    <color name="aqua">#00FFFF</color>
+    <color name="lime">#00FF00</color>
+    <color name="teal">#008080</color>
+    <color name="green">#008000</color>
+    <color name="blue">#0000FF</color>
+    <color name="navy">#000080</color>
+    <color name="black">#cc000000</color>
+    <color name="light_gray">#fff5f5f5</color>
+    <color name="transparent">#00000000</color>
+    <!--  used for Intro screen -->
+    <color name="first_slide_background">#E91E63</color>
+    <color name="first_slide_buttons">#880E4F</color>
+    <color name="blur">#f0e7e3e3</color>
+    <color name="second_slide_background">#9C27B0</color>
+    <color name="second_slide_buttons">#4A148C</color>
+
+    <color name="third_slide_background">#009688</color>
+    <color name="third_slide_buttons">#004D40</color>
+
+    <color name="fourth_slide_background">#795548</color>
+    <color name="fourth_slide_buttons">#3E2723</color>
+
+    <color name="custom_slide_background">#3F51B5</color>
+    <color name="custom_slide_buttons">#1A237E</color>
+
+    <!--Splash Screen-->
+    <item name="splash_background" type="color">@color/colorPrimary</item>
+
+    <color name="theme_primary_text_inverted">#ffffff</color>
+    <color name="theme_secondary_text_inverted">#8affffff</color>
+
+    <array name="colors">
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccentLightSecond</item>
+        <item>@color/first_slide_buttons</item>
+        <item>@color/teal</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/google_yellow</item>
+        <item>@color/blueColorPrimary</item>
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>#009a34</item>
+        <item>#ff464646</item>
+        <item>#ffd0d0d0</item>
+    </array>
+
+    <array name="mColours">
+        <item>#ff6500</item>
+        <item>#00339d</item>
+        <item>#9602c8</item>
+        <item>#009a34</item>
+
+    </array>
+    <array name="mColoursBlue">
+        <item>@android:color/holo_blue_bright</item>
+
+
+    </array>
+    <item name="gray_holo_dark" type="color">#ff464646</item>
+    <item name="gray_holo_light" type="color">#ffd0d0d0</item>
+
+    <color name="tedbottompicker_camera">#000</color>
+    <color name="tedbottompicker_gallery">#ccc</color>
+    <color name="tedbottompicker_selected">#f0f0f0</color>
+    <color name="layout_background">#99000000</color>
+
+</resources>

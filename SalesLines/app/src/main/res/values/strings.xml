@@ -1,0 +1,362 @@
+<resources>
+    <string name="app_name">SaleLine</string>
+
+
+    <string name="should_not_be_empty">should not be empty.</string>
+    <string name="should_not_be_space">should not have space.</string>
+    <string name="enter_valid_text">Enter valid text.</string>
+    <string name="is_not_valid">is not valid.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_page">Login</string>
+    <string name="email_id">Email ID</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forgot Password ?</string>
+    <string name="lead_view_manager">Lead View - Manager</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="company">Company</string>
+    <string name="address">Address</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="listen_recordings">Listen to recordings</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="alt_mobile_number">Alt. Mobile Number</string>
+    <string name="maps_api_key">AIzaSyDfNP_Pm6oju3rekgPLrrsjinkDVIKxjjM</string>
+    <string-array name="role">
+
+        <item>Super Admin</item>
+        <item>Admin</item>
+        <item>GM</item>
+        <item>AGM</item>
+        <item>ASM</item>
+        <item>Mgr</item>
+        <item>SaleMan</item>
+
+
+    </string-array>
+
+    <string-array name="lead_stage">
+
+        <item>Stage 1</item>
+        <item>Stage 2</item>
+        <item>Stage 3</item>
+        <item>Stage 4</item>
+
+
+    </string-array>
+
+    <string-array name="lead_source">
+
+        <item>Source 1</item>
+        <item>Source 2</item>
+        <item>Source 3</item>
+        <item>Source 4</item>
+
+
+    </string-array>
+
+    <string-array name="interested_product">
+
+        <item>Product 1</item>
+        <item>Product 2</item>
+        <item>Product 3</item>
+        <item>Product 4</item>
+
+
+    </string-array>
+
+    <string-array name="assign_employee">
+
+        <item>Employee 1</item>
+        <item>Employee 2</item>
+        <item>Employee 3</item>
+        <item>Employee 4</item>
+
+
+    </string-array>
+
+    <string-array name="next_interaction">
+
+        <item>Call</item>
+        <item>Mail</item>
+        <item>Message</item>
+        <item>Visit</item>
+
+
+    </string-array>
+
+    <string-array name="drop_down">
+
+        <item>Call</item>
+        <item>Mail</item>
+        <item>Message</item>
+        <item>Visit</item>
+
+
+    </string-array>
+
+
+    <string-array name="demo_given">
+        <item>Demo Given</item>
+        <item>Yes</item>
+        <item>No</item>
+
+
+    </string-array>
+
+    <string-array name="hwc">
+
+        <item>H</item>
+        <item>W</item>
+        <item>C</item>
+
+
+    </string-array>
+
+    <string-array name="product">
+        <item>Product</item>
+        <item>Product 1</item>
+        <item>Product 2</item>
+        <item>Product 3</item>
+        <item>Product 4</item>
+
+
+    </string-array>
+
+
+    <string-array name="emi_dates">
+        <item>EMI dates</item>
+        <item>Date 1</item>
+        <item>Date 2</item>
+        <item>Date 3</item>
+        <item>Date 4</item>
+
+
+    </string-array>
+
+
+    <string-array name="del_awt">
+
+        <item>Delivered</item>
+        <item>Awaiting</item>
+    </string-array>
+    <string-array name="payment_mode">
+
+        <item>Cash</item>
+        <item>Cheque</item>
+        <item>CC</item>
+    </string-array>
+
+
+    <string-array name="OTP">
+        <item>OTP</item>
+        <item>EMI</item>
+    </string-array>
+    <string name="title_activity_home_">Home_Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+    <!-- preferences -->
+    <string name="pref_dark_theme">pref_dark_theme</string> <!-- deprecated -->
+    <string name="pref_theme">pref_theme</string>
+    <string name="pref_theme_title">Theme</string>
+
+    <string name="pref_theme_value_red">red</string>
+    <string name="pref_theme_value_blue">blue</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="change_theme">Change Theme</string>
+
+    <!-- Theme -->
+    <string-array name="pref_theme_options">
+        <item>Theme Option</item>
+        <item>Red</item>
+        <item>Blue</item>
+    </string-array>
+    <string-array name="pref_theme_values">
+        <item>@string/pref_theme_value_red</item>
+        <item>@string/pref_theme_value_blue</item>
+    </string-array>
+
+
+    <string-array name="user_previous_sector">
+        <item>Previously worked sectors</item>
+        <item>Banking</item>
+        <item>Consulting</item>
+        <item>Education</item>
+        <item>Financial Services</item>
+        <item>Franchising</item>
+        <item>Healthcare/Hopitals</item>
+        <item>Hotel Managment</item>
+        <item>Information Technology</item>
+        <item>Pharmaceuticals</item>
+        <item>Real Estate</item>
+        <item>Real Sales</item>
+        <item>Tourism</item>
+    </string-array>
+
+
+    <string-array name="india_states">
+        <item>Andaman and Nicobar Islands</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattisgarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Daman and Diu</item>
+        <item>Delhi</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Lakshadweep</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orissa</item>
+        <item>Pondicherry</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttaranchal</item>
+        <item>Uttar Pradesh</item>
+        <item>West Bengal</item>
+    </string-array>
+    <string name="title_activity_main2">Main2Activity</string>
+
+
+    <!--Call Records-->
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+    <string name="menu_Enable_record">Enable Record</string>
+    <string name="menu_Disable_record">Disable Record</string>
+
+    <string name="list_play_your_recordeed_call">play your recorded call</string>
+    <string name="list_send_your_recordeed_call">send your recorded call</string>
+    <string name="list_erase_your_recordeed_call">erase your recorded call</string>
+    <string name="receiver_start_call">Start record call</string>
+    <string name="receiver_end_call">End Record call</string>
+    <string name="confirm_delete_title">Call deletion</string>
+    <string name="confirm_delete_text">Are you sure you want to delete this recording?</string>
+    <string name="confirm_delete_yes">yes</string>
+    <string name="confirm_delete_no">no</string>
+    <string name="options_title">Recording options</string>
+    <string name="options_delete">Delete</string>
+    <string name="confirm_play">Play</string>
+    <string name="confirm_send">Send</string>
+    <string name="sendMail_subject">Your record from your phone</string>
+    <string name="sendMail_body">This is a call record from your phone</string>
+    <string name="about_title">About</string>
+    <string name="about_content">Call recorder by Kobi Krasnoff and Raul Robledo</string>
+    <string name="about_close_button">Close</string>
+    <string name="send_mail">Send Mail</string>
+    <string name="withheld_number">Withheld Number</string>
+    <string name="menu_record_is_now_enabled">Call recording enabled</string>
+    <string name="menu_record_is_now_disabled">Call recording disabled</string>
+    <string name="no_records_message">There are no recordings in this phone.\nTo enable record ability open the main menu and choose \"Enable call recording\".\nAfter that the application will record all your incoming and outgoing calls.</string>
+    <string name="radio_Enable_record">Enable call recording</string>
+    <string name="radio_Disable_record">Disable call recording</string>
+    <string name="textview_startup">Please choose if the application should record your calls.\nYou can always enable or disable recording by pressing the Android menu button.</string>
+    <string name="dialog_welcome_screen">Welcome Screen</string>
+    <string name="dialog_no_memory">There is no memory card in your device.\nPlease install one.</string>
+    <string name="dialog_close">Close</string>
+    <string name="menu_terms">Terms of use</string>
+    <string name="menu_privacy_policy">Privacy Policy</string>
+    <string name="dialog_terms">Terms of use</string>
+    <string name="dialog_privacy">Privacy Policy</string>
+    <string name="dialog_privacy_terms">Please click the buttons below to see the terms of use and privacy policy</string>
+    <string name="menu_delete_all">Delete All recordings</string>
+    <string name="dialog_delete_all_title">Delete everything?</string>
+    <string name="dialog_delete_all_content">Are you sure you want to delete all of your recordings?</string>
+    <string name="dialog_delete_all_yes">Yes</string>
+    <string name="dialog_delete_all_no">No</string>
+    <string name="notification_ticker"></string>
+    <string name="notification_title">The phone is now on a call</string>
+    <string name="notification_text"></string>
+    <string name="record_impossible">Unfortunately, it is not possible to record calls in this device. (Usually because another application/service is using the microphone in the background)</string>
+    <string name="no_image">No Image</string>
+    <string name="done">Done</string>
+
+
+    <string name="select_max_count">Already %1$d images selected</string>
+    <string name="select_min_count">You have to choice %1$d images</string>
+
+
+    <string name="select_source">Select source</string>
+    <string name="canceling">Canceling</string>
+
+    <!-- Server Error-->
+
+    <string name="server_error">Request is not processed please try again </string>
+
+
+    <string name="internet_error">Internet stopped working </string>
+    <string name="server_not_working">Server not responding please try again</string>
+
+
+    <!-- Product Error-->
+
+    <string name="product_error">Product is not available </string>
+
+    <!-- Source Error-->
+
+    <string name="source_error">Source is not available </string>
+
+    <!--Stage Error-->
+
+    <string name="stage_error">Stage is not available </string>
+
+    <!--Response Error-->
+
+    <string name="response_error">Response is not available </string>
+
+
+    <string name="alert_pre">To use this feature, allow access</string>
+    <string name="alert_post">. It is essential</string>
+    <string name="toast_pre">To use this feature, you must first allow access</string>
+    <string name="toast_post">Give in the settings</string>
+    <string name="READ_EXTERNAL_STORAGE">Read the memory card</string>
+    <string name="WRITE_EXTERNAL_STORAGE">Write a memory card</string>
+    <string name="SEND_SMS">اMessage short message</string>
+    <string name="RECEIVE_SMS">Receive SMS</string>
+    <string name="GET_ACCOUNTS">Getting user accounts</string>
+    <string name="ACCESS_FINE_LOCATION">Access to precise location</string>
+    <string name="ACCESS_COARSE_LOCATION">Access to general position</string>
+    <string name="RECORD_AUDIO">Record Audio</string>
+    <string name="READ_PHONE_STATE">Check the status of the phone</string>
+    <string name="CALL_PHONE">Contact</string>
+    <string name="READ_CALL_LOG">Read call logsا</string>
+    <string name="WRITE_CALL_LOG">Write call logs</string>
+    <string name="ADD_VOICEMAIL">Add voice mailی</string>
+    <string name="USE_SIP">using SIP</string>
+    <string name="PROCESS_OUTGOING_CALLS">Save outgoing calls</string>
+    <string name="BODY_SENSORS">Motion sensors</string>
+    <string name="READ_SMS">Read the short messageه</string>
+    <string name="RECEIVE_WAP_PUSH">Get Wrapped Up</string>
+    <string name="RECEIVE_MMS">Recieve MMS</string>
+    <string name="CAMERA">On the camera</string>
+    <string name="READ_CONTACTS">Read Contact</string>
+    <string name="WRITE_CONTACTS">Write Contact</string>
+    <string name="READ_CALENDAR">Read Calender</string>
+    <string name="WRITE_CALENDAR">Write Calender</string>
+
+
+</resources>

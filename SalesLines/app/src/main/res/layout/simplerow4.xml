@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	>
+
+	<LinearLayout
+        android:orientation="vertical"
+        android:layout_above="@+id/line1111"
+		android:paddingRight="20dp"
+		android:layout_marginLeft="20dp"
+        android:id="@+id/lin02222"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+
+        >
+
+		<com.brillinfosystem.saleslinescreens.MyView
+            android:background="#653332"
+			android:id="@+id/shape1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+
+		<com.brillinfosystem.saleslinescreens.MyView
+            android:layout_marginTop="4dp"
+			android:id="@+id/shape2"
+			android:layout_below="@+id/shape1"
+			android:layout_width="100dp"
+			android:layout_height="50dp"/>
+
+		<com.brillinfosystem.saleslinescreens.MyView
+            android:layout_marginTop="4dp"
+
+			android:id="@+id/shape3"
+			android:layout_below="@+id/shape2"
+			android:layout_width="100dp"
+           android:layout_height="50dp"/>
+
+		<com.brillinfosystem.saleslinescreens.MyView
+
+            android:layout_marginTop="4dp"
+            android:layout_below="@+id/shape3"
+            android:id="@+id/shape4"
+            android:layout_width="100dp"
+			android:layout_height="50dp"/>
+
+
+	</LinearLayout>
+	<View
+        android:paddingRight="16dp"
+		android:layout_above="@+id/title1111"
+		android:id="@+id/line1111"
+		android:layout_width="wrap_content"
+		android:layout_height="1dp"
+		android:background="@android:color/black"></View>
+	<TextView
+		android:id="@+id/title1111"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="14sp"
+		android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+		android:textColor="#000"/>
+</RelativeLayout>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+   android:paddingRight="8dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77000000"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingStart="8dp">
+
+                <EditText
+                    android:id="@+id/et_FromDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:editable="false"
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select From Date--"
+                    android:padding="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingStart="10dp"
+                    android:textSize="15dp" />
+                />
+
+                <EditText
+                    android:id="@+id/et_ToDatePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:editable="false"
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select To Date--"
+                    android:padding="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingStart="10dp"
+                    android:textSize="15dp" />
+                />
+
+                <EditText
+                    android:id="@+id/et_DemoDatePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:editable="false"
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select Demo Date--"
+                    android:padding="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingStart="10dp"
+                    android:textSize="15dp" />
+                />
+
+
+                <EditText
+                    android:id="@+id/et_Lead_Source"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:editable="false"
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select Lead Source--"
+                    android:padding="8dp"
+
+                    android:paddingLeft="12dp"
+                    android:paddingStart="10dp"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/et_Lead_Stage"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:editable="false"
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select Lead Stage--"
+                    android:padding="8dp"
+
+                    android:paddingLeft="12dp"
+                    android:paddingStart="12dp"
+                    android:textSize="15dp" />
+
+
+                <EditText
+                    android:id="@+id/sp_Spinner_HWC"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:editable="false"
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select Type--"
+                    android:padding="8dp"
+
+                    android:paddingLeft="12dp"
+                    android:paddingStart="12dp"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/sp_Spinner_Interested_Product"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:editable="false"
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select Product--"
+                    android:padding="8dp"
+
+                    android:paddingLeft="12dp"
+                    android:paddingStart="12dp"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/sp_Spinner_User"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/text_view_border"
+
+
+                    android:elevation="3dp"
+                    android:focusable="false"
+                    android:hint="--Select User--"
+
+                    android:padding="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingStart="12dp"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#77000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.05"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#77000000">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.425"
+
+
+            android:background="@drawable/button_background"
+            android:text="Clear"
+            android:textColor="@drawable/button_text_color"
+
+            android:textSize="15sp" />
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.05"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#77000000">
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_Search"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_weight="0.425"
+
+
+            android:background="@drawable/button_background"
+            android:text="Search"
+            android:textColor="@drawable/button_text_color"
+
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.05"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#77000000">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#77000000">
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+

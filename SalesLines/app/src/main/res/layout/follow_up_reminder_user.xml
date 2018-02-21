@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLine"></View>
+
+
+        <TextView
+            android:layout_below="@+id/line1"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Follow up reminder - user"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_below="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLine"></View>
+
+
+        <TextView
+            android:id="@+id/tv_follow_up_title"
+            android:layout_below="@+id/line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:text="Hot Lead"
+            android:textColor="#2f3233"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/iv_followup_reminder"
+            android:layout_below="@+id/tv_follow_up_title"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+             />
+
+        <TextView
+            android:id="@+id/tv_lead_name"
+            android:layout_below="@id/iv_followup_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:text="Hey! Call Mr.X"
+            android:textColor="#2f3233" />
+
+        <TextView
+            android:id="@+id/tv_follow_up_message"
+            android:layout_below="@+id/tv_lead_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:padding="8dp"
+            android:text="help him out in buying his\ndream car."
+            android:textColor="#2f3233" />
+
+        <TextView
+            android:layout_below="@+id/tv_follow_up_message"
+            android:id="@+id/tv_last_called_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:text="You last called on 20/05/2017"
+            android:textColor="#2f3233" />
+
+        <Button
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_last_called_date"
+            android:id="@+id/btn_SMS_Followup"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/button_background"
+            android:text="Send SMS"
+            android:textColor="@drawable/button_text_color"
+            android:textSize="15sp" />
+</RelativeLayout>
+

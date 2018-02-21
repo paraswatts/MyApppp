@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f8f4"
+    android:orientation="vertical">
+
+    <!-- Main Header Layout Common For all screen-->
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:weightSum="1">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="100"
+                    android:src="@drawable/saleslogo">
+
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_error">
+
+                </ImageView>
+            </FrameLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tv_current_time_today"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_logo"
+                android:gravity="center"
+                android:text="Date Time"
+                android:textAppearance="?android:textAppearanceSmallInverse" />
+        </TableRow>
+    </TableLayout>
+
+    <!-- End Main Header Layout-->
+
+
+    <!-- Follow-Up Reminder Layout-->
+
+
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today's Follow-Ups"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="16dp"
+        android:id="@+id/rc_todayFollowups"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

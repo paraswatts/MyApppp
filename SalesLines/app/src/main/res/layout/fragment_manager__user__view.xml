@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center|left"
+        android:text="User screen - Manager View"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+
+    <Button
+        android:id="@+id/btn_Graph"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Graphs"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/btn_All_Leads"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="All Leads"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/btn_FollowUp_Call"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Followed-Up Leads"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+
+
+    <Button
+        android:id="@+id/btn_MissedCall"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Missed Follow-Ups"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+    <Button
+        android:id="@+id/btn_Today_FollowUp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Todays Follow-Ups"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+    <Button
+        android:id="@+id/btn_Total_Sales"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Total Sales"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/btn_Assign_Target"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Assign Targets"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/btn_InUser"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Inactive User"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/btn_trackUser"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Track User"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+
+</LinearLayout>

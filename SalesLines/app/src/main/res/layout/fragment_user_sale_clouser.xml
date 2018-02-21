@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:text="Sale Closure"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp" />
+
+    <ScrollView
+
+        android:id="@+id/mScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text=" Enquiry Number"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/et_AddEnqNo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:editable="false"
+                android:elevation="3dp"
+                android:focusable="false"
+                android:hint="Add Enquiry Number"
+                android:padding="8dp"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="5dp"
+                android:text=" Products Sold "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_Products_sold"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:padding="8dp"
+                android:text="Products Sold"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text=" Payment Mode "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_PaymentMode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+
+                android:background="@drawable/text_view_border"
+                android:drawableEnd="@drawable/arrow_spinner"
+                android:drawableRight="@drawable/cursor_"
+                android:editable="false"
+                android:elevation="3dp"
+                android:focusable="false"
+
+                android:hint=" --Select--"
+                android:padding="8dp"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text=" Payment Type "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_PaymentType"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/text_view_border"
+
+                android:drawableEnd="@drawable/arrow_spinner"
+                android:drawableRight="@drawable/cursor_"
+                android:editable="false"
+                android:elevation="3dp"
+                android:focusable="false"
+
+                android:hint=" --Select--"
+                android:padding="8dp"
+
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text=" Total Sale Value "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_TotalSaleValue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:hint=" Enter Total value of sale"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text=" EMI Dates "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_EmiDate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:hint="Enter emi dates"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 1=1month and max 240months"
+                android:textColor="@color/red"
+
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text=" Delivery Status "
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_Delivery_Status"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/text_view_border"
+                android:drawableEnd="@drawable/arrow_spinner"
+                android:drawableRight="@drawable/cursor_"
+                android:editable="false"
+                android:elevation="3dp"
+                android:focusable="false"
+
+                android:hint=" --Select--"
+                android:padding="8dp"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text=" Receipt Number"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_ReciptNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:hint=" Enter receipt number"
+                android:padding="8dp"
+                android:textSize="15dp" />
+
+
+            <ImageView
+                android:id="@+id/iv_Document"
+                android:layout_width="130dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_file" />
+
+            <Button
+                android:id="@+id/btn_Upload"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/button_background"
+                android:text="Upload"
+                android:textColor="@drawable/button_text_color"
+                android:visibility="gone"
+
+
+                />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="18dp"
+
+                android:background="@color/colorLine">
+
+
+            </View>
+
+            <Button
+                android:id="@+id/btn_Closec"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/button_background"
+
+                android:text="Sale Closed"
+                android:textColor="@drawable/button_text_color" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+</LinearLayout>

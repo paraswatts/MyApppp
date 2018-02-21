@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.nitesh.brill.saleslines.Common_Files.MultiTouchView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLine"></View>
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/headingmarginLeft"
+            android:layout_marginTop="5dp"
+            android:text="Graphs"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLine"></View>
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:id="@+id/linearlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:orientation="vertical">
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="Month-Wise Graphs"
+                android:textColor="#323535"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:background="#ff6500"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a1"
+                            android:gravity="center_horizontal"
+                            android:text="New Leads"
+                            android:textColor="#ff6500"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/a2"
+                            android:background="#00339d"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a3"
+                            android:gravity="center_horizontal"
+                            android:text="Follow Ups"
+                            android:textColor="#00339d"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/a4"
+                            android:background="#9602c8"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a5"
+                            android:gravity="center_horizontal"
+                            android:text="Missed Follow Ups"
+                            android:textColor="#9602c8"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/a6"
+                            android:background="#009a34"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a7"
+                            android:gravity="center_horizontal"
+                            android:text="Total Sales"
+                            android:textColor="#009a34"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="185dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_Horizontal_RecyclerView_Month"
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+
+
+                    android:layout_marginTop="15dp"
+                    android:background="#fff" />
+
+
+                <TextView
+                    android:id="@+id/monthEmptyView"
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="No chart data available."
+                    android:textColor="@color/google_yellow"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+
+                android:text="Day-Wise Graphs"
+                android:textColor="#323535"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:background="#ff6500"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a1"
+                            android:gravity="center_horizontal"
+                            android:text="New Leads"
+                            android:textColor="#ff6500"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/a2"
+                            android:background="#00339d"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a3"
+                            android:gravity="center_horizontal"
+                            android:text="Follow Ups"
+                            android:textColor="#00339d"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/a4"
+                            android:background="#9602c8"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a5"
+                            android:gravity="center_horizontal"
+                            android:text="Missed Follow Ups"
+                            android:textColor="#9602c8"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="0.50"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/a6"
+                            android:background="#009a34"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="14sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/a7"
+                            android:gravity="center_horizontal"
+                            android:text="Total Sales"
+                            android:textColor="#009a34"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="185dp"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_Horizontal_RecyclerView_Day"
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#fff"
+                    android:visibility="gone" />
+
+
+                <TextView
+                    android:id="@+id/dayEmptyView"
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="No chart data available."
+                    android:textColor="@color/google_yellow"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="Total Sales Value"
+                android:textColor="#323535"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorLine"></View>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_RecyclerView_Month"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#fff"
+                android:visibility="gone" />
+
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="170dp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="Product Wise Sales"
+                android:textColor="#323535"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorLine"></View>
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="January"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <!--<LinearLayout
+                        android:id="@+id/pc_PieChartDecemberll"
+                        android:layout_width="370dp"
+                        android:layout_height="270dp"
+                        android:orientation="vertical">
+
+
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartDecember"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:layout_marginTop="10dp" />
+                    </LinearLayout>-->
+
+
+                    <!-- <LinearLayout
+
+                         android:id="@+id/pc_PieChartFebll"
+                         android:layout_width="370dp"
+                         android:layout_height="270dp"
+                         android:orientation="vertical">
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:gravity="center"
+                             android:text="February"
+                             android:textSize="20sp" />
+
+                         <com.github.mikephil.charting.charts.PieChart
+                             android:id="@+id/pc_PieChartFeb"
+                             android:layout_width="350dp"
+                             android:layout_height="350dp"
+                             android:layout_marginTop="10dp" />
+
+                     </LinearLayout>-->
+
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartFebll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="February"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartFeb"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <!-- <LinearLayout
+                         android:id="@+id/pc_PieChartMll"
+                         android:layout_width="370dp"
+                         android:layout_height="270dp"
+                         android:orientation="vertical">
+
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:gravity="center"
+                             android:text="March"
+                             android:textSize="20sp" />
+
+                         <com.github.mikephil.charting.charts.PieChart
+                             android:id="@+id/pc_PieChartM"
+                             android:layout_width="match_parent"
+                             android:layout_height="250dp"
+                             android:layout_marginTop="10dp" />
+                     </LinearLayout>-->
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartMll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="March"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartM"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <!-- <LinearLayout
+                         android:id="@+id/pc_PieChartAprilll"
+                         android:layout_width="370dp"
+                         android:layout_height="270dp"
+                         android:orientation="vertical">
+
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:gravity="center"
+                             android:text="April"
+                             android:textSize="20sp" />
+
+                         <com.github.mikephil.charting.charts.PieChart
+                             android:id="@+id/pc_PieChartApril"
+                             android:layout_width="match_parent"
+                             android:layout_height="250dp"
+                             android:layout_marginTop="10dp" />
+                     </LinearLayout>
+ -->
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartAprilll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="April"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartApril"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartMAyll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="May"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartMAy"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <!-- <LinearLayout
+                         android:id="@+id/pc_PieChartMAyll"
+                         android:layout_width="370dp"
+                         android:layout_height="270dp"
+                         android:orientation="vertical">
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:gravity="center"
+                             android:text="May"
+                             android:textSize="20sp" />
+
+                         <com.github.mikephil.charting.charts.PieChart
+                             android:id="@+id/pc_PieChartMAy"
+                             android:layout_width="match_parent"
+                             android:layout_height="250dp"
+                             android:layout_marginTop="10dp" />
+                     </LinearLayout>-->
+
+
+                    <!--      <LinearLayout
+                              android:id="@+id/pc_PieChartJunell"
+                              android:layout_width="370dp"
+                              android:layout_height="270dp"
+                              android:orientation="vertical">
+
+                              <TextView
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginTop="10dp"
+                                  android:gravity="center"
+                                  android:text="June"
+                                  android:textSize="20sp" />
+
+                              <com.github.mikephil.charting.charts.PieChart
+                                  android:id="@+id/pc_PieChartJune"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="250dp"
+                                  android:layout_marginTop="10dp" />
+                          </LinearLayout>
+      -->
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartJunell"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="June"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartJune"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartJulyll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="July"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartJuly"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <!--<LinearLayout
+                        android:id="@+id/pc_PieChartJulyll"
+                        android:layout_width="370dp"
+                        android:layout_height="270dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="July"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartJuly"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:layout_marginTop="10dp" />
+                    </LinearLayout>
+-->
+                    <!--   <LinearLayout
+                           android:id="@+id/pc_PieChartAugustll"
+                           android:layout_width="270dp"
+                           android:layout_height="270dp"
+                           android:orientation="vertical">
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="10dp"
+                               android:gravity="center"
+                               android:text="August"
+                               android:textSize="20sp" />
+
+                           <com.github.mikephil.charting.charts.PieChart
+                               android:id="@+id/pc_PieChartAugust"
+                               android:layout_width="match_parent"
+                               android:layout_height="250dp"
+                               android:layout_marginTop="10dp" />
+                       </LinearLayout>-->
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartAugustll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="August"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartAugust"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartSeptemberll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="September"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartSeptember"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <!-- <LinearLayout
+                         android:id="@+id/pc_PieChartSeptemberll"
+                         android:layout_width="370dp"
+                         android:layout_height="270dp"
+                         android:orientation="vertical">
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:gravity="center"
+                             android:text="September"
+                             android:textSize="20sp" />
+
+                         <com.github.mikephil.charting.charts.PieChart
+                             android:id="@+id/pc_PieChartSeptember"
+                             android:layout_width="match_parent"
+                             android:layout_height="250dp"
+                             android:layout_marginTop="10dp" />
+                     </LinearLayout>-->
+
+                    <!--              <LinearLayout
+                                      android:id="@+id/pc_PieChartOctoberll"
+                                      android:layout_width="370dp"
+                                      android:layout_height="270dp"
+                                      android:orientation="vertical">
+
+                                      <TextView
+                                          android:layout_width="match_parent"
+                                          android:layout_height="wrap_content"
+                                          android:layout_marginTop="10dp"
+                                          android:gravity="center"
+                                          android:text="Octber"
+                                          android:textSize="20sp" />
+
+                                      <com.github.mikephil.charting.charts.PieChart
+                                          android:id="@+id/pc_PieChartOctober"
+                                          android:layout_width="match_parent"
+                                          android:layout_height="250dp"
+                                          android:layout_marginTop="10dp" />
+                                  </LinearLayout>-->
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartOctoberll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="October"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartOctober"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartNovemberll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+                            android:text="November"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartNovember"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+
+                    <!-- <LinearLayout
+                         android:id="@+id/pc_PieChartNovemberll"
+                         android:layout_width="370dp"
+                         android:layout_height="270dp"
+                         android:orientation="vertical">
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:gravity="center"
+                             android:text="November"
+                             android:textSize="20sp" />
+
+                         <com.github.mikephil.charting.charts.PieChart
+                             android:id="@+id/pc_PieChartNovember"
+                             android:layout_width="match_parent"
+                             android:layout_height="250dp"
+                             android:layout_marginTop="10dp" />
+                     </LinearLayout>-->
+
+                    <!--  <LinearLayout
+                          android:id="@+id/pc_PieChartDecemberll"
+                          android:layout_width="370dp"
+                          android:layout_height="250dp"
+                          android:orientation="vertical">
+
+                          <TextView
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="10dp"
+                              android:gravity="center"
+                              android:text="December"
+                              android:textSize="20sp" />
+
+                          <com.github.mikephil.charting.charts.PieChart
+                              android:id="@+id/pc_PieChartDecember"
+                              android:layout_width="match_parent"
+                              android:layout_height="230dp" />
+                      </LinearLayout>-->
+
+
+                    <LinearLayout
+                        android:id="@+id/pc_PieChartDecemberll"
+                        android:layout_width="370dp"
+                        android:layout_height="250dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="December"
+                            android:textSize="20sp" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pc_PieChartDecember"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Funnel Graph"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorLine"></View>
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_jan"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:ignore="DuplicateIds">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_jan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/pyramidChart"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_feb"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_feb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_feb"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_mar"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_march"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_march"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_apr"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_april"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_april"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_may"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_may"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_may"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_jun"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_june"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_june"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_jul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_july"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_july"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_aug"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_august"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_august"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_sep"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_september"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_september"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_oct"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_october"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_october"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_nov"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_november"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_november"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_dec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_label_funnel_december"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp" />
+
+                        <com.nitesh.brill.saleslines.Common_Files.FunnelChart
+                            android:id="@+id/fg_december"
+                            android:layout_width="250dp"
+
+                            android:layout_height="250dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+    </ScrollView>
+</com.nitesh.brill.saleslines.Common_Files.MultiTouchView>

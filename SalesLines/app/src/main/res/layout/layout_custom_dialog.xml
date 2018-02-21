@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:text="Product:" />
+
+        <EditText
+            android:id="@+id/et_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:editable="false"
+            android:focusable="false"
+            android:imeOptions="actionDone"
+            android:singleLine="true" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:text="Target:" />
+
+        <EditText
+            android:id="@+id/et_target"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:imeOptions="actionDone"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center|right"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_margin="20dp"
+            android:textColor="@drawable/button_text_color"
+            android:background="@drawable/button_background"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/btn_Done"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_margin="20dp"
+            android:textColor="@drawable/button_text_color"
+            android:background="@drawable/button_background"
+            android:text="Update" />
+
+    </LinearLayout>
+
+</LinearLayout>

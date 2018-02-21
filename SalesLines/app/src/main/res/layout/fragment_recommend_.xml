@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/headingmarginLeft"
+                android:layout_marginTop="5dp"
+                android:text="Recommend App"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+
+            <EditText
+                android:id="@+id/et_Name"
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/edittext"
+                android:layout_below="@+id/loginTextView"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:hint="Name"
+                android:paddingBottom="@dimen/paddingBottom"
+                android:paddingLeft="@dimen/paddingLeft"
+                android:paddingRight="@dimen/paddingRight"
+                android:paddingTop="@dimen/paddingTop"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp" />
+
+            <EditText
+
+                android:id="@+id/et_Email"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/edittext"
+                android:layout_below="@+id/loginTextView"
+
+
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:hint="@string/email"
+                android:paddingBottom="@dimen/paddingBottom"
+                android:paddingLeft="@dimen/paddingLeft"
+                android:paddingRight="@dimen/paddingRight"
+                android:paddingTop="@dimen/paddingTop"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp" />
+
+            <EditText
+
+                android:id="@+id/et_Phone"
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/edittext"
+                android:layout_below="@+id/loginTextView"
+
+
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:hint="Phone"
+                android:paddingBottom="@dimen/paddingBottom"
+                android:paddingLeft="@dimen/paddingLeft"
+                android:paddingRight="@dimen/paddingRight"
+                android:paddingTop="@dimen/paddingTop"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp" />
+
+            <EditText
+
+                android:id="@+id/et_Company"
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/edittext"
+                android:layout_below="@+id/loginTextView"
+
+
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/text_view_border"
+                android:elevation="3dp"
+                android:hint="Company"
+                android:paddingBottom="@dimen/paddingBottom"
+                android:paddingLeft="@dimen/paddingLeft"
+                android:paddingRight="@dimen/paddingRight"
+                android:paddingTop="@dimen/paddingTop"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/btn_Submit"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_background"
+                android:text="Submit"
+                android:textColor="@drawable/button_text_color"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="@dimen/headingmarginLeft"
+                android:layout_marginTop="8dp"
+                android:text="Share with"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fb"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/facebook_background" />
+
+                <Button
+                    android:id="@+id/twitter"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/twiiter_background" />
+
+                <Button
+                    android:id="@+id/linkedin"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/linkedin_background" />
+
+                <Button
+                    android:id="@+id/whatsapp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/whatsapp_background" />
+
+                <Button
+                    android:id="@+id/googleplus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/google_background" />
+
+                <Button
+                    android:id="@+id/instagram"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/insta_background" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorLine"></View>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

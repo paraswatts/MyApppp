@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center|left"
+            android:text="Lead Name : "
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center|left"
+            android:text="Tony Stark"
+
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium.Inverse" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+
+            >
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Enquiry No. :"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_Enq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+
+                    android:text="Tony Stark" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Closed Date :"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_Close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="1974" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Product :"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/tv_ProductSold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Stan Lee :" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Sale Value :        "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_Salevalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Marvel Comics" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Employe :  "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_Sman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:inputType="textMultiLine"
+                    android:text="." />
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

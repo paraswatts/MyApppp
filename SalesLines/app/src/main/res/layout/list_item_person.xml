@@ -1,0 +1,36 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:id="@+id/rl_notification_item"
+    android:layout_height="wrap_content"
+    android:background="#d4d7d8"
+    android:layout_margin="8dp"
+    android:padding="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_Notification_Date_Time"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:background="#d4d7d8"-->
+        <!--android:text="Date Time"-->
+        <!--android:layout_toRightOf="@+id/ml"-->
+        <!--android:textColor="#2f3233" />-->
+        <TextView
+            android:id="@+id/tv_Notification_List"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#d4d7d8"
+            android:text="Congrats on your successful follow-up"
+            android:textColor="#2f3233" />
+
+        <TextView
+            android:layout_below="@+id/tv_Notification_List"
+            android:layout_marginRight="4dp"
+            android:id="@+id/ml"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SL" />
+
+   </RelativeLayout>
+

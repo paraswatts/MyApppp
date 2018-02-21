@@ -1,0 +1,230 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+    </style>
+
+
+    <style name="Green" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="UpdatedSceneBlue" parent="DefaultScene">
+        <item name="filter">@color/blueColorPrimary</item>
+    </style>
+
+    <style name="DefaultScene">
+        <item name="filter">@color/colorPrimary</item>
+    </style>
+
+    <style name="Fuchsia" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blueColorPrimary</item>
+        <item name="colorPrimaryDark">@color/blueColorPrimary</item>
+        <item name="colorAccent">@color/blueColorPrimary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+
+    <style name="Red" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">@color/black</item>    </style>
+    <style name="ActionButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_alarm</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="textView">
+
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="spinner">
+        <item name="android:background">@drawable/spinner_bg</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+
+
+    </style>
+
+    <style name="spinner_style">
+
+    </style>
+
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+
+        <item name="colorControlActivated">#fed000</item>
+        <item name="colorControlNormal">#fed000</item>
+    </style>
+
+    <style name="RatingBarTheme" parent="Theme.AppCompat">
+
+        <item name="colorControlActivated">#fed000</item>
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+    </style>
+
+
+    <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:numStars">5</item>
+        <item name="android:rating">4.5</item>
+        <item name="android:stepSize">0.5</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">44dip</item>
+        <item name="android:layout_marginLeft">4dip</item>
+        <item name="android:layout_marginTop">4dip</item>
+    </style>
+
+
+    <!-- ========================= -->
+    <!-- Action bar/toolbar styles -->
+    <!-- ========================= -->
+    <style name="AppToolbar" parent="Widget.AppCompat.Toolbar">
+        <!-- force subtitle text color for v21+ -->
+    </style>
+
+    <style name="AppToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="searchViewStyle">@style/AppToolbarSearchView</item>
+    </style>
+
+    <!-- ================== -->
+    <!-- Search view styles -->
+    <!-- ================== -->
+    <style name="AppToolbarSearchView" parent="Widget.AppCompat.SearchView.ActionBar">
+        <item name="queryHint">Search</item>
+    </style>
+
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
+
+    <!--Theme -->
+
+
+
+
+    <style name="Silver" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/silver</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Maroon" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/maroon</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <style name="Black" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Purple" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/purple</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="DeleteDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <!-- All Style of widget-->
+
+    <!--Button-->
+
+    <style name="button" parent="android:Widget.Button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:textColor">@drawable/button_text_color</item>
+    </style>
+
+    <style name="TextViewStyle">
+        <item name="android:textSize">15dp</item>
+        <item name="android:height">22dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:width">138dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="header_text">
+        <item name="android:textSize">35dp</item>
+        <item name="android:height">50dp</item>
+        <item name="android:width">138dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="EditTextStyle">
+
+        <item name="android:background">@drawable/text_view_border</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:height">@dimen/match_parent</item>
+        <item name="android:width">@dimen/wrap_content</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+
+
+    </style>
+<!--   The best way I found: - instead of "match_parent" and "fill_parent" write "-1dp" - instead of "wrap_content" write "-2dp"    -->
+
+
+
+</resources>

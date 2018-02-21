@@ -1,0 +1,906 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fc4efbf0ac5, pid=6518, tid=0x00007fc4dd255700
+#
+# JRE version: OpenJDK Runtime Environment (8.0_151-b12) (build 1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12)
+# Java VM: OpenJDK 64-Bit Server VM (25.151-b12 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# J 14736 C2 org.jetbrains.kotlin.resolve.OverridingUtil.isOverridableBy(Lorg/jetbrains/kotlin/descriptors/CallableDescriptor;Lorg/jetbrains/kotlin/descriptors/CallableDescriptor;Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Z)Lorg/jetbrains/kotlin/resolve/OverridingUtil$OverrideCompatibilityInfo; (413 bytes) @ 0x00007fc4efbf0ac5 [0x00007fc4efbecf80+0x3b45]
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fc4a8003000):  JavaThread "RMI TCP Connection(2)-127.0.0.1" daemon [_thread_in_Java, id=6545, stack(0x00007fc4dd155000,0x00007fc4dd256000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000000000011
+
+Registers:
+RAX=0x00000000f2c73d48, RBX=0x0000000000000006, RCX=0x0000000000000005, RDX=0x0000000000000000
+RSP=0x00007fc4dd24eb20, RBP=0x00000000f2c73d48, RSI=0x00000000f2c73d06, RDI=0x00000000a4831fc8
+R8 =0x00000000a4831f88, R9 =0x00000000f2c73d10, R10=0x00000000f2c73d28, R11=0x0000000000000005
+R12=0x0000000000000000, R13=0x00000000a1703b48, R14=0x00000000f2c73b18, R15=0x00007fc4a8003000
+RIP=0x00007fc4efbf0ac5, EFLAGS=0x0000000000010293, CSGSFS=0x002b000000000033, ERR=0x0000000000000006
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007fc4dd24eb20)
+0x00007fc4dd24eb20:   2007d3e62009773b 00000001003e9f30
+0x00007fc4dd24eb30:   00000001004bb9d8 00000000a2c0bbc0
+0x00007fc4dd24eb40:   00000000f2c6aa08 00000000f2c73688
+0x00007fc4dd24eb50:   00000000f2c6fba8 00000000a48eba80
+0x00007fc4dd24eb60:   00000000f2c6aa08 0000000300000003
+0x00007fc4dd24eb70:   0000000100000002 00000000a29e79e8
+0x00007fc4dd24eb80:   0000000100001610 0000000100305598
+0x00007fc4dd24eb90:   00000001003053b0 00000000a04710a0
+0x00007fc4dd24eba0:   0000000000000001 0000000000000005
+0x00007fc4dd24ebb0:   00000000f2c6fd18 00000000a336a2b0
+0x00007fc4dd24ebc0:   00000000a16f0ad8 00000000f2c73d28
+0x00007fc4dd24ebd0:   00000000f2c73d10 0000000100490768
+0x00007fc4dd24ebe0:   2008bea700000000 0000000000000001
+0x00007fc4dd24ebf0:   00000000a1a27f80 0000000000000000
+0x00007fc4dd24ec00:   00007fc4dd24ec80 00007fc4ed007ffd
+0x00007fc4dd24ec10:   00000000f2c6fba8 00007fc4edd3c8ec
+0x00007fc4dd24ec20:   00000000f2c71720 2001665520002dec
+0x00007fc4dd24ec30:   00000001000b2580 00000000f2c71800
+0x00007fc4dd24ec40:   00000000a48eba80 00000000f2c717e8
+0x00007fc4dd24ec50:   00000000f2c71940 000000010005eb20
+0x00007fc4dd24ec60:   0000000100052ec8 00000001000b2ed0
+0x00007fc4dd24ec70:   000000010008a898 00000001000b32a8
+0x00007fc4dd24ec80:   0000000100477a30 0000000100016f60
+0x00007fc4dd24ec90:   00000000f2c6aa08 00000000f2c71960
+0x00007fc4dd24eca0:   a43125d02000a5d9 00000000f2c71998
+0x00007fc4dd24ecb0:   00000000f2c6fba8 00007fc4f2c71978
+0x00007fc4dd24ecc0:   00000000f2c719b0 0000000000000001
+0x00007fc4dd24ecd0:   0000000000000000 00007fc4ed10bbd9
+0x00007fc4dd24ece0:   0000000000000000 00000000f2c6b750
+0x00007fc4dd24ecf0:   00007fc4dd24ed58 00007fc4ed0077d0
+0x00007fc4dd24ed00:   00000000f2c71460 00007fc4ed0077d0
+0x00007fc4dd24ed10:   00007fc4dd24ed78 00000000f2c71940 
+
+Instructions: (pc=0x00007fc4efbf0ac5)
+0x00007fc4efbf0aa5:   0c 4c 89 60 10 48 8b e8 4c 89 94 24 88 00 00 00
+0x00007fc4efbf0ab5:   4c 8b 94 24 a8 00 00 00 4c 8b 9c 24 88 00 00 00
+0x00007fc4efbf0ac5:   45 89 53 0c 4d 8b d3 4d 8b ca 49 c1 ea 09 49 bb
+0x00007fc4efbf0ad5:   00 f0 43 ec c4 7f 00 00 47 88 24 13 4c 8b 94 24 
+
+Register to memory mapping:
+
+RAX=0x00000000f2c73d48 is an oop
+org.jetbrains.kotlin.name.FqName 
+ - klass: 'org/jetbrains/kotlin/name/FqName'
+RBX=0x0000000000000006 is an unknown value
+RCX=0x0000000000000005 is an unknown value
+RDX=0x0000000000000000 is an unknown value
+RSP=0x00007fc4dd24eb20 is pointing into the stack for thread: 0x00007fc4a8003000
+RBP=0x00000000f2c73d48 is an oop
+org.jetbrains.kotlin.name.FqName 
+ - klass: 'org/jetbrains/kotlin/name/FqName'
+RSI=0x00000000f2c73d06 is an unknown value
+RDI=0x00000000a4831fc8 is pointing into object: 0x00000000a4831fb8
+[C 
+ - klass: {type array char}
+ - length: 5
+R8 =0x00000000a4831f88 is an oop
+org.jetbrains.kotlin.name.Name 
+ - klass: 'org/jetbrains/kotlin/name/Name'
+R9 =0x00000000f2c73d10 is an oop
+java.lang.String 
+ - klass: 'java/lang/String'
+R10=0x00000000f2c73d28 is an oop
+org.jetbrains.kotlin.name.FqNameUnsafe 
+ - klass: 'org/jetbrains/kotlin/name/FqNameUnsafe'
+R11=0x0000000000000005 is an unknown value
+R12=0x0000000000000000 is an unknown value
+R13=0x00000000a1703b48 is an oop
+java.util.HashMap 
+ - klass: 'java/util/HashMap'
+R14=0x00000000f2c73b18 is an oop
+
+[error occurred during error reporting (printing register info), id 0xb]
+
+Stack: [0x00007fc4dd155000,0x00007fc4dd256000],  sp=0x00007fc4dd24eb20,  free space=998k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+J 14736 C2 org.jetbrains.kotlin.resolve.OverridingUtil.isOverridableBy(Lorg/jetbrains/kotlin/descriptors/CallableDescriptor;Lorg/jetbrains/kotlin/descriptors/CallableDescriptor;Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Z)Lorg/jetbrains/kotlin/resolve/OverridingUtil$OverrideCompatibilityInfo; (413 bytes) @ 0x00007fc4efbf0ac5 [0x00007fc4efbecf80+0x3b45]
+J 11333 C2 org.jetbrains.kotlin.resolve.OverridingUtil.generateOverridesInFunctionGroup(Lorg/jetbrains/kotlin/name/Name;Ljava/util/Collection;Ljava/util/Collection;Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/resolve/OverridingStrategy;)V (119 bytes) @ 0x00007fc4edd3c8ec [0x00007fc4edd3c300+0x5ec]
+J 6944 C1 org.jetbrains.kotlin.load.java.components.DescriptorResolverUtils.resolveOverrides(Lorg/jetbrains/kotlin/name/Name;Ljava/util/Collection;Ljava/util/Collection;Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/serialization/deserialization/ErrorReporter;Z)Ljava/util/Collection; (87 bytes) @ 0x00007fc4ee56376c [0x00007fc4ee5630a0+0x6cc]
+J 6946 C1 org.jetbrains.kotlin.load.java.components.DescriptorResolverUtils.resolveOverridesForNonStaticMembers(Lorg/jetbrains/kotlin/name/Name;Ljava/util/Collection;Ljava/util/Collection;Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/serialization/deserialization/ErrorReporter;)Ljava/util/Collection; (60 bytes) @ 0x00007fc4ee564a0c [0x00007fc4ee5647a0+0x26c]
+J 6870 C1 org.jetbrains.kotlin.load.java.lazy.descriptors.LazyJavaClassMemberScope.addFunctionFromSupertypes(Ljava/util/Collection;Lorg/jetbrains/kotlin/name/Name;Ljava/util/Collection;Z)V (215 bytes) @ 0x00007fc4ee502bf4 [0x00007fc4ee502900+0x2f4]
+J 11330 C2 org.jetbrains.kotlin.load.java.lazy.descriptors.LazyJavaClassMemberScope.computeNonDeclaredFunctions(Ljava/util/Collection;Lorg/jetbrains/kotlin/name/Name;)V (349 bytes) @ 0x00007fc4ef11380c [0x00007fc4ef110e60+0x29ac]
+J 13596 C1 org.jetbrains.kotlin.load.java.lazy.descriptors.LazyJavaScope$functions$1.invoke(Lorg/jetbrains/kotlin/name/Name;)Ljava/util/List; (175 bytes) @ 0x00007fc4ef83b77c [0x00007fc4ef83b320+0x45c]
+J 6865 C1 org.jetbrains.kotlin.load.java.lazy.descriptors.LazyJavaScope$functions$1.invoke(Ljava/lang/Object;)Ljava/lang/Object; (9 bytes) @ 0x00007fc4ee4f9314 [0x00007fc4ee4f9140+0x1d4]
+J 4909 C2 org.jetbrains.kotlin.storage.LockBasedStorageManager$MapBasedMemoizedFunction.invoke(Ljava/lang/Object;)Ljava/lang/Object; (281 bytes) @ 0x00007fc4ed189698 [0x00007fc4ed1892e0+0x3b8]
+J 7106 C2 org.jetbrains.kotlin.load.java.lazy.descriptors.LazyJavaClassMemberScope.getContributedFunctions(Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/incremental/components/LookupLocation;)Ljava/util/Collection; (27 bytes) @ 0x00007fc4ee647d94 [0x00007fc4ee647420+0x974]
+j  org.jetbrains.kotlin.load.kotlin.JvmBuiltInsSettings$getFunctions$2.invoke(Lorg/jetbrains/kotlin/resolve/scopes/MemberScope;)Ljava/util/Collection;+17
+j  org.jetbrains.kotlin.load.kotlin.JvmBuiltInsSettings$getFunctions$2.invoke(Ljava/lang/Object;)Ljava/lang/Object;+5
+j  org.jetbrains.kotlin.load.kotlin.JvmBuiltInsSettings.getAdditionalFunctions(Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lkotlin/jvm/functions/Function1;)Ljava/util/Collection;+250
+j  org.jetbrains.kotlin.load.kotlin.JvmBuiltInsSettings.getFunctions(Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Ljava/util/Collection;+232
+j  org.jetbrains.kotlin.serialization.deserialization.descriptors.DeserializedClassDescriptor$DeserializedClassMemberScope.computeNonDeclaredFunctions(Lorg/jetbrains/kotlin/name/Name;Ljava/util/Collection;)V+124
+j  org.jetbrains.kotlin.serialization.deserialization.descriptors.DeserializedMemberScope.computeFunctions(Lorg/jetbrains/kotlin/name/Name;)Ljava/util/Collection;+142
+J 14588 C1 org.jetbrains.kotlin.serialization.deserialization.descriptors.DeserializedMemberScope$functions$1.invoke(Ljava/lang/Object;)Ljava/lang/Object; (9 bytes) @ 0x00007fc4ee8b102c [0x00007fc4ee8b0d00+0x32c]
+J 4909 C2 org.jetbrains.kotlin.storage.LockBasedStorageManager$MapBasedMemoizedFunction.invoke(Ljava/lang/Object;)Ljava/lang/Object; (281 bytes) @ 0x00007fc4ed189698 [0x00007fc4ed1892e0+0x3b8]
+J 8600 C2 org.jetbrains.kotlin.serialization.deserialization.descriptors.DeserializedMemberScope.getContributedFunctions(Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/incremental/components/LookupLocation;)Ljava/util/Collection; (48 bytes) @ 0x00007fc4eea0a5b0 [0x00007fc4eea0a0e0+0x4d0]
+J 14568 C2 org.jetbrains.kotlin.serialization.deserialization.descriptors.DeserializedClassDescriptor$DeserializedClassMemberScope.getContributedFunctions(Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/incremental/components/LookupLocation;)Ljava/util/Collection; (25 bytes) @ 0x00007fc4ee167204 [0x00007fc4ee166ec0+0x344]
+J 14827 C2 org.jetbrains.kotlin.resolve.calls.tower.MemberScopeTowerLevel$getFunctions$1.invoke(Lorg/jetbrains/kotlin/resolve/scopes/ResolutionScope;Lorg/jetbrains/kotlin/types/KotlinType;)Ljava/util/List; (82 bytes) @ 0x00007fc4edcf6afc [0x00007fc4edcf6a80+0x7c]
+J 11472 C2 org.jetbrains.kotlin.resolve.calls.tower.MemberScopeTowerLevel.collectMembers(Lkotlin/jvm/functions/Function2;)Ljava/util/Collection; (512 bytes) @ 0x00007fc4ef18ff78 [0x00007fc4ef18fe00+0x178]
+J 14559 C2 org.jetbrains.kotlin.resolve.calls.tower.MemberScopeTowerLevel.getFunctions(Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/resolve/scopes/receivers/ReceiverValueWithSmartCastInfo;)Ljava/util/Collection; (24 bytes) @ 0x00007fc4edff4cb4 [0x00007fc4edff4c20+0x94]
+J 10704 C2 org.jetbrains.kotlin.resolve.calls.tower.ScopeTowerProcessorsKt$createSimpleFunctionProcessor$1.invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; (13 bytes) @ 0x00007fc4edae88a8 [0x00007fc4edae8820+0x88]
+J 11105 C2 org.jetbrains.kotlin.resolve.calls.tower.ExplicitReceiverScopeTowerProcessor.simpleProcess(Lorg/jetbrains/kotlin/resolve/calls/tower/TowerData;)Ljava/util/Collection; (53 bytes) @ 0x00007fc4ef032d44 [0x00007fc4ef032bc0+0x184]
+J 8476 C2 org.jetbrains.kotlin.resolve.calls.tower.AbstractSimpleScopeTowerProcessor.process(Lorg/jetbrains/kotlin/resolve/calls/tower/TowerData;)Ljava/util/List; (12 bytes) @ 0x00007fc4ee9cf5c4 [0x00007fc4ee9cf580+0x44]
+J 9777 C2 org.jetbrains.kotlin.resolve.calls.tower.TowerResolver.processTowerData(Lorg/jetbrains/kotlin/resolve/calls/tower/ScopeTowerProcessor;Lorg/jetbrains/kotlin/resolve/calls/tower/TowerResolver$ResultCollector;ZLorg/jetbrains/kotlin/resolve/calls/tower/TowerData;)Ljava/util/Collection; (170 bytes) @ 0x00007fc4eecb2f30 [0x00007fc4eecb2d80+0x1b0]
+J 13036 C2 org.jetbrains.kotlin.resolve.calls.tower.TowerResolver.run(Lorg/jetbrains/kotlin/resolve/calls/tower/ImplicitScopeTower;Lorg/jetbrains/kotlin/resolve/calls/tower/ScopeTowerProcessor;Lorg/jetbrains/kotlin/resolve/calls/tower/TowerResolver$ResultCollector;Z)Ljava/util/Collection; (767 bytes) @ 0x00007fc4eebb3b4c [0x00007fc4eebb36a0+0x4ac]
+J 14473 C2 org.jetbrains.kotlin.resolve.calls.tower.NewResolutionOldInference.runResolution(Lorg/jetbrains/kotlin/resolve/calls/context/BasicCallResolutionContext;Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/resolve/calls/tower/NewResolutionOldInference$ResolutionKind;Lorg/jetbrains/kotlin/resolve/calls/tasks/TracingStrategy;)Lorg/jetbrains/kotlin/resolve/calls/results/OverloadResolutionResultsImpl; (556 bytes) @ 0x00007fc4ef821888 [0x00007fc4ef820b60+0xd28]
+J 12055 C2 org.jetbrains.kotlin.resolve.calls.CallResolver.doResolveCallOrGetCachedResults(Lorg/jetbrains/kotlin/resolve/calls/context/BasicCallResolutionContext;Lorg/jetbrains/kotlin/resolve/calls/CallResolver$ResolutionTask;Lorg/jetbrains/kotlin/resolve/calls/tasks/TracingStrategy;)Lorg/jetbrains/kotlin/resolve/calls/results/OverloadResolutionResults; (321 bytes) @ 0x00007fc4ef49d430 [0x00007fc4ef49c3a0+0x1090]
+J 13159 C2 org.jetbrains.kotlin.resolve.calls.CallResolver.lambda$computeTasksAndResolveCall$0(Lorg/jetbrains/kotlin/resolve/calls/tower/NewResolutionOldInference$ResolutionKind;Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/resolve/calls/context/BasicCallResolutionContext;Lorg/jetbrains/kotlin/resolve/calls/tasks/TracingStrategy;)Lorg/jetbrains/kotlin/resolve/calls/results/OverloadResolutionResults; (60 bytes) @ 0x00007fc4ee6f9b68 [0x00007fc4ee6f9a80+0xe8]
+J 14132 C2 org.jetbrains.kotlin.resolve.calls.CallResolver.resolveFunctionCall(Lorg/jetbrains/kotlin/resolve/calls/context/BasicCallResolutionContext;)Lorg/jetbrains/kotlin/resolve/calls/results/OverloadResolutionResults; (476 bytes) @ 0x00007fc4ef57d1ec [0x00007fc4ef57cd00+0x4ec]
+J 14258 C2 org.jetbrains.kotlin.resolve.calls.CallExpressionResolver.getResolvedCallForFunction(Lorg/jetbrains/kotlin/psi/Call;Lorg/jetbrains/kotlin/resolve/calls/context/ResolutionContext;Lorg/jetbrains/kotlin/resolve/calls/context/CheckArgumentTypesMode;Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo;)Lkotlin/Pair; (74 bytes) @ 0x00007fc4ee0ed05c [0x00007fc4ee0ecda0+0x2bc]
+J 14264 C2 org.jetbrains.kotlin.resolve.calls.CallExpressionResolver.getCallExpressionTypeInfoWithoutFinalTypeCheck(Lorg/jetbrains/kotlin/psi/KtCallExpression;Lorg/jetbrains/kotlin/resolve/scopes/receivers/Receiver;Lorg/jetbrains/kotlin/com/intellij/lang/ASTNode;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (797 bytes) @ 0x00007fc4edb9c35c [0x00007fc4edb9bde0+0x57c]
+J 14190 C2 org.jetbrains.kotlin.resolve.calls.CallExpressionResolver.getSafeOrUnsafeSelectorTypeInfo(Lorg/jetbrains/kotlin/resolve/scopes/receivers/Receiver;Lorg/jetbrains/kotlin/resolve/calls/CallExpressionElement;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (269 bytes) @ 0x00007fc4efa17ab4 [0x00007fc4efa170c0+0x9f4]
+J 14086 C1 org.jetbrains.kotlin.resolve.calls.CallExpressionResolver.getQualifiedExpressionTypeInfo(Lorg/jetbrains/kotlin/psi/KtQualifiedExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (499 bytes) @ 0x00007fc4edb01fe4 [0x00007fc4edafea20+0x35c4]
+J 14430 C1 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorDispatcher$ForBlock.visitQualifiedExpression(Lorg/jetbrains/kotlin/psi/KtQualifiedExpression;Ljava/lang/Object;)Ljava/lang/Object; (10 bytes) @ 0x00007fc4efa7eeb4 [0x00007fc4efa7eb40+0x374]
+J 12628 C2 org.jetbrains.kotlin.psi.KtVisitor.visitDotQualifiedExpression(Lorg/jetbrains/kotlin/psi/KtDotQualifiedExpression;Ljava/lang/Object;)Ljava/lang/Object; (16 bytes) @ 0x00007fc4ef096ea0 [0x00007fc4ef096e60+0x40]
+J 14397 C2 org.jetbrains.kotlin.psi.KtDotQualifiedExpression.accept(Lorg/jetbrains/kotlin/psi/KtVisitor;Ljava/lang/Object;)Ljava/lang/Object; (13 bytes) @ 0x00007fc4ee2b73ec [0x00007fc4ee2b73a0+0x4c]
+J 11338 C2 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorDispatcher.getTypeInfo(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;Lorg/jetbrains/kotlin/psi/KtVisitor;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (37 bytes) @ 0x00007fc4ee0ba01c [0x00007fc4ee0b9ec0+0x15c]
+J 13293 C2 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorDispatcher.getTypeInfo(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (40 bytes) @ 0x00007fc4ed98d78c [0x00007fc4ed98d740+0x4c]
+J 12599 C1 org.jetbrains.kotlin.types.expressions.ControlStructureTypingVisitor.checkCondition(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;)Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo; (91 bytes) @ 0x00007fc4eea0804c [0x00007fc4eea07e60+0x1ec]
+J 12610 C1 org.jetbrains.kotlin.types.expressions.ControlStructureTypingVisitor.visitIfExpression(Lorg/jetbrains/kotlin/psi/KtIfExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;Z)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (397 bytes) @ 0x00007fc4ed76abec [0x00007fc4ed76aac0+0x12c]
+J 12639 C1 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorForStatements.visitIfExpression(Lorg/jetbrains/kotlin/psi/KtIfExpression;Ljava/lang/Object;)Ljava/lang/Object; (10 bytes) @ 0x00007fc4ed74c6b4 [0x00007fc4ed74c460+0x254]
+J 11944 C1 org.jetbrains.kotlin.psi.KtIfExpression.accept(Lorg/jetbrains/kotlin/psi/KtVisitor;Ljava/lang/Object;)Ljava/lang/Object; (15 bytes) @ 0x00007fc4ef38632c [0x00007fc4ef3861a0+0x18c]
+J 11338 C2 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorDispatcher.getTypeInfo(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;Lorg/jetbrains/kotlin/psi/KtVisitor;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (37 bytes) @ 0x00007fc4ee0ba01c [0x00007fc4ee0b9ec0+0x15c]
+J 14861 C2 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorDispatcher.getTypeInfo(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;Z)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (70 bytes) @ 0x00007fc4efc3cdd0 [0x00007fc4efc3cc60+0x170]
+J 10850 C1 org.jetbrains.kotlin.types.expressions.ExpressionTypingServices.getBlockReturnedTypeWithWritableScope(Lorg/jetbrains/kotlin/resolve/scopes/LexicalWritableScope;Ljava/util/List;Lorg/jetbrains/kotlin/types/expressions/CoercionStrategy;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (392 bytes) @ 0x00007fc4ee82f554 [0x00007fc4ee82d0c0+0x2494]
+J 10974 C1 org.jetbrains.kotlin.types.expressions.ExpressionTypingServices.getBlockReturnedType(Lorg/jetbrains/kotlin/psi/KtBlockExpression;Lorg/jetbrains/kotlin/types/expressions/CoercionStrategy;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (192 bytes) @ 0x00007fc4eef3d53c [0x00007fc4eef3c6a0+0xe9c]
+J 11269 C1 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorForStatements.visitBlockExpression(Lorg/jetbrains/kotlin/psi/KtBlockExpression;Ljava/lang/Object;)Ljava/lang/Object; (10 bytes) @ 0x00007fc4ed1618c4 [0x00007fc4ed161600+0x2c4]
+J 14488 C2 org.jetbrains.kotlin.psi.KtBlockExpression.accept(Lorg/jetbrains/kotlin/psi/KtVisitor;Ljava/lang/Object;)Ljava/lang/Object; (15 bytes) @ 0x00007fc4efa9dbac [0x00007fc4efa9db60+0x4c]
+J 11338 C2 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorDispatcher.getTypeInfo(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;Lorg/jetbrains/kotlin/psi/KtVisitor;)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (37 bytes) @ 0x00007fc4ee0ba01c [0x00007fc4ee0b9ec0+0x15c]
+J 14861 C2 org.jetbrains.kotlin.types.expressions.ExpressionTypingVisitorDispatcher.getTypeInfo(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;Z)Lorg/jetbrains/kotlin/types/expressions/KotlinTypeInfo; (70 bytes) @ 0x00007fc4efc3cdd0 [0x00007fc4efc3cc60+0x170]
+J 13729 C1 org.jetbrains.kotlin.types.expressions.ExpressionTypingServices.checkFunctionReturnType(Lorg/jetbrains/kotlin/psi/KtDeclarationWithBody;Lorg/jetbrains/kotlin/types/expressions/ExpressionTypingContext;)V (57 bytes) @ 0x00007fc4ef90e934 [0x00007fc4ef90e480+0x4b4]
+J 13045 C1 org.jetbrains.kotlin.types.expressions.ExpressionTypingServices.checkFunctionReturnType(Lorg/jetbrains/kotlin/resolve/scopes/LexicalScope;Lorg/jetbrains/kotlin/psi/KtDeclarationWithBody;Lorg/jetbrains/kotlin/descriptors/FunctionDescriptor;Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo;Lorg/jetbrains/kotlin/types/KotlinType;Lorg/jetbrains/kotlin/resolve/BindingTrace;)V (100 bytes) @ 0x00007fc4eee5b4ac [0x00007fc4eee5b2e0+0x1cc]
+J 13452 C1 org.jetbrains.kotlin.resolve.BodyResolver.resolveFunctionBody(Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo;Lorg/jetbrains/kotlin/resolve/BindingTrace;Lorg/jetbrains/kotlin/psi/KtDeclarationWithBody;Lorg/jetbrains/kotlin/descriptors/FunctionDescriptor;Lorg/jetbrains/kotlin/resolve/scopes/LexicalScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V (353 bytes) @ 0x00007fc4ef4017fc [0x00007fc4ef3ff4c0+0x233c]
+J 12371 C1 org.jetbrains.kotlin.resolve.BodyResolver.resolveFunctionBody(Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo;Lorg/jetbrains/kotlin/resolve/BindingTrace;Lorg/jetbrains/kotlin/psi/KtDeclarationWithBody;Lorg/jetbrains/kotlin/descriptors/FunctionDescriptor;Lorg/jetbrains/kotlin/resolve/scopes/LexicalScope;)V (95 bytes) @ 0x00007fc4ef50cdcc [0x00007fc4ef50c3a0+0xa2c]
+j  org.jetbrains.kotlin.resolve.BodyResolver.resolveFunctionBodies(Lorg/jetbrains/kotlin/resolve/BodiesResolveContext;)V+192
+j  org.jetbrains.kotlin.resolve.BodyResolver.resolveBehaviorDeclarationBodies(Lorg/jetbrains/kotlin/resolve/BodiesResolveContext;)V+36
+j  org.jetbrains.kotlin.resolve.BodyResolver.resolveBodies(Lorg/jetbrains/kotlin/resolve/BodiesResolveContext;)V+11
+j  org.jetbrains.kotlin.resolve.LazyTopDownAnalyzer.analyzeDeclarations(Lorg/jetbrains/kotlin/resolve/TopDownAnalysisMode;Ljava/util/Collection;Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo;)Lorg/jetbrains/kotlin/resolve/TopDownAnalysisContext;+331
+j  org.jetbrains.kotlin.resolve.LazyTopDownAnalyzer.analyzeDeclarations$default(Lorg/jetbrains/kotlin/resolve/LazyTopDownAnalyzer;Lorg/jetbrains/kotlin/resolve/TopDownAnalysisMode;Ljava/util/Collection;Lorg/jetbrains/kotlin/resolve/calls/smartcasts/DataFlowInfo;ILjava/lang/Object;)Lorg/jetbrains/kotlin/resolve/TopDownAnalysisContext;+18
+j  org.jetbrains.kotlin.cli.jvm.compiler.TopDownAnalyzerFacadeForJVM.analyzeFilesWithJavaIntegration(Lorg/jetbrains/kotlin/com/intellij/openapi/project/Project;Ljava/util/Collection;Lorg/jetbrains/kotlin/resolve/BindingTrace;Lorg/jetbrains/kotlin/config/CompilerConfiguration;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lorg/jetbrains/kotlin/com/intellij/psi/search/GlobalSearchScope;)Lorg/jetbrains/kotlin/analyzer/AnalysisResult;+223
+j  org.jetbrains.kotlin.cli.jvm.compiler.TopDownAnalyzerFacadeForJVM.analyzeFilesWithJavaIntegration$default(Lorg/jetbrains/kotlin/com/intellij/openapi/project/Project;Ljava/util/Collection;Lorg/jetbrains/kotlin/resolve/BindingTrace;Lorg/jetbrains/kotlin/config/CompilerConfiguration;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lorg/jetbrains/kotlin/com/intellij/psi/search/GlobalSearchScope;ILjava/lang/Object;)Lorg/jetbrains/kotlin/analyzer/AnalysisResult;+44
+j  org.jetbrains.kotlin.cli.jvm.compiler.KotlinToJVMBytecodeCompiler$analyze$1.invoke()Lorg/jetbrains/kotlin/analyzer/AnalysisResult;+253
+j  org.jetbrains.kotlin.cli.jvm.compiler.KotlinToJVMBytecodeCompiler$analyze$1.invoke()Ljava/lang/Object;+1
+j  org.jetbrains.kotlin.cli.common.messages.AnalyzerWithCompilerReport.analyzeAndReport(Ljava/util/Collection;Lkotlin/jvm/functions/Function0;)V+16
+j  org.jetbrains.kotlin.cli.jvm.compiler.KotlinToJVMBytecodeCompiler.analyze(Lorg/jetbrains/kotlin/cli/jvm/compiler/KotlinCoreEnvironment;Ljava/lang/String;)Lorg/jetbrains/kotlin/analyzer/AnalysisResult;+49
+j  org.jetbrains.kotlin.cli.jvm.compiler.KotlinToJVMBytecodeCompiler.compileModules(Lorg/jetbrains/kotlin/cli/jvm/compiler/KotlinCoreEnvironment;Ljava/io/File;)Z+208
+j  org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(Lorg/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments;Lorg/jetbrains/kotlin/config/CompilerConfiguration;Lorg/jetbrains/kotlin/com/intellij/openapi/Disposable;Lorg/jetbrains/kotlin/utils/KotlinPaths;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+710
+j  org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(Lorg/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments;Lorg/jetbrains/kotlin/config/CompilerConfiguration;Lorg/jetbrains/kotlin/com/intellij/openapi/Disposable;Lorg/jetbrains/kotlin/utils/KotlinPaths;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+9
+j  org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;Lorg/jetbrains/kotlin/config/Services;Lorg/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+194
+j  org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;Lorg/jetbrains/kotlin/config/Services;Lorg/jetbrains/kotlin/cli/common/arguments/CommonToolArguments;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+7
+j  org.jetbrains.kotlin.cli.common.CLITool.exec(Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;Lorg/jetbrains/kotlin/config/Services;Lorg/jetbrains/kotlin/cli/common/arguments/CommonToolArguments;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+69
+j  org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(Ljava/util/Set;Lorg/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments;Lorg/jetbrains/kotlin/incremental/IncrementalJvmCachesManager;Lorg/jetbrains/kotlin/config/Services;Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+200
+j  org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(Ljava/util/Set;Lorg/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments;Lorg/jetbrains/kotlin/incremental/IncrementalCachesManager;Lorg/jetbrains/kotlin/config/Services;Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+14
+j  org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileIncrementally(Lorg/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments;Lorg/jetbrains/kotlin/incremental/IncrementalCachesManager;Ljava/util/List;Lorg/jetbrains/kotlin/incremental/IncrementalCompilerRunner$CompilationMode;Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+422
+j  org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.access$compileIncrementally(Lorg/jetbrains/kotlin/incremental/IncrementalCompilerRunner;Lorg/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments;Lorg/jetbrains/kotlin/incremental/IncrementalCachesManager;Ljava/util/List;Lorg/jetbrains/kotlin/incremental/IncrementalCompilerRunner$CompilationMode;Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+8
+j  org.jetbrains.kotlin.incremental.IncrementalCompilerRunner$compile$2.invoke()Lorg/jetbrains/kotlin/cli/common/ExitCode;+123
+j  org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(Ljava/util/List;Lorg/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments;Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+194
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl.execIncrementalCompiler(Lorg/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments;Lorg/jetbrains/kotlin/daemon/common/IncrementalCompilationOptions;Lorg/jetbrains/kotlin/daemon/common/IncrementalCompilerServicesFacade;Lorg/jetbrains/kotlin/daemon/common/CompilationResults;Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;Lorg/jetbrains/kotlin/daemon/report/DaemonMessageReporter;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+947
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl.access$execIncrementalCompiler(Lorg/jetbrains/kotlin/daemon/CompileServiceImpl;Lorg/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments;Lorg/jetbrains/kotlin/daemon/common/IncrementalCompilationOptions;Lorg/jetbrains/kotlin/daemon/common/IncrementalCompilerServicesFacade;Lorg/jetbrains/kotlin/daemon/common/CompilationResults;Lorg/jetbrains/kotlin/cli/common/messages/MessageCollector;Lorg/jetbrains/kotlin/daemon/report/DaemonMessageReporter;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+10
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl$compile$$inlined$ifAlive$lambda$2.invoke(Lorg/jetbrains/kotlin/daemon/EventManager;Lorg/jetbrains/kotlin/daemon/common/Profiler;)Lorg/jetbrains/kotlin/cli/common/ExitCode;+50
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl$compile$$inlined$ifAlive$lambda$2.invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+9
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl$doCompile$$inlined$ifAlive$lambda$2.invoke()I+12
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl$doCompile$$inlined$ifAlive$lambda$2.invoke()Ljava/lang/Object;+1
+j  org.jetbrains.kotlin.daemon.common.DummyProfiler.withMeasure(Ljava/lang/Object;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;+7
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl.checkedCompile(Lorg/jetbrains/kotlin/daemon/report/DaemonMessageReporter;Lorg/jetbrains/kotlin/daemon/common/Profiler;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;+41
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl.doCompile(ILorg/jetbrains/kotlin/daemon/report/DaemonMessageReporter;Lorg/jetbrains/kotlin/daemon/common/RemoteOperationsTracer;Lkotlin/jvm/functions/Function2;)Lorg/jetbrains/kotlin/daemon/common/CompileService$CallResult;+300
+j  org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(I[Ljava/lang/String;Lorg/jetbrains/kotlin/daemon/common/CompilationOptions;Lorg/jetbrains/kotlin/daemon/common/CompilerServicesFacadeBase;Lorg/jetbrains/kotlin/daemon/common/CompilationResults;)Lorg/jetbrains/kotlin/daemon/common/CompileService$CallResult;+655
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x66287b]
+V  [libjvm.so+0x938be6]
+V  [libjvm.so+0x93a8ff]
+V  [libjvm.so+0x6ae419]  JVM_InvokeMethod+0x119
+j  sun.reflect.NativeMethodAccessorImpl.invoke0(Ljava/lang/reflect/Method;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  sun.reflect.NativeMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+100
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+56
+j  sun.rmi.server.UnicastServerRef.dispatch(Ljava/rmi/Remote;Ljava/rmi/server/RemoteCall;)V+231
+...<more frames>...
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007fc48800a000 JavaThread "RMI RenewClean-[127.0.0.1:42373,org.jetbrains.kotlin.daemon.common.LoopbackNetworkInterface$ClientLoopbackSocketFactory@59c4987f]" daemon [_thread_blocked, id=6548, stack(0x00007fc4dd85a000,0x00007fc4dd95b000)]
+=>0x00007fc4a8003000 JavaThread "RMI TCP Connection(2)-127.0.0.1" daemon [_thread_in_Java, id=6545, stack(0x00007fc4dd155000,0x00007fc4dd256000)]
+  0x00007fc490011000 JavaThread "RMI Scheduler(0)" daemon [_thread_blocked, id=6541, stack(0x00007fc4dd256000,0x00007fc4dd357000)]
+  0x00007fc4a8001000 JavaThread "RMI TCP Connection(idle)" daemon [_thread_blocked, id=6540, stack(0x00007fc4dd357000,0x00007fc4dd458000)]
+  0x00007fc4fc00a000 JavaThread "DestroyJavaVM" [_thread_blocked, id=6520, stack(0x00007fc5036eb000,0x00007fc5037ec000)]
+  0x00007fc4fc309000 JavaThread "GC Daemon" daemon [_thread_blocked, id=6539, stack(0x00007fc4dd658000,0x00007fc4dd759000)]
+  0x00007fc4fc31a000 JavaThread "RMI Reaper" [_thread_blocked, id=6538, stack(0x00007fc4dd759000,0x00007fc4dd85a000)]
+  0x00007fc4fc305000 JavaThread "Timer-0" daemon [_thread_blocked, id=6536, stack(0x00007fc4dd95b000,0x00007fc4dda5c000)]
+  0x00007fc4fc303000 JavaThread "RMI TCP Accept-17462" daemon [_thread_in_native, id=6535, stack(0x00007fc4dda5c000,0x00007fc4ddb5d000)]
+  0x00007fc4fc0c1000 JavaThread "Service Thread" daemon [_thread_blocked, id=6532, stack(0x00007fc4de530000,0x00007fc4de631000)]
+  0x00007fc4fc0b1800 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=6531, stack(0x00007fc4de631000,0x00007fc4de732000)]
+  0x00007fc4fc0b0000 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=6530, stack(0x00007fc4de732000,0x00007fc4de833000)]
+  0x00007fc4fc0ad000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=6529, stack(0x00007fc4de833000,0x00007fc4de934000)]
+  0x00007fc4fc0ab000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=6528, stack(0x00007fc4de934000,0x00007fc4dea35000)]
+  0x00007fc4fc084000 JavaThread "Finalizer" daemon [_thread_blocked, id=6527, stack(0x00007fc4df3f4000,0x00007fc4df4f5000)]
+  0x00007fc4fc07f000 JavaThread "Reference Handler" daemon [_thread_blocked, id=6526, stack(0x00007fc4df4f5000,0x00007fc4df5f6000)]
+
+Other Threads:
+  0x00007fc4fc077800 VMThread [stack: 0x00007fc4df5f6000,0x00007fc4df6f7000] [id=6525]
+  0x00007fc4fc0c3800 WatcherThread [stack: 0x00007fc4de42f000,0x00007fc4de530000] [id=6533]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 394752K, used 344967K [0x00000000e0000000, 0x00000000ffb80000, 0x0000000100000000)
+  eden space 339968K, 91% used [0x00000000e0000000,0x00000000f30a3b08,0x00000000f4c00000)
+  from space 54784K, 60% used [0x00000000f4c00000,0x00000000f6c3e210,0x00000000f8180000)
+  to   space 60416K, 0% used [0x00000000fc080000,0x00000000fc080000,0x00000000ffb80000)
+ ParOldGen       total 217088K, used 112516K [0x00000000a0000000, 0x00000000ad400000, 0x00000000e0000000)
+  object space 217088K, 51% used [0x00000000a0000000,0x00000000a6de1110,0x00000000ad400000)
+ Metaspace       used 54929K, capacity 56290K, committed 56488K, reserved 1099776K
+  class space    used 6471K, capacity 6775K, committed 6824K, reserved 1048576K
+
+Card table byte_map: [0x00007fc4ec93f000,0x00007fc4ecc40000] byte_map_base: 0x00007fc4ec43f000
+
+Marking Bits: (ParMarkBitMap*) 0x00007fc5029b72c0
+ Begin Bits: [0x00007fc4e5000000, 0x00007fc4e6800000)
+ End Bits:   [0x00007fc4e6800000, 0x00007fc4e8000000)
+
+Polling page: 0x00007fc50380a000
+
+CodeCache: size=245760Kb used=43398Kb max_used=44862Kb free=202361Kb
+ bounds [0x00007fc4ed000000, 0x00007fc4efc50000, 0x00007fc4fc000000]
+ total_blobs=11391 nmethods=10898 adapters=403
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 56.204 Thread 0x00007fc4fc0b1800 nmethod 14969 0x00007fc4ee96d3d0 code [0x00007fc4ee96d720, 0x00007fc4ee96f3d8]
+Event: 56.284 Thread 0x00007fc4fc0b1800 14970       3       org.jetbrains.kotlin.types.expressions.BasicExpressionTypingVisitor::visitStringTemplateExpression (137 bytes)
+Event: 56.287 Thread 0x00007fc4fc0b1800 nmethod 14970 0x00007fc4ee47ed90 code [0x00007fc4ee47f1c0, 0x00007fc4ee481108]
+Event: 56.318 Thread 0x00007fc4fc0ad000 nmethod 14960 0x00007fc4ef7d4e10 code [0x00007fc4ef7d5780, 0x00007fc4ef7d98d0]
+Event: 56.318 Thread 0x00007fc4fc0ad000 14967       4       org.jetbrains.kotlin.types.DisjointKeysUnionTypeSubstitution::get (31 bytes)
+Event: 56.323 Thread 0x00007fc4fc0ad000 nmethod 14967 0x00007fc4ee4a6f90 code [0x00007fc4ee4a7140, 0x00007fc4ee4a7518]
+Event: 56.348 Thread 0x00007fc4fc0b1800 14971       3       org.jetbrains.kotlin.resolve.jvm.jvmSignature.KotlinToJvmSignatureMapperKt::parametersDescriptor (52 bytes)
+Event: 56.349 Thread 0x00007fc4fc0b1800 nmethod 14971 0x00007fc4eedf3090 code [0x00007fc4eedf3280, 0x00007fc4eedf3868]
+Event: 56.349 Thread 0x00007fc4fc0b1800 14972       3       org.jetbrains.kotlin.codegen.signature.JvmSignatureWriter::writeAsmType (73 bytes)
+Event: 56.349 Thread 0x00007fc4fc0b1800 nmethod 14972 0x00007fc4ed16e210 code [0x00007fc4ed16e400, 0x00007fc4ed16eab8]
+
+GC Heap History (10 events):
+Event: 42.027 GC heap before
+{Heap before GC invocations=25 (full 3):
+ PSYoungGen      total 291840K, used 290800K [0x00000000e0000000, 0x00000000f7280000, 0x0000000100000000)
+  eden space 256000K, 100% used [0x00000000e0000000,0x00000000efa00000,0x00000000efa00000)
+  from space 35840K, 97% used [0x00000000efa00000,0x00000000f1bfc140,0x00000000f1d00000)
+  to   space 40448K, 0% used [0x00000000f4b00000,0x00000000f4b00000,0x00000000f7280000)
+ ParOldGen       total 112640K, used 97015K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 86% used [0x00000000a0000000,0x00000000a5ebdd10,0x00000000a6e00000)
+ Metaspace       used 54420K, capacity 55796K, committed 55976K, reserved 1097728K
+  class space    used 6464K, capacity 6770K, committed 6824K, reserved 1048576K
+Event: 42.101 GC heap after
+Heap after GC invocations=25 (full 3):
+ PSYoungGen      total 337408K, used 28807K [0x00000000e0000000, 0x00000000f7880000, 0x0000000100000000)
+  eden space 296960K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000f2200000)
+  from space 40448K, 71% used [0x00000000f4b00000,0x00000000f6721f58,0x00000000f7280000)
+  to   space 41984K, 0% used [0x00000000f2200000,0x00000000f2200000,0x00000000f4b00000)
+ ParOldGen       total 112640K, used 97023K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 86% used [0x00000000a0000000,0x00000000a5ebfd10,0x00000000a6e00000)
+ Metaspace       used 54420K, capacity 55796K, committed 55976K, reserved 1097728K
+  class space    used 6464K, capacity 6770K, committed 6824K, reserved 1048576K
+}
+Event: 45.921 GC heap before
+{Heap before GC invocations=26 (full 3):
+ PSYoungGen      total 337408K, used 325767K [0x00000000e0000000, 0x00000000f7880000, 0x0000000100000000)
+  eden space 296960K, 100% used [0x00000000e0000000,0x00000000f2200000,0x00000000f2200000)
+  from space 40448K, 71% used [0x00000000f4b00000,0x00000000f6721f58,0x00000000f7280000)
+  to   space 41984K, 0% used [0x00000000f2200000,0x00000000f2200000,0x00000000f4b00000)
+ ParOldGen       total 112640K, used 97023K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 86% used [0x00000000a0000000,0x00000000a5ebfd10,0x00000000a6e00000)
+ Metaspace       used 54605K, capacity 55940K, committed 56232K, reserved 1099776K
+  class space    used 6467K, capacity 6772K, committed 6824K, reserved 1048576K
+Event: 45.978 GC heap after
+Heap after GC invocations=26 (full 3):
+ PSYoungGen      total 338944K, used 40708K [0x00000000e0000000, 0x00000000fb000000, 0x0000000100000000)
+  eden space 296960K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000f2200000)
+  from space 41984K, 96% used [0x00000000f2200000,0x00000000f49c1098,0x00000000f4b00000)
+  to   space 47616K, 0% used [0x00000000f8180000,0x00000000f8180000,0x00000000fb000000)
+ ParOldGen       total 112640K, used 97031K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 86% used [0x00000000a0000000,0x00000000a5ec1d10,0x00000000a6e00000)
+ Metaspace       used 54605K, capacity 55940K, committed 56232K, reserved 1099776K
+  class space    used 6467K, capacity 6772K, committed 6824K, reserved 1048576K
+}
+Event: 49.153 GC heap before
+{Heap before GC invocations=27 (full 3):
+ PSYoungGen      total 338944K, used 337668K [0x00000000e0000000, 0x00000000fb000000, 0x0000000100000000)
+  eden space 296960K, 100% used [0x00000000e0000000,0x00000000f2200000,0x00000000f2200000)
+  from space 41984K, 96% used [0x00000000f2200000,0x00000000f49c1098,0x00000000f4b00000)
+  to   space 47616K, 0% used [0x00000000f8180000,0x00000000f8180000,0x00000000fb000000)
+ ParOldGen       total 112640K, used 97031K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 86% used [0x00000000a0000000,0x00000000a5ec1d10,0x00000000a6e00000)
+ Metaspace       used 54754K, capacity 56084K, committed 56232K, reserved 1099776K
+  class space    used 6469K, capacity 6774K, committed 6824K, reserved 1048576K
+Event: 49.218 GC heap after
+Heap after GC invocations=27 (full 3):
+ PSYoungGen      total 387584K, used 47592K [0x00000000e0000000, 0x00000000fbe00000, 0x0000000100000000)
+  eden space 339968K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000f4c00000)
+  from space 47616K, 99% used [0x00000000f8180000,0x00000000faffa3c0,0x00000000fb000000)
+  to   space 54784K, 0% used [0x00000000f4c00000,0x00000000f4c00000,0x00000000f8180000)
+ ParOldGen       total 112640K, used 97807K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 86% used [0x00000000a0000000,0x00000000a5f83d10,0x00000000a6e00000)
+ Metaspace       used 54754K, capacity 56084K, committed 56232K, reserved 1099776K
+  class space    used 6469K, capacity 6774K, committed 6824K, reserved 1048576K
+}
+Event: 52.349 GC heap before
+{Heap before GC invocations=28 (full 3):
+ PSYoungGen      total 387584K, used 387560K [0x00000000e0000000, 0x00000000fbe00000, 0x0000000100000000)
+  eden space 339968K, 100% used [0x00000000e0000000,0x00000000f4c00000,0x00000000f4c00000)
+  from space 47616K, 99% used [0x00000000f8180000,0x00000000faffa3c0,0x00000000fb000000)
+  to   space 54784K, 0% used [0x00000000f4c00000,0x00000000f4c00000,0x00000000f8180000)
+ ParOldGen       total 112640K, used 97807K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 86% used [0x00000000a0000000,0x00000000a5f83d10,0x00000000a6e00000)
+ Metaspace       used 54888K, capacity 56216K, committed 56488K, reserved 1099776K
+  class space    used 6470K, capacity 6774K, committed 6824K, reserved 1048576K
+Event: 52.426 GC heap after
+Heap after GC invocations=28 (full 3):
+ PSYoungGen      total 394752K, used 48196K [0x00000000e0000000, 0x00000000ffb80000, 0x0000000100000000)
+  eden space 339968K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000f4c00000)
+  from space 54784K, 87% used [0x00000000f4c00000,0x00000000f7b11210,0x00000000f8180000)
+  to   space 60416K, 0% used [0x00000000fc080000,0x00000000fc080000,0x00000000ffb80000)
+ ParOldGen       total 112640K, used 107900K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 95% used [0x00000000a0000000,0x00000000a695f328,0x00000000a6e00000)
+ Metaspace       used 54888K, capacity 56216K, committed 56488K, reserved 1099776K
+  class space    used 6470K, capacity 6774K, committed 6824K, reserved 1048576K
+}
+Event: 52.426 GC heap before
+{Heap before GC invocations=29 (full 4):
+ PSYoungGen      total 394752K, used 48196K [0x00000000e0000000, 0x00000000ffb80000, 0x0000000100000000)
+  eden space 339968K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000f4c00000)
+  from space 54784K, 87% used [0x00000000f4c00000,0x00000000f7b11210,0x00000000f8180000)
+  to   space 60416K, 0% used [0x00000000fc080000,0x00000000fc080000,0x00000000ffb80000)
+ ParOldGen       total 112640K, used 107900K [0x00000000a0000000, 0x00000000a6e00000, 0x00000000e0000000)
+  object space 112640K, 95% used [0x00000000a0000000,0x00000000a695f328,0x00000000a6e00000)
+ Metaspace       used 54888K, capacity 56216K, committed 56488K, reserved 1099776K
+  class space    used 6470K, capacity 6774K, committed 6824K, reserved 1048576K
+Event: 53.459 GC heap after
+Heap after GC invocations=29 (full 4):
+ PSYoungGen      total 394752K, used 33016K [0x00000000e0000000, 0x00000000ffb80000, 0x0000000100000000)
+  eden space 339968K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000f4c00000)
+  from space 54784K, 60% used [0x00000000f4c00000,0x00000000f6c3e210,0x00000000f8180000)
+  to   space 60416K, 0% used [0x00000000fc080000,0x00000000fc080000,0x00000000ffb80000)
+ ParOldGen       total 217088K, used 112516K [0x00000000a0000000, 0x00000000ad400000, 0x00000000e0000000)
+  object space 217088K, 51% used [0x00000000a0000000,0x00000000a6de1110,0x00000000ad400000)
+ Metaspace       used 54888K, capacity 56216K, committed 56488K, reserved 1099776K
+  class space    used 6470K, capacity 6774K, committed 6824K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 55.974 Thread 0x00007fc4a8003000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fc4efa09964 method=org.jetbrains.kotlin.types.expressions.BasicExpressionTypingVisitor.isLValueOrUnsafeReceiver(Lorg/jetbrains/kotlin/psi/KtSimpleNameExpression;)Z @ 30
+Event: 55.976 Thread 0x00007fc4a8003000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fc4efa09964 method=org.jetbrains.kotlin.types.expressions.BasicExpressionTypingVisitor.isLValueOrUnsafeReceiver(Lorg/jetbrains/kotlin/psi/KtSimpleNameExpression;)Z @ 30
+Event: 55.989 Thread 0x00007fc4a8003000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fc4efb17b98 method=org.jetbrains.kotlin.resolve.QualifiedExpressionResolver.resolveToPackageOrClassPrefix(Ljava/util/List;Lorg/jetbrains/kotlin/descriptors/ModuleDescriptor;Lorg/jetbrains/
+Event: 56.056 Thread 0x00007fc4a8003000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007fc4ef1edb84 method=org.jetbrains.kotlin.resolve.jvm.platform.JavaGenericVarianceViolationTypeChecker.checkType(Lorg/jetbrains/kotlin/psi/KtExpression;Lorg/jetbrains/kotlin/types/KotlinType;L
+Event: 56.074 Thread 0x00007fc4a8003000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fc4ef6a8b78 method=org.jetbrains.kotlin.cfg.pseudocode.PseudocodeImpl.collectAndCacheReachableInstructions()V @ 39
+Event: 56.075 Thread 0x00007fc4a8003000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fc4efadef98 method=org.jetbrains.kotlin.cfg.pseudocode.PseudocodeImpl.collectAndCacheReachableInstructions()V @ 39
+Event: 56.126 Thread 0x00007fc4a8003000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007fc4edeafa88 method=org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.SharedImplUtil.getPrevSibling(Lorg/jetbrains/kotlin/com/intellij/lang/ASTNode;)Lorg/jetbrains/kotlin/com/intellij/ps
+Event: 56.132 Thread 0x00007fc4a8003000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007fc4edeafa88 method=org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.SharedImplUtil.getPrevSibling(Lorg/jetbrains/kotlin/com/intellij/lang/ASTNode;)Lorg/jetbrains/kotlin/com/intellij/ps
+Event: 56.133 Thread 0x00007fc4a8003000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007fc4edeafa88 method=org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.SharedImplUtil.getPrevSibling(Lorg/jetbrains/kotlin/com/intellij/lang/ASTNode;)Lorg/jetbrains/kotlin/com/intellij/ps
+Event: 56.139 Thread 0x00007fc4a8003000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007fc4edeafa88 method=org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.SharedImplUtil.getPrevSibling(Lorg/jetbrains/kotlin/com/intellij/lang/ASTNode;)Lorg/jetbrains/kotlin/com/intellij/ps
+
+Internal exceptions (10 events):
+Event: 25.494 Thread 0x00007fc4a8003000 Exception <a 'java/lang/NoSuchMethodError': java.lang.Object.lambda$static$0(I)[Lorg/jetbrains/kotlin/com/intellij/psi/PsiField;> (0x00000000e2bef3e0) thrown at [/build/openjdk-8-W2Qe27/openjdk-8-8u151-b12/src/hotspot/src/share/vm/interpreter/linkResolver
+Event: 25.581 Thread 0x00007fc4a8003000 Exception <a 'java/lang/NoSuchMethodError': java.lang.Object.lambda$static$0(I)[Lorg/jetbrains/kotlin/com/intellij/psi/PsiJavaCodeReferenceElement;> (0x00000000e2cfcd50) thrown at [/build/openjdk-8-W2Qe27/openjdk-8-8u151-b12/src/hotspot/src/share/vm/inter
+Event: 28.307 Thread 0x00007fc4a8003000 Implicit null exception at 0x00007fc4eee5b8f8 to 0x00007fc4eee5bced
+Event: 29.032 Thread 0x00007fc4a8003000 Exception <a 'java/lang/NoSuchMethodError': java.lang.Object.lambda$static$0(I)[Lorg/jetbrains/kotlin/com/intellij/psi/PsiImportStatementBase;> (0x00000000e4ed9028) thrown at [/build/openjdk-8-W2Qe27/openjdk-8-8u151-b12/src/hotspot/src/share/vm/interprete
+Event: 29.048 Thread 0x00007fc4a8003000 Exception <a 'java/lang/NoSuchMethodError': java.lang.Object.lambda$static$0(I)[Lorg/jetbrains/kotlin/com/intellij/psi/PsiTypeElement;> (0x00000000e853c9b8) thrown at [/build/openjdk-8-W2Qe27/openjdk-8-8u151-b12/src/hotspot/src/share/vm/interpreter/linkRe
+Event: 39.732 Thread 0x00007fc4a8003000 Exception <a 'java/lang/NoSuchMethodError': java.lang.Object.lambda$static$0(I)[Lorg/jetbrains/kotlin/com/intellij/psi/PsiParameter;> (0x00000000e2bf03c0) thrown at [/build/openjdk-8-W2Qe27/openjdk-8-8u151-b12/src/hotspot/src/share/vm/interpreter/linkReso
+Event: 39.844 Thread 0x00007fc4a8003000 Exception <a 'java/lang/NoSuchMethodError': java.lang.Object.lambda$static$0(I)[Lorg/jetbrains/kotlin/com/intellij/psi/PsiNameValuePair;> (0x00000000e2f52d70) thrown at [/build/openjdk-8-W2Qe27/openjdk-8-8u151-b12/src/hotspot/src/share/vm/interpreter/link
+Event: 39.850 Thread 0x00007fc4a8003000 Exception <a 'java/lang/NoSuchMethodError': java.lang.Object.lambda$static$0(I)[Lorg/jetbrains/kotlin/com/intellij/psi/PsiAnnotationMemberValue;> (0x00000000e2f746d0) thrown at [/build/openjdk-8-W2Qe27/openjdk-8-8u151-b12/src/hotspot/src/share/vm/interpre
+Event: 51.693 Thread 0x00007fc4a8003000 Implicit null exception at 0x00007fc4ef42085b to 0x00007fc4ef427731
+Event: 56.348 Thread 0x00007fc4a8003000 Implicit null exception at 0x00007fc4efbf0ac5 to 0x0000000000000000
+
+Events (10 events):
+Event: 56.169 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4eedc9390
+Event: 56.194 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef1c1cd0
+Event: 56.194 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef297590
+Event: 56.195 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef364ed0
+Event: 56.204 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef41fb10
+Event: 56.204 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef445010
+Event: 56.205 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef7cf010
+Event: 56.205 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef887590
+Event: 56.206 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4ef908f10
+Event: 56.206 Thread 0x00007fc4fc0b1800 flushing nmethod 0x00007fc4efaecb50
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:11 411421                             /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+00600000-00601000 r--p 00000000 08:11 411421                             /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+00601000-00602000 rw-p 00001000 08:11 411421                             /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+00c25000-00c46000 rw-p 00000000 00:00 0                                  [heap]
+a0000000-ad400000 rw-p 00000000 00:00 0 
+ad400000-e0000000 ---p 00000000 00:00 0 
+e0000000-ffb80000 rw-p 00000000 00:00 0 
+ffb80000-100000000 ---p 00000000 00:00 0 
+100000000-1006aa000 rw-p 00000000 00:00 0 
+1006aa000-140000000 ---p 00000000 00:00 0 
+7fc488000000-7fc4890f0000 rw-p 00000000 00:00 0 
+7fc4890f0000-7fc48c000000 ---p 00000000 00:00 0 
+7fc48f600000-7fc48f680000 rw-p 00000000 00:00 0 
+7fc48f680000-7fc48f800000 ---p 00000000 00:00 0 
+7fc48f800000-7fc48fa00000 rw-p 00000000 00:00 0 
+7fc48fa00000-7fc48fc00000 rw-p 00000000 00:00 0 
+7fc48fc00000-7fc48fe00000 rw-p 00000000 00:00 0 
+7fc48fe00000-7fc490000000 rw-p 00000000 00:00 0 
+7fc490000000-7fc490021000 rw-p 00000000 00:00 0 
+7fc490021000-7fc494000000 ---p 00000000 00:00 0 
+7fc494000000-7fc494021000 rw-p 00000000 00:00 0 
+7fc494021000-7fc498000000 ---p 00000000 00:00 0 
+7fc498000000-7fc498021000 rw-p 00000000 00:00 0 
+7fc498021000-7fc49c000000 ---p 00000000 00:00 0 
+7fc49c000000-7fc49c021000 rw-p 00000000 00:00 0 
+7fc49c021000-7fc4a0000000 ---p 00000000 00:00 0 
+7fc4a0000000-7fc4a0021000 rw-p 00000000 00:00 0 
+7fc4a0021000-7fc4a4000000 ---p 00000000 00:00 0 
+7fc4a4000000-7fc4a4021000 rw-p 00000000 00:00 0 
+7fc4a4021000-7fc4a8000000 ---p 00000000 00:00 0 
+7fc4a8000000-7fc4a8021000 rw-p 00000000 00:00 0 
+7fc4a8021000-7fc4ac000000 ---p 00000000 00:00 0 
+7fc4ac1ff000-7fc4ac3ff000 rw-p 00000000 00:00 0 
+7fc4ac3ff000-7fc4ac5ff000 rw-p 00000000 00:00 0 
+7fc4ac5ff000-7fc4ac7ff000 rw-p 00000000 00:00 0 
+7fc4ac7ff000-7fc4ac9ff000 rw-p 00000000 00:00 0 
+7fc4ac9ff000-7fc4acbff000 rw-p 00000000 00:00 0 
+7fc4acbff000-7fc4acdff000 rw-p 00000000 00:00 0 
+7fc4acdff000-7fc4acfff000 rw-p 00000000 00:00 0 
+7fc4acfff000-7fc4b0000000 rw-p 00000000 00:00 0 
+7fc4b0000000-7fc4b0021000 rw-p 00000000 00:00 0 
+7fc4b0021000-7fc4b4000000 ---p 00000000 00:00 0 
+7fc4b4000000-7fc4b4021000 rw-p 00000000 00:00 0 
+7fc4b4021000-7fc4b8000000 ---p 00000000 00:00 0 
+7fc4b8000000-7fc4b9ca3000 rw-p 00000000 00:00 0 
+7fc4b9ca3000-7fc4bc000000 ---p 00000000 00:00 0 
+7fc4bc000000-7fc4bcf70000 rw-p 00000000 00:00 0 
+7fc4bcf70000-7fc4c0000000 ---p 00000000 00:00 0 
+7fc4c0000000-7fc4c0021000 rw-p 00000000 00:00 0 
+7fc4c0021000-7fc4c4000000 ---p 00000000 00:00 0 
+7fc4c4000000-7fc4c5ddc000 rw-p 00000000 00:00 0 
+7fc4c5ddc000-7fc4c8000000 ---p 00000000 00:00 0 
+7fc4c8000000-7fc4c8021000 rw-p 00000000 00:00 0 
+7fc4c8021000-7fc4cc000000 ---p 00000000 00:00 0 
+7fc4cc000000-7fc4cc021000 rw-p 00000000 00:00 0 
+7fc4cc021000-7fc4d0000000 ---p 00000000 00:00 0 
+7fc4d0000000-7fc4d0021000 rw-p 00000000 00:00 0 
+7fc4d0021000-7fc4d4000000 ---p 00000000 00:00 0 
+7fc4d4000000-7fc4d4021000 rw-p 00000000 00:00 0 
+7fc4d4021000-7fc4d8000000 ---p 00000000 00:00 0 
+7fc4d8000000-7fc4d8028000 rw-p 00000000 00:00 0 
+7fc4d8028000-7fc4dc000000 ---p 00000000 00:00 0 
+7fc4dc00f000-7fc4dc013000 r--s 00024000 08:16 5779827                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.anko/anko-commons/0.10.2/ac908e7d142061753e73419673bb543bc63ebfbd/anko-commons-0.10.2.jar
+7fc4dc013000-7fc4dc014000 r--s 00005000 08:16 1595082                    /home/brill/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/4a88e5f93ddb62d64da879220a262dae/jars/classes.jar
+7fc4dc01c000-7fc4dc023000 r--s 00050000 08:16 6181350                    /home/brill/.gradle/caches/transforms-1/files-1.1/design-25.4.0.aar/cea9b40141b93b65c9c460826fb3ad89/jars/classes.jar
+7fc4dc023000-7fc4dc028000 r--s 0004d000 08:16 3943790                    /home/brill/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar
+7fc4dc028000-7fc4dc02d000 r--s 00034000 08:16 2770683                    /home/brill/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar
+7fc4dc02d000-7fc4dc030000 r--s 00013000 08:16 3946845                    /home/brill/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/43eeae0b9fb087bb3194ba59ab63a38a32fbf3e/retrofit-2.0.2.jar
+7fc4dc030000-7fc4dc037000 r--s 00053000 08:16 4862094                    /home/brill/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.2.4/7abd1ecef320da6a7679b137083151401fe8bf43/MPAndroidChart-v2.2.4.jar
+7fc4dc03c000-7fc4dc03f000 r--s 00004000 08:16 2376284                    /home/brill/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.0.2/8b68a849722b44f584e2d68c451c5e3844c10380/support-annotations-26.0.2.jar
+7fc4dc03f000-7fc4dc04a000 r--s 000a0000 08:16 6181806                    /home/brill/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.4.0.aar/48ef426a90bfbfeee315cb70047106a6/jars/classes.jar
+7fc4dc04a000-7fc4dc060000 r--s 000a9000 08:16 6702570                    /home/brill/.gradle/caches/transforms-1/files-1.1/support-compat-25.4.0.aar/8896ec147b7707701606748f4e8e72ef/jars/classes.jar
+7fc4dc060000-7fc4dc260000 rw-p 00000000 00:00 0 
+7fc4dc260000-7fc4dc460000 rw-p 00000000 00:00 0 
+7fc4dc460000-7fc4dc555000 r--s 02010000 08:16 799855                     /home/brill/Android/Sdk/platforms/android-25/android.jar
+7fc4dc555000-7fc4dc755000 rw-p 00000000 00:00 0 
+7fc4dc755000-7fc4dc955000 rw-p 00000000 00:00 0 
+7fc4dc955000-7fc4dcb55000 rw-p 00000000 00:00 0 
+7fc4dcb55000-7fc4dcd55000 rw-p 00000000 00:00 0 
+7fc4dcd55000-7fc4dcf55000 rw-p 00000000 00:00 0 
+7fc4dcf55000-7fc4dd155000 rw-p 00000000 00:00 0 
+7fc4dd155000-7fc4dd158000 ---p 00000000 00:00 0 
+7fc4dd158000-7fc4dd256000 rw-p 00000000 00:00 0 
+7fc4dd256000-7fc4dd259000 ---p 00000000 00:00 0 
+7fc4dd259000-7fc4dd357000 rw-p 00000000 00:00 0 
+7fc4dd357000-7fc4dd35a000 ---p 00000000 00:00 0 
+7fc4dd35a000-7fc4dd658000 rw-p 00000000 00:00 0 
+7fc4dd658000-7fc4dd65b000 ---p 00000000 00:00 0 
+7fc4dd65b000-7fc4dd759000 rw-p 00000000 00:00 0 
+7fc4dd759000-7fc4dd75c000 ---p 00000000 00:00 0 
+7fc4dd75c000-7fc4dd85a000 rw-p 00000000 00:00 0 
+7fc4dd85a000-7fc4dd85d000 ---p 00000000 00:00 0 
+7fc4dd85d000-7fc4dd95b000 rw-p 00000000 00:00 0 
+7fc4dd95b000-7fc4dd95e000 ---p 00000000 00:00 0 
+7fc4dd95e000-7fc4dda5c000 rw-p 00000000 00:00 0 
+7fc4dda5c000-7fc4dda5f000 ---p 00000000 00:00 0 
+7fc4dda5f000-7fc4ddb5d000 rw-p 00000000 00:00 0 
+7fc4ddb5d000-7fc4ddbd6000 r--s 010fe000 08:11 411535                     /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar
+7fc4ddbd6000-7fc4ddbed000 r-xp 00000000 08:11 411382                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7fc4ddbed000-7fc4dddec000 ---p 00017000 08:11 411382                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7fc4dddec000-7fc4ddded000 r--p 00016000 08:11 411382                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7fc4ddded000-7fc4dddee000 rw-p 00017000 08:11 411382                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7fc4dddee000-7fc4dddff000 r-xp 00000000 08:11 411395                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7fc4dddff000-7fc4ddfff000 ---p 00011000 08:11 411395                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7fc4ddfff000-7fc4de000000 r--p 00011000 08:11 411395                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7fc4de000000-7fc4de001000 rw-p 00012000 08:11 411395                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7fc4de001000-7fc4de00a000 r-xp 00000000 08:11 411365                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7fc4de00a000-7fc4de209000 ---p 00009000 08:11 411365                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7fc4de209000-7fc4de20a000 r--p 00008000 08:11 411365                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7fc4de20a000-7fc4de20b000 rw-p 00009000 08:11 411365                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7fc4de20b000-7fc4de24d000 rw-p 00000000 00:00 0 
+7fc4de24d000-7fc4de42f000 r--s 01a45000 08:16 5914726                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-embeddable/1.1.51/e87f62328a705dc5c5b857f1aa50d1732c8bc3d6/kotlin-compiler-embeddable-1.1.51.jar
+7fc4de42f000-7fc4de430000 ---p 00000000 00:00 0 
+7fc4de430000-7fc4de530000 rw-p 00000000 00:00 0 
+7fc4de530000-7fc4de533000 ---p 00000000 00:00 0 
+7fc4de533000-7fc4de631000 rw-p 00000000 00:00 0 
+7fc4de631000-7fc4de634000 ---p 00000000 00:00 0 
+7fc4de634000-7fc4de732000 rw-p 00000000 00:00 0 
+7fc4de732000-7fc4de735000 ---p 00000000 00:00 0 
+7fc4de735000-7fc4de833000 rw-p 00000000 00:00 0 
+7fc4de833000-7fc4de836000 ---p 00000000 00:00 0 
+7fc4de836000-7fc4de934000 rw-p 00000000 00:00 0 
+7fc4de934000-7fc4de937000 ---p 00000000 00:00 0 
+7fc4de937000-7fc4dea35000 rw-p 00000000 00:00 0 
+7fc4dea35000-7fc4df3f4000 r--p 00000000 08:11 271811                     /usr/lib/locale/locale-archive
+7fc4df3f4000-7fc4df3f7000 ---p 00000000 00:00 0 
+7fc4df3f7000-7fc4df4f5000 rw-p 00000000 00:00 0 
+7fc4df4f5000-7fc4df4f8000 ---p 00000000 00:00 0 
+7fc4df4f8000-7fc4df5f6000 rw-p 00000000 00:00 0 
+7fc4df5f6000-7fc4df5f7000 ---p 00000000 00:00 0 
+7fc4df5f7000-7fc4e0000000 rw-p 00000000 00:00 0 
+7fc4e0000000-7fc4e0021000 rw-p 00000000 00:00 0 
+7fc4e0021000-7fc4e4000000 ---p 00000000 00:00 0 
+7fc4e4000000-7fc4e4002000 r--s 00009000 08:16 6181234                    /home/brill/.gradle/caches/transforms-1/files-1.1/customtabs-25.4.0.aar/c1cfb13ad7c321432245f53df1bc9104/jars/classes.jar
+7fc4e4002000-7fc4e4005000 r--s 00017000 08:16 5392903                    /home/brill/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.4.0.aar/310bd696a969c9855d44bc56b0954d21/jars/classes.jar
+7fc4e4005000-7fc4e4014000 r--s 000c9000 08:16 5129161                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.1.51/e34fe80c9714240525f665113dd3749415515655/kotlin-stdlib-1.1.51.jar
+7fc4e4014000-7fc4e4015000 r--s 00006000 08:16 6181240                    /home/brill/.gradle/caches/transforms-1/files-1.1/calligraphy-2.2.0.aar/5e263332d5b7c419d9798ca18d97178a/jars/classes.jar
+7fc4e4015000-7fc4e4018000 r--s 00027000 08:16 1595099                    /home/brill/.gradle/caches/transforms-1/files-1.1/support-fragment-25.4.0.aar/8ef44163816bf8da0ea3a4ffde7b4eae/jars/classes.jar
+7fc4e401d000-7fc4e401f000 r--s 00002000 08:16 5919353                    /home/brill/.gradle/caches/transforms-1/files-1.1/ringtonepicker-1.1.aar/a51ef60ce1a66c8bcb1ed7db612b45c8/jars/classes.jar
+7fc4e401f000-7fc4e4021000 r--s 00009000 08:16 5528272                    /home/brill/.gradle/caches/transforms-1/files-1.1/firebase-common-11.6.2.aar/0e2ff702e9d0147961d1a41aa673683f/jars/classes.jar
+7fc4e4021000-7fc4e4023000 r--s 0000c000 08:16 6835063                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.anko/anko-support-v4/0.10.2/2bda4cd41cdb4854d0820a40e2eee3852dec47c9/anko-support-v4-0.10.2.jar
+7fc4e4023000-7fc4e4025000 r--s 00006000 08:16 6181254                    /home/brill/.gradle/caches/transforms-1/files-1.1/smileyrating-1.6.8.aar/c7a73eb9709568789bc1e33483f8c288/jars/classes.jar
+7fc4e4025000-7fc4e402b000 r--s 00052000 08:16 1595093                    /home/brill/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.4.0.aar/c11410558f952a16086edfcc3a320dc4/jars/classes.jar
+7fc4e402b000-7fc4e4631000 rw-p 00000000 00:00 0 
+7fc4e4631000-7fc4e4800000 r--s 03c21000 08:11 411338                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+7fc4e4800000-7fc4e8000000 rw-p 00000000 00:00 0 
+7fc4e8000000-7fc4e8021000 rw-p 00000000 00:00 0 
+7fc4e8021000-7fc4ec000000 ---p 00000000 00:00 0 
+7fc4ec000000-7fc4ec001000 r--s 00001000 08:16 4080391                    /home/brill/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar
+7fc4ec001000-7fc4ec004000 r--s 00039000 08:16 6835055                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.anko/anko-sdk25/0.10.2/3626b8a4a97dc1ffcde5005cd1542209056d4c0a/anko-sdk25-0.10.2.jar
+7fc4ec004000-7fc4ec007000 r--s 0001b000 08:16 4995272                    /home/brill/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar
+7fc4ec007000-7fc4ec008000 r--s 00004000 08:16 3424710                    /home/brill/.gradle/caches/transforms-1/files-1.1/snackbar-1.2.0.aar/a3c6f39661b148d14999d871ca1c3ff6/jars/classes.jar
+7fc4ec008000-7fc4ec00a000 r--s 0000b000 08:16 5659021                    /home/brill/.gradle/caches/transforms-1/files-1.1/firebase-iid-11.6.2.aar/ccfcb01c7bb176897847b1de7950410e/jars/classes.jar
+7fc4ec00a000-7fc4ec00c000 r--s 00003000 08:16 4478806                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar
+7fc4ec00c000-7fc4ec00e000 r--s 0000f000 08:16 4735258                    /home/brill/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar
+7fc4ec00e000-7fc4ec021000 r--s 00346000 08:11 411402                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar
+7fc4ec021000-7fc4ec027000 r--s 00041000 08:16 5129155                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions/1.1.51/5c33f0c440fdd8416f77824bda078426c3f3dc94/kotlin-android-extensions-1.1.51.jar
+7fc4ec027000-7fc4ec042000 r--s 001d6000 08:11 411345                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/nashorn.jar
+7fc4ec042000-7fc4ec43c000 rw-p 00000000 00:00 0 
+7fc4ec43c000-7fc4ec43d000 ---p 00000000 00:00 0 
+7fc4ec43d000-7fc4ec53d000 rw-p 00000000 00:00 0 
+7fc4ec53d000-7fc4ec53e000 ---p 00000000 00:00 0 
+7fc4ec53e000-7fc4ec63e000 rw-p 00000000 00:00 0 
+7fc4ec63e000-7fc4ec63f000 ---p 00000000 00:00 0 
+7fc4ec63f000-7fc4ec7a9000 rw-p 00000000 00:00 0 
+7fc4ec7a9000-7fc4ec93f000 ---p 00000000 00:00 0 
+7fc4ec93f000-7fc4ec9a9000 rw-p 00000000 00:00 0 
+7fc4ec9a9000-7fc4ecb3f000 ---p 00000000 00:00 0 
+7fc4ecb3f000-7fc4ecc3d000 rw-p 00000000 00:00 0 
+7fc4ecc3d000-7fc4ecc3f000 ---p 00000000 00:00 0 
+7fc4ecc3f000-7fc4eccf2000 rw-p 00000000 00:00 0 
+7fc4eccf2000-7fc4ed000000 ---p 00000000 00:00 0 
+7fc4ed000000-7fc4efc50000 rwxp 00000000 00:00 0 
+7fc4efc50000-7fc4fc000000 ---p 00000000 00:00 0 
+7fc4fc000000-7fc4fc3c9000 rw-p 00000000 00:00 0 
+7fc4fc3c9000-7fc500000000 ---p 00000000 00:00 0 
+7fc500000000-7fc500001000 r--s 00003000 08:16 6835059                    /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.anko/anko-support-v4-commons/0.10.2/98d0a396fcc94aad57bdc61bf1b9e92af57d124e/anko-support-v4-commons-0.10.2.jar
+7fc500002000-7fc500007000 r--s 0009a000 08:11 411403                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar
+7fc500007000-7fc50000b000 r--s 00037000 08:11 411349                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunpkcs11.jar
+7fc50000b000-7fc500015000 r--s 00116000 08:11 411348                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/localedata.jar
+7fc500015000-7fc500063000 rw-p 00000000 00:00 0 
+7fc500063000-7fc500064000 ---p 00000000 00:00 0 
+7fc500064000-7fc500164000 rw-p 00000000 00:00 0 
+7fc500164000-7fc50016c000 r-xp 00000000 08:11 411389                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7fc50016c000-7fc50036b000 ---p 00008000 08:11 411389                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7fc50036b000-7fc50036c000 r--p 00007000 08:11 411389                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7fc50036c000-7fc50036d000 rw-p 00008000 08:11 411389                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7fc50036d000-7fc500378000 r-xp 00000000 08:11 793734                     /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7fc500378000-7fc500577000 ---p 0000b000 08:11 793734                     /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7fc500577000-7fc500578000 r--p 0000a000 08:11 793734                     /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7fc500578000-7fc500579000 rw-p 0000b000 08:11 793734                     /lib/x86_64-linux-gnu/libnss_files-2.23.so
+7fc500579000-7fc50057f000 rw-p 00000000 00:00 0 
+7fc50057f000-7fc50058a000 r-xp 00000000 08:11 793744                     /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7fc50058a000-7fc500789000 ---p 0000b000 08:11 793744                     /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7fc500789000-7fc50078a000 r--p 0000a000 08:11 793744                     /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7fc50078a000-7fc50078b000 rw-p 0000b000 08:11 793744                     /lib/x86_64-linux-gnu/libnss_nis-2.23.so
+7fc50078b000-7fc5007a1000 r-xp 00000000 08:11 793728                     /lib/x86_64-linux-gnu/libnsl-2.23.so
+7fc5007a1000-7fc5009a0000 ---p 00016000 08:11 793728                     /lib/x86_64-linux-gnu/libnsl-2.23.so
+7fc5009a0000-7fc5009a1000 r--p 00015000 08:11 793728                     /lib/x86_64-linux-gnu/libnsl-2.23.so
+7fc5009a1000-7fc5009a2000 rw-p 00016000 08:11 793728                     /lib/x86_64-linux-gnu/libnsl-2.23.so
+7fc5009a2000-7fc5009a4000 rw-p 00000000 00:00 0 
+7fc5009a4000-7fc5009ac000 r-xp 00000000 08:11 793730                     /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7fc5009ac000-7fc500bab000 ---p 00008000 08:11 793730                     /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7fc500bab000-7fc500bac000 r--p 00007000 08:11 793730                     /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7fc500bac000-7fc500bad000 rw-p 00008000 08:11 793730                     /lib/x86_64-linux-gnu/libnss_compat-2.23.so
+7fc500bad000-7fc500bda000 r-xp 00000000 08:11 411370                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7fc500bda000-7fc500dd9000 ---p 0002d000 08:11 411370                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7fc500dd9000-7fc500dda000 r--p 0002c000 08:11 411370                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7fc500dda000-7fc500ddc000 rw-p 0002d000 08:11 411370                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7fc500ddc000-7fc500deb000 r-xp 00000000 08:11 411387                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7fc500deb000-7fc500fea000 ---p 0000f000 08:11 411387                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7fc500fea000-7fc500fec000 r--p 0000e000 08:11 411387                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7fc500fec000-7fc500fed000 rw-p 00010000 08:11 411387                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7fc500fed000-7fc500ff4000 r-xp 00000000 08:11 793789                     /lib/x86_64-linux-gnu/librt-2.23.so
+7fc500ff4000-7fc5011f3000 ---p 00007000 08:11 793789                     /lib/x86_64-linux-gnu/librt-2.23.so
+7fc5011f3000-7fc5011f4000 r--p 00006000 08:11 793789                     /lib/x86_64-linux-gnu/librt-2.23.so
+7fc5011f4000-7fc5011f5000 rw-p 00007000 08:11 793789                     /lib/x86_64-linux-gnu/librt-2.23.so
+7fc5011f5000-7fc50120b000 r-xp 00000000 08:11 793673                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc50120b000-7fc50140a000 ---p 00016000 08:11 793673                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc50140a000-7fc50140b000 rw-p 00015000 08:11 793673                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc50140b000-7fc501513000 r-xp 00000000 08:11 793705                     /lib/x86_64-linux-gnu/libm-2.23.so
+7fc501513000-7fc501712000 ---p 00108000 08:11 793705                     /lib/x86_64-linux-gnu/libm-2.23.so
+7fc501712000-7fc501713000 r--p 00107000 08:11 793705                     /lib/x86_64-linux-gnu/libm-2.23.so
+7fc501713000-7fc501714000 rw-p 00108000 08:11 793705                     /lib/x86_64-linux-gnu/libm-2.23.so
+7fc501714000-7fc501886000 r-xp 00000000 08:11 262849                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7fc501886000-7fc501a86000 ---p 00172000 08:11 262849                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7fc501a86000-7fc501a90000 r--p 00172000 08:11 262849                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7fc501a90000-7fc501a92000 rw-p 0017c000 08:11 262849                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7fc501a92000-7fc501a96000 rw-p 00000000 00:00 0 
+7fc501a96000-7fc5026e8000 r-xp 00000000 08:11 411381                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7fc5026e8000-7fc5028e8000 ---p 00c52000 08:11 411381                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7fc5028e8000-7fc50297b000 r--p 00c52000 08:11 411381                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7fc50297b000-7fc5029a4000 rw-p 00ce5000 08:11 411381                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7fc5029a4000-7fc5029d4000 rw-p 00000000 00:00 0 
+7fc5029d4000-7fc5029ec000 r-xp 00000000 08:11 793781                     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7fc5029ec000-7fc502beb000 ---p 00018000 08:11 793781                     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7fc502beb000-7fc502bec000 r--p 00017000 08:11 793781                     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7fc502bec000-7fc502bed000 rw-p 00018000 08:11 793781                     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7fc502bed000-7fc502bf1000 rw-p 00000000 00:00 0 
+7fc502bf1000-7fc502bf4000 r-xp 00000000 08:11 793659                     /lib/x86_64-linux-gnu/libdl-2.23.so
+7fc502bf4000-7fc502df3000 ---p 00003000 08:11 793659                     /lib/x86_64-linux-gnu/libdl-2.23.so
+7fc502df3000-7fc502df4000 r--p 00002000 08:11 793659                     /lib/x86_64-linux-gnu/libdl-2.23.so
+7fc502df4000-7fc502df5000 rw-p 00003000 08:11 793659                     /lib/x86_64-linux-gnu/libdl-2.23.so
+7fc502df5000-7fc502e0e000 r-xp 00000000 08:11 793826                     /lib/x86_64-linux-gnu/libz.so.1.2.8
+7fc502e0e000-7fc50300d000 ---p 00019000 08:11 793826                     /lib/x86_64-linux-gnu/libz.so.1.2.8
+7fc50300d000-7fc50300e000 r--p 00018000 08:11 793826                     /lib/x86_64-linux-gnu/libz.so.1.2.8
+7fc50300e000-7fc50300f000 rw-p 00019000 08:11 793826                     /lib/x86_64-linux-gnu/libz.so.1.2.8
+7fc50300f000-7fc5031cf000 r-xp 00000000 08:11 793635                     /lib/x86_64-linux-gnu/libc-2.23.so
+7fc5031cf000-7fc5033cf000 ---p 001c0000 08:11 793635                     /lib/x86_64-linux-gnu/libc-2.23.so
+7fc5033cf000-7fc5033d3000 r--p 001c0000 08:11 793635                     /lib/x86_64-linux-gnu/libc-2.23.so
+7fc5033d3000-7fc5033d5000 rw-p 001c4000 08:11 793635                     /lib/x86_64-linux-gnu/libc-2.23.so
+7fc5033d5000-7fc5033d9000 rw-p 00000000 00:00 0 
+7fc5033d9000-7fc5033e6000 r-xp 00000000 08:11 411385                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7fc5033e6000-7fc5035e6000 ---p 0000d000 08:11 411385                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7fc5035e6000-7fc5035e7000 r--p 0000d000 08:11 411385                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7fc5035e7000-7fc5035e8000 rw-p 0000e000 08:11 411385                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7fc5035e8000-7fc50360e000 r-xp 00000000 08:11 793607                     /lib/x86_64-linux-gnu/ld-2.23.so
+7fc50360e000-7fc503629000 r--s 00394000 08:11 411343                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/cldrdata.jar
+7fc503629000-7fc5036eb000 rw-p 00000000 00:00 0 
+7fc5036eb000-7fc5036ee000 ---p 00000000 00:00 0 
+7fc5036ee000-7fc5037f1000 rw-p 00000000 00:00 0 
+7fc5037f1000-7fc5037f2000 r--s 00003000 08:16 1595085                    /home/brill/.gradle/caches/transforms-1/files-1.1/android-permissions-0.1.5.aar/6e16bcf4636c78e9013062a3ad2a4568/jars/classes.jar
+7fc5037f2000-7fc5037f4000 r--s 00008000 08:11 411347                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunec.jar
+7fc5037f4000-7fc5037f7000 r--s 0000f000 08:11 411342                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/icedtea-sound.jar
+7fc5037f7000-7fc5037f8000 r--s 0000a000 08:11 411350                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jaccess.jar
+7fc5037f8000-7fc5037f9000 r--s 00010000 08:11 411344                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/zipfs.jar
+7fc5037f9000-7fc5037fb000 r--s 00001000 08:11 411351                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/dnsns.jar
+7fc5037fb000-7fc503801000 r--s 0003a000 08:11 411346                     /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunjce_provider.jar
+7fc503801000-7fc503809000 rw-s 00000000 08:11 151817                     /tmp/hsperfdata_brill/6518
+7fc503809000-7fc50380a000 rw-p 00000000 00:00 0 
+7fc50380a000-7fc50380b000 r--p 00000000 00:00 0 
+7fc50380b000-7fc50380d000 rw-p 00000000 00:00 0 
+7fc50380d000-7fc50380e000 r--p 00025000 08:11 793607                     /lib/x86_64-linux-gnu/ld-2.23.so
+7fc50380e000-7fc50380f000 rw-p 00026000 08:11 793607                     /lib/x86_64-linux-gnu/ld-2.23.so
+7fc50380f000-7fc503810000 rw-p 00000000 00:00 0 
+7ffdf46d4000-7ffdf46f6000 rw-p 00000000 00:00 0                          [stack]
+7ffdf4749000-7ffdf474b000 r--p 00000000 00:00 0                          [vvar]
+7ffdf474b000-7ffdf474d000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Djava.awt.headless=true -Djava.rmi.server.hostname=127.0.0.1 -Xmx1536m -Dkotlin.environment.keepalive 
+java_command: org.jetbrains.kotlin.daemon.KotlinCompileDaemon --daemon-runFilesPath /home/brill/.local/share/kotlin/daemon --daemon-autoshutdownIdleSeconds=7200 --daemon-compilerClasspath /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-embeddable/1.1.51/e87f62328a705dc5c5b857f1aa50d1732c8bc3d6/kotlin-compiler-embeddable-1.1.51.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar
+java_class_path (initial): /home/brill/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-embeddable/1.1.51/e87f62328a705dc5c5b857f1aa50d1732c8bc3d6/kotlin-compiler-embeddable-1.1.51.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/home/brill/.nvm/versions/node/v9.2.0/bin:/home/brill/bin:/home/brill/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/brill/Android/Sdk/platform-tools
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xa69040], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xa69040], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x8b2170], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x8b2170], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x8b2170], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x8b2170], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x8b2020], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x8b24f0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x8b24f0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x8b24f0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x8b24f0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.3 LTS"
+
+uname:Linux 4.10.0-40-generic #44~16.04.1-Ubuntu SMP Thu Nov 9 15:37:44 UTC 2017 x86_64
+libc:glibc 2.23 NPTL 2.23 
+rlimit: STACK 8192k, CORE 0k, NPROC 31327, NOFILE 1048576, AS infinity
+load average:2.83 2.07 1.90
+
+/proc/meminfo:
+MemTotal:        8064260 kB
+MemFree:          119744 kB
+MemAvailable:     390112 kB
+Buffers:           11816 kB
+Cached:           865196 kB
+SwapCached:        40736 kB
+Active:          6379296 kB
+Inactive:        1037548 kB
+Active(anon):    6235052 kB
+Inactive(anon):   892928 kB
+Active(file):     144244 kB
+Inactive(file):   144620 kB
+Unevictable:         152 kB
+Mlocked:             152 kB
+SwapTotal:      14647292 kB
+SwapFree:       13983388 kB
+Dirty:               516 kB
+Writeback:             0 kB
+AnonPages:       6442420 kB
+Mapped:           496412 kB
+Shmem:            587884 kB
+Slab:             357064 kB
+SReclaimable:     284840 kB
+SUnreclaim:        72224 kB
+KernelStack:       18240 kB
+PageTables:        80392 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    18679420 kB
+Committed_AS:   17085892 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   1169408 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      307276 kB
+DirectMap2M:     7972864 kB
+
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, clmul, ht, tsc, tscinvbit
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i3-2120 CPU @ 3.30GHz
+stepping	: 7
+microcode	: 0x26
+cpu MHz		: 3300.000
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer xsave avx lahf_lm epb tpr_shadow vnmi flexpriority ept vpid xsaveopt dtherm arat pln pts
+bugs		:
+bogomips	: 6584.88
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i3-2120 CPU @ 3.30GHz
+stepping	: 7
+microcode	: 0x26
+cpu MHz		: 3301.007
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer xsave avx lahf_lm epb tpr_shadow vnmi flexpriority ept vpid xsaveopt dtherm arat pln pts
+bugs		:
+bogomips	: 6584.88
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i3-2120 CPU @ 3.30GHz
+stepping	: 7
+microcode	: 0x26
+cpu MHz		: 3299.798
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer xsave avx lahf_lm epb tpr_shadow vnmi flexpriority ept vpid xsaveopt dtherm arat pln pts
+bugs		:
+bogomips	: 6584.88
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i3-2120 CPU @ 3.30GHz
+stepping	: 7
+microcode	: 0x26
+cpu MHz		: 3300.805
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer xsave avx lahf_lm epb tpr_shadow vnmi flexpriority ept vpid xsaveopt dtherm arat pln pts
+bugs		:
+bogomips	: 6584.88
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 8064260k(119744k free), swap 14647292k(13983388k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.151-b12) for linux-amd64 JRE (1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12), built on Oct 27 2017 21:59:02 by "buildd" with gcc 5.4.0 20160609
+
+time: Fri Dec  8 18:00:03 2017
+elapsed time: 56 seconds (0d 0h 0m 56s)
+

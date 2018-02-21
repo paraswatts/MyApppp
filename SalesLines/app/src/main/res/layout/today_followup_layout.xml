@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView xmlns:tools="http://schemas.android.com/tools"
+        android:textSize="22sp"
+        android:textColor="#000"
+        tools:textColor="#000"
+        android:text="Call Mr.X @ 09.00AM"
+        tools:text="Call Mr.X @ 09.00AM"
+        android:id="@+id/tv_today_followup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

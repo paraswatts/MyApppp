@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.nitesh.brill.saleslines._AGM_Classes.AGM_Fragment.AGM_All_Lead_Fragment">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="GM View"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+
+        android:background="@color/colorLine"></View>
+
+    <Button
+    android:id="@+id/btn_All_Leads"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/text_link_selector_bg"
+    android:gravity="left|center"
+    android:padding="8dp"
+    android:text="All Leads"
+    android:textAllCaps="false"
+    android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/btn_Leads_Today_Added"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Committed Prospects "
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+    <Button
+        android:id="@+id/btn_Close_Leads"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Closed Leads"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+    <Button
+        android:id="@+id/btn_Today_FollowUp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Todays Follow-Ups"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+    <Button
+        android:id="@+id/btn_FollowUp_Leads"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Followed-Up Leads"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+    <Button
+        android:id="@+id/btn_Missed_FollowUp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Missed Follow-Ups"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/lin02222"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/line111"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/colortext01111"
+            android:layout_width="5dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="5dp"
+            android:background="#ff6500"
+
+            android:gravity="bottom"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/colortext02222"
+            android:layout_width="5dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:background="#00339d"
+            android:gravity="bottom"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/colortext03333"
+            android:layout_width="5dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:background="#9602c8"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/colortext04444"
+            android:layout_width="5dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:background="#009a34"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line111"
+        android:layout_width="80dp"
+        android:layout_height="1dp"
+        android:layout_above="@+id/title111"
+        android:background="@android:color/black"
+        android:paddingRight="16dp"></View>
+
+    <TextView
+        android:id="@+id/title111"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:textColor="#000"
+        android:textSize="14sp" />
+</RelativeLayout>

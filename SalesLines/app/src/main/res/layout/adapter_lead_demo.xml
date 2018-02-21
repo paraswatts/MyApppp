@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blur"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_DemoDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_Date"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+
+        android:layout_marginRight="8dp"
+        android:layout_toRightOf="@+id/iv_ImageView"
+        android:text="Shivaram"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_RootLayput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Date"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/iv_ImageView"
+            android:text="Shivaram"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_Mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Name"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="50dp"
+            android:layout_toRightOf="@+id/iv_ImageView"
+            android:text="+918123014220ddddddddddddddddddddddddddddd"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_H"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#ff6400"
+            android:paddingBottom="4dp"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:text="W"
+            android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+</LinearLayout>

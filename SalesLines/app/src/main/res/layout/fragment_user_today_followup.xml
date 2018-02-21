@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@android:color/white">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorLine"></View>
+
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today follow up reminder"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <View
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorLine"></View>
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    />
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    />
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    />
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    />
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#2f3233"
+                    android:padding="8dp"
+                    android:background="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Call Mr.X @ 9:00 AM"
+                    />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>
+

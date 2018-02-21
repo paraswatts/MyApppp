@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_Main"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:background="@drawable/textview_border"
+                        android:gravity="center"
+
+                        android:text="TargetId"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:background="@drawable/textview_border"
+                        android:gravity="center"
+
+                        android:text="EmployeeName"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.34"
+                        android:background="@drawable/textview_border"
+                        android:gravity="center"
+                        android:text="ProductName"
+
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_TargetId"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:background="@drawable/textview_border_cell"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="15dp" />
+
+                    <TextView
+
+                        android:id="@+id/tv_EmployeeName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:background="@drawable/textview_border_cell"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="15dp" />
+
+                    <TextView
+
+                        android:id="@+id/tv_ProductName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.34"
+                        android:background="@drawable/textview_border_cell"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+
+
+                        android:background="@drawable/textview_border"
+                        android:gravity="center"
+                        android:text="Target"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:background="@drawable/textview_border"
+                        android:gravity="center"
+                        android:text="Sale value"
+
+                        android:textSize="15dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.34"
+                        android:background="@drawable/textview_border"
+                        android:gravity="center"
+                        android:text="Employee"
+                        android:textSize="15dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_Target"
+
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/textview_border_cell"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_Targett"
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:background="@drawable/textview_border_cell"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="15dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_Sman"
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.34"
+                        android:background="@drawable/textview_border_cell"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="15dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+</LinearLayout>

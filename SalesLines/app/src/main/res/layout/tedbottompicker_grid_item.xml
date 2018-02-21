@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.nitesh.brill.saleslines.Camera.TedSquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ccc"
+    android:foreground="?android:attr/selectableItemBackground"
+
+    >
+
+    <com.nitesh.brill.saleslines.Camera.TedSquareImageView
+        android:id="@+id/iv_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+
+
+        />
+
+
+</com.nitesh.brill.saleslines.Camera.TedSquareFrameLayout>

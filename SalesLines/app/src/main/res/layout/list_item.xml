@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center|left"
+            android:text="Product Name :     "
+
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center|left"
+            android:text="Name">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+
+            >
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Target Id :"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_Targetid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+
+                    android:text="44444" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Employee Name : "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_EName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="1974" />
+            </TableRow>
+
+            <TableRow
+
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center|left"
+                    android:text="Target :"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_TotalTarget"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/edit"
+                    android:gravity="center|left"
+                    android:text="8 " />
+            </TableRow>
+        </TableLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

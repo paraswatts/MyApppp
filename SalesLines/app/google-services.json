@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "287947561074",
+    "firebase_url": "https://saleslines-d2ed7.firebaseio.com",
+    "project_id": "saleslines-d2ed7",
+    "storage_bucket": "saleslines-d2ed7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287947561074:android:628fde0670f39cc2",
+        "android_client_info": {
+          "package_name": "com.nitesh.brill.saleslines"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287947561074-2s997q17rmqa8nsbqgo55rjtdb0g85js.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nitesh.brill.saleslines",
+            "certificate_hash": "3b13b2a20f5e8ee7fcd415cfaed798761c22ebc1"
+          }
+        },
+        {
+          "client_id": "287947561074-srdpjh00a13dkjre5f5sp7scac5odr6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV3snL6dV2bBCTwNB9SEHu42KyMJZfNhQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287947561074-srdpjh00a13dkjre5f5sp7scac5odr6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

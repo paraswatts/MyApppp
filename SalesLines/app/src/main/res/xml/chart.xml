@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ai:chart xmlns:ai="http://www.artfulbits.com/android/aiCharts">
+	<ai:area/>
+	<ai:series type="Funnel" showlabel="true"/>
+	<ai:title text="Cosmopolitan (cocktail)" dock="Top"/>
+</ai:chart>

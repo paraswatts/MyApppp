@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine"></View>
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Manager View"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp" />
+
+
+    <Button
+        android:id="@+id/tv_Graphs"
+
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Graph"
+
+
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/tv_Leader_Board"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Leader Board"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/tv_Users"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Users"
+        android:textAllCaps="false"
+
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/tv_User_Search"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="User Search"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/tv_Lead_Search"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Lead Search"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/tv_Assign_Target"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Assign Target"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:id="@+id/tv_Inactive_User"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Inactive User"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+
+    <Button
+        android:visibility="visible"
+        android:id="@+id/tv_MapView"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Users Map View"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
+</LinearLayout>

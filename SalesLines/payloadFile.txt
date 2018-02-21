@@ -1,0 +1,201 @@
+Sale closure user alarm
+
+{
+"data":
+ {
+		"message":"Well Done Boy!!!"
+		"roleType":"user"
+		"loginId":"rrsales@gmail.com"
+		"notificationsType":"saleClosureReminder"
+ 		"extraMessage":"That was a GREAT Sale Closure!!!"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+Followup reminder alarm for user
+
+{
+"data":
+ {
+        "loginId":"rrsales@gmail.com"
+		"message":"HOT LEAD!!!"
+		"roleType":"user"
+        "followUpTime":"09:32:AM"
+		"notificationsType":"followUpReminder"
+		"extraMessage":"Hey! Call Mr.X and help him buying his dream car!! Last Called him on 20-6-2017"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+Target reminder user
+
+{
+"data":
+ {
+   		"totalTarget":"20"
+        "targetAchieved":"8"
+        "message":"Hey Your Target for this month is"
+        "roleType":"user"
+        "loginId":"rrsales@gmail.com"
+        "notificationsType":"targetReminder"
+        "extraMessage":"Its time to Get things done!!"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+Missed followup reminder for user
+
+{
+"data":
+ {
+		"followUpTime":"02:25:PM"
+        "message":"You have missed 20 Follow ups"
+        "roleType":"user"
+        "loginId":"rrsales@gmail.com"
+        "notificationsType":"missedFollowups"
+        "extraMessage":"Its time to face your Manager"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+Manager target Reminder
+
+{
+"data":
+ {
+   		"totalTarget":"80"
+        "targetAchieved":"48"
+        "message":"Hey Your Target for this month is"
+        "roleType":"manager"
+        "loginId":"rrmgr@gmail.com"
+        "notificationsType":"managerTargetReminder"
+        "extraMessage":"Pull up your sleeves & work with your team!!"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+Manager sales  closure reminder
+
+{
+"data":
+ {
+        "message":"Your team member john has achieved a successful sales closure"
+        "roleType":"manager"
+        "loginId":"rrmgr@gmail.com"
+        "notificationsType":"saleClosureManagerReminder"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+
+GM target Reminder
+
+{
+"data":
+ {      
+        "totalTarget":"80"
+        "targetAchieved":"48"
+        "message":"Hey Your Target for this month is"
+        "roleType":"gm"
+        "loginId":"rrgm@gmail.com"
+        "notificationsType":"managerTargetReminder" 
+        "extraMessage":"Pull up your sleeves & work with your team!!"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+GM sales  closure reminder
+
+{
+"data":
+ {
+        "message":"Your team member john has achieved a successful sales closure"
+        "roleType":"gm"
+        "loginId":"rrgm@gmail.com"
+        "notificationsType":"saleClosureManagerReminder"
+  
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+
+AGM target Reminder
+
+{
+"data":
+ {
+        "totalTarget":"80"
+        "targetAchieved":"48"
+        "message":"Hey Your Target for this month is"
+        "roleType":"agm"
+        "loginId":"rragm@gmail.com"
+        "notificationsType":"managerTargetReminder"
+        "extraMessage":"Pull up your sleeves & work with your team!!"
+
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+AGM sales  closure reminder
+
+{
+"data":
+ {
+        "message":"Your team member john has achieved a successful sales closure"
+        "roleType":"agm"
+        "loginId":"rragm@gmail.com"
+        "notificationsType":"saleClosureManagerReminder"
+
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+
+
+ASM target Reminder
+
+{
+"data":
+ {
+        "totalTarget":"80"
+        "targetAchieved":"48"
+        "message":"Hey Your Target for this month is"
+        "roleType":"asm"
+        "loginId":"rrasm@gmail.com"
+        "notificationsType":"managerTargetReminder"
+        "extraMessage":"Pull up your sleeves & work with your team!!"
+
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
+
+ASM sales  closure reminder
+
+{
+"data":
+ {
+        "message":"Your team member john has achieved a successful sales closure"
+        "roleType":"asm"
+        "loginId":"rrasm@gmail.com"
+        "notificationsType":"saleClosureManagerReminder"
+
+ }
+ "to":"daHCCHErvjY:APA91bHB-v_liUDAHt-CIMbBjEEeHCMUaAoMU4X2SjxRzuX8Enh9Ivs4RzEM7Ke5X7kHwK0AKKbMcWnlcDdnDlumbOhfsMyNuAT7XEPAhiO8yVH5XW4ip0VUGIThNpGPOuVLw3rF8hxp"
+}
+
