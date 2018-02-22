@@ -489,6 +489,8 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
 //                Log.e("Loading marker","Image prepared");
 //            }
 //        };
+
+
         final View mCustomMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker, null);
 
 //        Glide.with(getContext())

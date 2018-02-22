@@ -77,7 +77,7 @@
                 android:layout_width="25dp"
                 android:layout_height="30dp"
                 android:layout_gravity="right|center"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/ic_filter" />
         </FrameLayout>
 

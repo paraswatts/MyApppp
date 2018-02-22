@@ -48,6 +48,7 @@ import com.nitesh.brill.saleslines.FirebaseService.MyFirebaseMessagingService
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.header_layout.*
 import org.jetbrains.anko.alert
 import org.json.JSONArray
 import retrofit2.Call
@@ -176,10 +177,16 @@ class AGM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelecte
        // imageView.background = resources.getDrawable(R.drawable.ic_user)
 
 
-        Picasso.with(this)
-                .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID)).resize(400, 400)
-                .placeholder(R.drawable.profile_pic) .into(imageView)
+        Glide.with(baseContext).asBitmap()
+                .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+                .into(object: SimpleTarget<Bitmap>(){
+                    override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
+                        Log.e("Resource","is ready")
+                        imageView.setImageBitmap(resource)
 
+
+                    }
+                })
         //=======================================\\
 
         imageView.setOnClickListener {
@@ -379,6 +386,7 @@ class AGM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelecte
                 .into(object: SimpleTarget<Bitmap>(){
                     override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                         Log.e("Resource","is ready")
+
                         imageView.setImageBitmap(resource)
                     }
                 })

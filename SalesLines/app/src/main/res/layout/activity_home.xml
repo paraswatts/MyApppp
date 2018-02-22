@@ -21,10 +21,10 @@
         android:layout_gravity="start"
         android:background="#FFFFFF"
         android:scrollbars="none"
+
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_layout"
         app:itemBackground="@color/white"
-
         app:itemTextColor="@color/background"
         app:menu="@menu/activity_home_drawer" />
 

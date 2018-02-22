@@ -369,7 +369,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                 for(int i = 0 ; i <
                         lat.size() ; i++ ) {
                     try {
-                        createMarker(lat.get(i), lng.get(i),"Salesman Name","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA",time.get(i));
+                        createMarker(i,lat.get(i), lng.get(i),"Salesman Name","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA",time.get(i),lat.size());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -384,6 +384,386 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             }
         });
     }
+
+
+    public void plotMapTest() {
+
+        try {
+            MapsInitializer.initialize(getActivity().getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mMapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap mMap) {
+                googleMap = mMap;
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                // For showing a move to my location button
+                if (checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                googleMap.setMyLocationEnabled(true);
+                ArrayList<Double> lat = new ArrayList<>();
+                ArrayList<Double> lng = new ArrayList<>();
+                ArrayList<String> markerText = new ArrayList<>();
+                ArrayList<String> imageUrl = new ArrayList<>();
+
+             //1
+                lat.add(30.7085777);
+                lng.add(76.68998731);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+            //2
+                lat.add(30.7072613);
+                lng.add(76.6892792);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+           //3
+                lat.add(30.7091012);
+                lng.add(76.6910763);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+            //4
+                lat.add(30.7098971);
+                lng.add(76.6896841);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+           //5
+                lat.add(30.7072931);
+                lng.add(76.6919485);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+          //6
+                lat.add(30.7076447);
+                lng.add(76.6956916);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+
+          //7
+                lat.add(30.7094993);
+                lng.add(76.6953198);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+
+         //8
+                lat.add(30.714091);
+                lng.add(76.704221);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+          //9
+                lat.add(30.713014);
+                lng.add(76.710818);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+
+
+           //10
+                lat.add(30.714729);
+                lng.add(76.713242);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+          //11
+                lat.add(30.715081);
+                lng.add(76.716240);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//12
+                lat.add(30.718208);
+                lng.add(76.714540);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//13
+
+                lat.add(30.714223);
+                lng.add(76.726943);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+//14
+                lat.add(30.710275);
+                lng.add(76.722479);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+
+                //15
+                lat.add(30.721639);
+                lng.add(76.730247);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+                //16
+                lat.add(30.705774);
+                lng.add(76.734281);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+                //17
+                lat.add(30.710145);
+                lng.add(76.713192);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+                //18
+                lat.add(30.706691);
+                lng.add(76.706888);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+                //19
+                lat.add(30.690927);
+                lng.add(76.711741);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+
+                //20
+                lat.add(30.710275);
+                lng.add(76.722479);
+                markerText.add("Paras Watts");
+                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+
+
+
+              /*  if(lat.size()>10)
+                {
+                    String origin = "origin=" + lat.get(0) + "," + lng.get(0);
+                    String destination = "destination=" + lat.get(9) + "," + lng.get(9);
+                    String waypoints = "waypoints=optimize:true|";
+                    String path ="";
+                    for(int i = 1 ; i <
+                            9 ; i++ ) {
+                        path = path + lat.get(i) + "," + lng.get(i) + "|";
+
+
+                    }
+
+                    int start = lat.size()-10;
+
+
+
+                    waypoints = waypoints + path;
+                    String sensor = "sensor=false";
+                    String params = origin + "&" + waypoints + "&"  + destination + "&" + sensor;
+                    String output = "json";
+                    String url = "https://maps.googleapis.com/maps/api/directions/"
+                            + output + "?" + params;
+                    String fixedUrlStr = url.replace("|", "%7C");
+
+                    Log.e("I am here in","urlk"+fixedUrlStr);
+
+
+                    new FetchRouteAsyncTask().execute(fixedUrlStr);
+                }
+                else {*/
+                if(lat.size()<11) {
+
+                    String origin = "origin=" + lat.get(0) + "," + lng.get(0);
+                    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lng.size() - 1);
+                    String waypoints = "waypoints=optimize:true|";
+                    String path = "";
+
+                    for (int i = 1; i <
+                            lat.size() - 1; i++) {
+                        path = path + lat.get(i) + "," + lng.get(i) + "|";
+
+
+                    }
+
+                    waypoints = waypoints + path;
+                    String sensor = "sensor=false";
+                    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
+                    String output = "json";
+                    String url = "https://maps.googleapis.com/maps/api/directions/"
+                            + output + "?" + params;
+                    String fixedUrlStr = url.replace("|", "%7C");
+
+                    Log.e("I am here in", "urlk" + fixedUrlStr);
+
+
+                    new FetchRouteAsyncTask().execute(fixedUrlStr);
+
+
+                }
+                else {
+                    double number = (float) lat.size() / 9;
+                    int size = lat.size();
+                    double i = Math.ceil(number);
+                    int num = (int) size;
+                    int remainder = num % 10;
+                    Log.e("remainder is ",""+remainder);
+
+                    if(remainder==0){
+                    num  =(int) i-1;
+                    }
+                    else{
+                        num = (int) i;
+                    }
+                    for (int j = 0; j < num; j++) {
+
+
+                        //int finalSize = Math.abs(size-((10*(num-2))+remainder));
+                        int finalSize = 9;
+
+                        Log.e("final size before loop", "===" + (finalSize * (j + 1)) + "======" + size);
+
+
+                        String origin = "origin=" + lat.get(finalSize * j) + "," + lng.get(finalSize * j);
+                        Log.e("origin",""+lat.get(finalSize * j) + "," + lng.get(finalSize * j));
+                        String destination = "destination=" + lat.get(finalSize * (j + 1)-1) + "," + lng.get(finalSize * (j + 1)-1);
+                        Log.e("des",""+lat.get(finalSize * (j+1)-1) + "," + lng.get(finalSize * (j+1)-1));
+
+                        String waypoints = "waypoints=optimize:true|";
+                        String path = "";
+                        int loop = (finalSize * (j + 1))-1;
+                        for (int k = (j * 9)+1; k < loop; k++) {
+                            Log.e("final size", "===" + ((finalSize * (j)) + k));
+                            int index = (finalSize * (j)) + k;
+                            Log.e("size ======",""+k +"===="+ lat.get(index)+"===="+lng.get(index));
+
+                            path = path + lat.get(index) + "," + lng.get(index) + "|";
+                        }
+                        num--;
+
+                        waypoints = waypoints + path;
+                        String sensor = "sensor=false";
+                        String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
+                        String output = "json";
+                        String url = "https://maps.googleapis.com/maps/api/directions/"
+                                + output + "?" + params;
+                        String fixedUrlStr = url.replace("|", "%7C");
+
+                        Log.e("I am here in", "urlk" + fixedUrlStr);
+
+
+                        new FetchRouteAsyncTask().execute(fixedUrlStr);
+
+                        Log.e("Loop count", "====" + j);
+
+
+                    }
+
+
+if(remainder!=0) {
+
+    Log.e("i am here", "in if condition");
+    String origin = "origin=" + lat.get(size - remainder) + "," + lng.get(size - remainder);
+    Log.e("origin", "" + lat.get(size - remainder) + "," + lng.get(size - remainder));
+
+    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+    String waypoints = "waypoints=optimize:true|";
+    String path = "";
+    Log.e("des", "" + lat.get(size - 1) + "," + lng.get(size - 1));
+    for (int k = size + 1 - remainder; k < size; k++) {
+
+        Log.e("size ======", "" + k + "====" + lat.get(k - 1) + "====" + lng.get(k - 1));
+
+
+        path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
+    }
+    num--;
+
+    waypoints = waypoints + path;
+    String sensor = "sensor=false";
+    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
+    String output = "json";
+    String url = "https://maps.googleapis.com/maps/api/directions/"
+            + output + "?" + params;
+    String fixedUrlStr = url.replace("|", "%7C");
+
+    Log.e("I am here in", "ur" + fixedUrlStr);
+
+
+    new FetchRouteAsyncTask().execute(fixedUrlStr);
+
+}
+else{
+
+    Log.e("i am here", "in if condition");
+    String origin = "origin=" + lat.get(size - (remainder+2)) + "," + lng.get(size - (remainder+2));
+    Log.e("origin", "" + lat.get(size - (remainder+1)) + "," + lng.get(size - (remainder+1)));
+
+    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+    String waypoints = "waypoints=optimize:true|";
+    String path = "";
+    Log.e("des", "" + lat.get(size - 1) + "," + lng.get(size - 1));
+    for (int k = size + 1 - remainder; k < size; k++) {
+
+        Log.e("size ======", "" + k + "====" + lat.get(k - 1) + "====" + lng.get(k - 1));
+
+
+        path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
+    }
+    num--;
+
+    waypoints = waypoints + path;
+    String sensor = "sensor=false";
+    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
+    String output = "json";
+    String url = "https://maps.googleapis.com/maps/api/directions/"
+            + output + "?" + params;
+    String fixedUrlStr = url.replace("|", "%7C");
+
+    Log.e("I am here in", "ur" + fixedUrlStr);
+
+
+    new FetchRouteAsyncTask().execute(fixedUrlStr);
+}
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //new FetchRouteAsyncTask().execute(fixedUrlStr+"&key=AIzaSyBecdPIyJo4mC7dGsgIqmyRNKucAI28Cg0");
+                    //}
+
+
+                for(int i = 0 ; i <
+                        lat.size() ; i++ ) {
+                    try {
+                        createMarker(i,lat.get(i), lng.get(i),"Salesman Name","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA","2018-02-20T15:55:23",lat.size());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // For dropping a marker at a point on the Map
+//                LatLng sydney = new LatLng(30.7085777, 76.68998731);
+//                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
+//
+//                // For zooming automatically to the location of the marker
+//                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
+//                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+        });
+    }
+
+
 
     public void getPermissions()
     {
@@ -509,7 +889,9 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 
     private void proceedAfterPermission() {
 
-        getUserCoordinates();
+        //getUserCoordinates();
+
+        plotMapTest();
 
 
     }
@@ -574,7 +956,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         return poly;
     }
 
-    protected void createMarker(final double latitude, final double longitude,final String markerText,final String imageUrl,final String time) throws IOException {
+
+    protected void createMarker(final int index,final double latitude, final double longitude,final String markerText,final String imageUrl,final String time,int size) throws IOException {
 
         Geocoder geocoder;
         List<Address> addresses;
@@ -622,18 +1005,30 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             String formattedTime = d.toString();
 
 
-            Marker m = googleMap.addMarker(new MarkerOptions()
-                    .title(getArguments().getString("username"))
-                    .snippet("was here at " + formattedTime)
-                    .position(new LatLng(latitude, longitude)));
+            if(index==0|| index==size-1) {
+                Marker m = googleMap.addMarker(new MarkerOptions()
+                        .title(getArguments().getString("username"))
+                        .snippet(""+latitude)
+                        .position(new LatLng(latitude, longitude))
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                );
+                m.setTag(info);
+
+            }
+            else{
+                Marker m = googleMap.addMarker(new MarkerOptions()
+                        .title(getArguments().getString("username"))
+                        .snippet(""+latitude)
+                        .position(new LatLng(latitude, longitude))
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
+                );
+                m.setTag(info);
+            }
             //.icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,resource,mCustomMarkerView))));
-            m.setTag(info);
         }catch (Exception e)
         {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -721,9 +1116,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             Log.e("In","post");
             if(s!=null){
                 Log.e("In","post");
-                //drawPath(s);
+                drawPath(s);
             }
-
         }
 
         @Override

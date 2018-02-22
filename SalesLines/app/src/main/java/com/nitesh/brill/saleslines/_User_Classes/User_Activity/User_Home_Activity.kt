@@ -55,6 +55,7 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.fragment_user_setting.*
+import kotlinx.android.synthetic.main.header_layout.*
 import org.jetbrains.anko.alert
 import org.json.JSONArray
 import retrofit2.Call
@@ -171,12 +172,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setTitle(null);
-        mHomeImage.setOnClickListener {
-            val fragment = User_Home_Fragment.newInstance("", "" + objSaveData.getString(ConstantValue.USER_ID))
-            //==== Call Fragment  ====\\
-            callFragment(fragment)
 
-        }
 
 //        if(!TextUtils.isEmpty(objSaveData.getString("notificationSound")))
 //        {
@@ -218,6 +214,23 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
 
 
+        mHomeImage.setOnClickListener {
+
+
+                for (i in 0 until menu.size()) {
+                    val item = menu.getItem(i)
+                    if(item.isChecked)
+                    {
+                        item.setChecked(false)
+                    }
+
+                }
+
+            val fragment = User_Home_Fragment.newInstance("", "" + objSaveData.getString(ConstantValue.USER_ID))
+            //==== Call Fragment  ====\\
+            callFragment(fragment)
+
+        }
         locationSwitch = actionView.findViewById(R.id.drawer_switch) as SwitchCompat
 
         if(objSaveData.getString("locationSharing"+objSaveData.getString(ConstantValue.USER_ID)).equals("yes"))
@@ -260,26 +273,35 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
 //            if(objSaveData.getString("checkProfileImage").equals("yes")) {
 
-            Picasso.with(baseContext)
+//            Picasso.with(baseContext)
+//                    .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+//                    .placeholder(R.drawable.profile_pic)
+//                    .into(object: com.squareup.picasso.Target {
+//                        override fun onBitmapFailed(errorDrawable: Drawable?) {
+//                        }
+//
+//                        override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+//                        }
+//
+//                        override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+//                            Log.e("I am ","here")
+//                            imageView.setImageBitmap(bitmap);
+//
+//                        }
+//                    })
+//                Picasso.with(this)
+//                        .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID)).resize(400, 400)
+//                        .placeholder(R.drawable.profile_pic).into(imageView)
+
+            Glide.with(baseContext).asBitmap()
                     .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
-                    .placeholder(R.drawable.profile_pic)
-                    .into(object: com.squareup.picasso.Target {
-                        override fun onBitmapFailed(errorDrawable: Drawable?) {
-                        }
+                    .into(object: SimpleTarget<Bitmap>(){
+                        override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
+                            Log.e("Resource","is ready")
 
-                        override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                        }
-
-                        override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                            Log.e("I am ","here")
-                            imageView.setImageBitmap(bitmap);
-
+                            imageView.setImageBitmap(resource)
                         }
                     })
-                Picasso.with(this)
-                        .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID)).resize(400, 400)
-                        .placeholder(R.drawable.profile_pic).into(imageView)
-
 //                objSaveData.save("checkProfileImage","no")
 //
 //
@@ -711,6 +733,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 .into(object: SimpleTarget<Bitmap>(){
                     override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                         Log.e("Resource","is ready")
+
                         imageView.setImageBitmap(resource)
                     }
                 })

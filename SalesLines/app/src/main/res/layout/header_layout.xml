@@ -13,13 +13,17 @@
 
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <RelativeLayout
+        android:layout_width="75dp"
+        android:layout_height="75dp">
+
     <com.nitesh.brill.saleslines.Common_Files.DateTimePIicker.RoundedImageView
         android:layout_marginTop="8dp"
         android:id="@+id/imageView"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:src="@drawable/ic_user" />
-
+    </RelativeLayout>
     <TextView
         android:layout_marginTop="4dp"
         android:id="@+id/tv_Name"
