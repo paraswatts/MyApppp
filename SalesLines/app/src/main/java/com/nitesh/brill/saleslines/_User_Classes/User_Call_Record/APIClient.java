@@ -26,4 +26,19 @@ public class APIClient {
         return retrofit;
     }
 
+    public static Retrofit getMapsClient() {
+
+
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://maps.googleapis.com/maps/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                //client(client)
+                .build();
+
+
+
+        return retrofit;
+    }
+
 }

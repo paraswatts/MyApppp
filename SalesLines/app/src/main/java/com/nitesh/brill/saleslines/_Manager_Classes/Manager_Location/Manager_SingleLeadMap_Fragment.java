@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -89,22 +90,22 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int PERMISSION_CALLBACK_CONSTANT = 100;
+    private static final int REQUEST_PERMISSION_SETTING = 101;
+    RetrofitAPI retrofitAPI;
+    TextView title;
+    MapView mMapView;
+    String[] permissionsRequired = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION};
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private Button bt_mapDate;
     private EditText et_mapDate;
-    private static final int PERMISSION_CALLBACK_CONSTANT = 100;
-    private static final int REQUEST_PERMISSION_SETTING = 101;
     private boolean sentToSettings = false;
     private SharedPreferences permissionStatus;
-    RetrofitAPI retrofitAPI;
-    TextView title;
-
-    MapView mMapView;
     private GoogleMap googleMap;
-    String[] permissionsRequired = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION};
+
     public Manager_SingleLeadMap_Fragment() {
         // Required empty public constructor
     }
@@ -143,11 +144,11 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                              Bundle savedInstanceState) {
         Log.e("I am in Notification ", "Fragment");
 
-        permissionStatus = getContext().getSharedPreferences("permissionStatus",MODE_PRIVATE);
+        permissionStatus = getContext().getSharedPreferences("permissionStatus", MODE_PRIVATE);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lead_map, container, false);
-        et_mapDate = (EditText)view.findViewById(R.id.et_mapDate );
-        bt_mapDate = (Button) view.findViewById(R.id.bt_mapDate );
+        et_mapDate = (EditText) view.findViewById(R.id.et_mapDate);
+        bt_mapDate = (Button) view.findViewById(R.id.bt_mapDate);
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -174,16 +175,14 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             }
         });
 
-        title = (TextView)view.findViewById(R.id.textView2);
-        title.setText(getArguments().getString("username")+ " Map");
+        title = (TextView) view.findViewById(R.id.textView2);
+        title.setText(getArguments().getString("username") + " Map");
         bt_mapDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!TextUtils.isEmpty(et_mapDate.getText().toString().trim()))
-                {
+                if (!TextUtils.isEmpty(et_mapDate.getText().toString().trim())) {
                     getPermissions();
-                }
-                else{
+                } else {
                     Toast.makeText(getContext(), "Please select a date", Toast.LENGTH_LONG).show();
                 }
             }
@@ -197,7 +196,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         return view;
     }
 
-    void getUserCoordinates(){
+    void getUserCoordinates() {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading map....");
         progressDialog.setCancelable(false);
@@ -207,13 +206,13 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String dateTime = df.format(c.getTime());
 
-        Log.e("Date time ",dateTime);
-        String userid  = getArguments().getString("user_id");
-        Log.e("user id",userid);
-        String date = TextUtils.isEmpty(et_mapDate.getText().toString().trim())?dateTime:et_mapDate.getText().toString().trim();
+        Log.e("Date time ", dateTime);
+        String userid = getArguments().getString("user_id");
+        Log.e("user id", userid);
+        String date = TextUtils.isEmpty(et_mapDate.getText().toString().trim()) ? dateTime : et_mapDate.getText().toString().trim();
         retrofitAPI = APIClient.getClient().create(RetrofitAPI.class);
 
-        Call<JsonElement> call = retrofitAPI.getGPSLocationsUserDay(userid,objSaveData.getString("client_id"),date);
+        Call<JsonElement> call = retrofitAPI.getGPSLocationsUserDay(userid, objSaveData.getString("client_id"), date);
 
         call.enqueue(new Callback<JsonElement>() {
 
@@ -225,7 +224,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                     ArrayList<Double> lng = new ArrayList<>();
                     ArrayList<String> time = new ArrayList<>();
                     JSONArray jsonArray = new JSONArray(response.body().toString());
-                    if(jsonArray.length()>0) {
+                    if (jsonArray.length() > 0) {
                         Log.e("json array length", "" + jsonArray.length());
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -234,9 +233,9 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                             time.add(jsonObject.get("locationdatetime").toString());
                         }
 
-                        plotMap(lat, lng,time);
-                    }
-                    else{
+                        plotMapTest(lat, lng, time);
+                        //plotMap(lat, lng, time);
+                    } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setMessage("No map data found")
                                 .setCancelable(false)
@@ -248,7 +247,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                         AlertDialog alert = builder.create();
                         alert.show();
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 progressDialog.dismiss();
@@ -260,7 +259,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             }
         });
     }
-    public void plotMap(final ArrayList<Double> lat,final ArrayList<Double> lng,final ArrayList<String> time) {
+
+    public void plotMap(final ArrayList<Double> lat, final ArrayList<Double> lng, final ArrayList<String> time) {
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -313,14 +313,13 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 //
 
 
-                if(lat.size()>8)
-                {
+                if (lat.size() > 8) {
                     String origin = "origin=" + lat.get(0) + "," + lng.get(0);
                     String destination = "destination=" + lat.get(7) + "," + lng.get(7);
                     String waypoints = "waypoints=optimize:true|";
-                    String path ="";
-                    for(int i = 1 ; i <
-                            7 ; i++ ) {
+                    String path = "";
+                    for (int i = 1; i <
+                            7; i++) {
                         path = path + lat.get(i) + "," + lng.get(i) + "|";
 
 
@@ -328,24 +327,23 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 
                     waypoints = waypoints + path;
                     String sensor = "sensor=false";
-                    String params = origin + "&" + waypoints + "&"  + destination + "&" + sensor;
+                    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
                     String output = "json";
                     String url = "https://maps.googleapis.com/maps/api/directions/"
                             + output + "?" + params;
                     String fixedUrlStr = url.replace("|", "%7C");
 
-                    Log.e("I am here in","urlk"+fixedUrlStr);
+                    Log.e("I am here in", "urlk" + fixedUrlStr);
 
 
                     new FetchRouteAsyncTask().execute(fixedUrlStr);
-                }
-                else{
+                } else {
                     String origin = "origin=" + lat.get(0) + "," + lng.get(0);
-                    String destination = "destination=" + lat.get(lat.size()-1) + "," + lng.get(lng.size()-1);
+                    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lng.size() - 1);
                     String waypoints = "waypoints=optimize:true|";
-                    String path ="";
-                    for(int i = 1 ; i <
-                            lat.size()-1 ; i++ ) {
+                    String path = "";
+                    for (int i = 1; i <
+                            lat.size() - 1; i++) {
                         path = path + lat.get(i) + "," + lng.get(i) + "|";
 
 
@@ -353,23 +351,23 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 
                     waypoints = waypoints + path;
                     String sensor = "sensor=false";
-                    String params = origin + "&" + waypoints + "&"  + destination + "&" + sensor;
+                    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
                     String output = "json";
                     String url = "https://maps.googleapis.com/maps/api/directions/"
                             + output + "?" + params;
                     String fixedUrlStr = url.replace("|", "%7C");
 
-                    Log.e("I am here in","urlk"+fixedUrlStr);
+                    Log.e("I am here in", "urlk" + fixedUrlStr);
 
 
                     new FetchRouteAsyncTask().execute(fixedUrlStr);
                 }
 
 
-                for(int i = 0 ; i <
-                        lat.size() ; i++ ) {
+                for (int i = 0; i <
+                        lat.size(); i++) {
                     try {
-                        createMarker(i,lat.get(i), lng.get(i),"Salesman Name","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA",time.get(i),lat.size());
+                        createMarker(i, lat.get(i), lng.get(i), getArguments().getString("username"), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA", time.get(i), lat.size());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -386,7 +384,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     }
 
 
-    public void plotMapTest() {
+    public void plotMapTest(final ArrayList<Double> lat, final ArrayList<Double> lng, final ArrayList<String> time) {
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -411,133 +409,132 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
-                ArrayList<Double> lat = new ArrayList<>();
-                ArrayList<Double> lng = new ArrayList<>();
-                ArrayList<String> markerText = new ArrayList<>();
-                ArrayList<String> imageUrl = new ArrayList<>();
+//                ArrayList<Double> lat = new ArrayList<>();
+//                ArrayList<Double> lng = new ArrayList<>();
+//                ArrayList<String> markerText = new ArrayList<>();
+//                ArrayList<String> imageUrl = new ArrayList<>();
 
-             //1
-                lat.add(30.7085777);
-                lng.add(76.68998731);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-            //2
-                lat.add(30.7072613);
-                lng.add(76.6892792);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-           //3
-                lat.add(30.7091012);
-                lng.add(76.6910763);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-            //4
-                lat.add(30.7098971);
-                lng.add(76.6896841);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-           //5
-                lat.add(30.7072931);
-                lng.add(76.6919485);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-          //6
-                lat.add(30.7076447);
-                lng.add(76.6956916);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-
-          //7
-                lat.add(30.7094993);
-                lng.add(76.6953198);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-
-         //8
-                lat.add(30.714091);
-                lng.add(76.704221);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-          //9
-                lat.add(30.713014);
-                lng.add(76.710818);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-
-
-           //10
-                lat.add(30.714729);
-                lng.add(76.713242);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-          //11
-                lat.add(30.715081);
-                lng.add(76.716240);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-//12
-                lat.add(30.718208);
-                lng.add(76.714540);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-//13
-
-                lat.add(30.714223);
-                lng.add(76.726943);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-//14
-                lat.add(30.710275);
-                lng.add(76.722479);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-
-                //15
-                lat.add(30.721639);
-                lng.add(76.730247);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-                //16
-                lat.add(30.705774);
-                lng.add(76.734281);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-                //17
-                lat.add(30.710145);
-                lng.add(76.713192);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-                //18
-                lat.add(30.706691);
-                lng.add(76.706888);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-                //19
-                lat.add(30.690927);
-                lng.add(76.711741);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
-
-                //20
-                lat.add(30.710275);
-                lng.add(76.722479);
-                markerText.add("Paras Watts");
-                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+                //1
+//                lat.add(30.749483);
+//                lng.add(76.674680);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//                //2
+//                lat.add(30.740428);
+//                lng.add(76.674980);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//                //3
+//                lat.add(30.738224);
+//                lng.add(76.681731);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//                //4
+//                lat.add(30.733093);
+//                lng.add(76.696437);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //5
+//                lat.add(30.731725);
+//                lng.add(76.703490);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //6
+//                lat.add(30.735176);
+//                lng.add(76.708901);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//
+//                //7
+//                lat.add(30.738541);
+//                lng.add(76.714588);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//
+//                //8
+//                lat.add(30.743395);
+//                lng.add(76.721848);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //9
+//                lat.add(30.737324);
+//                lng.add(76.726827);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//
+//                //10
+//                lat.add(30.731336);
+//                lng.add(76.731667);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //11
+//                lat.add(30.727649);
+//                lng.add(76.734264);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+////12
+//                lat.add(30.730085);
+//                lng.add(76.739498);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+////13
+//
+//                lat.add(30.731759);
+//                lng.add(76.747428);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+////14
+//                lat.add(30.726265);
+//                lng.add(76.751523);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//
+//                //15
+//                lat.add(30.719591);
+//                lng.add(76.757200);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //16
+//                lat.add(30.722976);
+//                lng.add(76.762529);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //17
+//                lat.add(30.726852);
+//                lng.add(76.768748);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //18
+//                lat.add(30.720847);
+//                lng.add(76.773618);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//                //19
+//                lat.add(30.715010);
+//                lng.add(76.778863);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
+//
+//                //20
+//                lat.add(30.709316);
+//                lng.add(76.784317);
+//                markerText.add("Paras Watts");
+//                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
+//
 
 
               /*  if(lat.size()>10)
@@ -571,11 +568,15 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                     new FetchRouteAsyncTask().execute(fixedUrlStr);
                 }
                 else {*/
-                if(lat.size()<11) {
+                if (lat.size() < 11) {
 
-                    String origin = "origin=" + lat.get(0) + "," + lng.get(0);
-                    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lng.size() - 1);
-                    String waypoints = "waypoints=optimize:true|";
+                    //String origin = "origin=" + lat.get(0) + "," + lng.get(0);
+                    String origin = lat.get(0) + "," + lng.get(0);
+
+                    String destination = lat.get(lat.size() - 1) + "," + lng.get(lng.size() - 1);
+
+                    //String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lng.size() - 1);
+                    String waypoints = "optimize:true|";
                     String path = "";
 
                     for (int i = 1; i <
@@ -589,69 +590,80 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                     String sensor = "sensor=false";
                     String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
                     String output = "json";
-                    String url = "https://maps.googleapis.com/maps/api/directions/"
-                            + output + "?" + params;
+//                    String url = "https://maps.googleapis.com/maps/api/directions/"
+//                            + output + "?" + params;
+                    String url = output + "?" + params;
                     String fixedUrlStr = url.replace("|", "%7C");
-
+                    String routeUrl = params.replace("|", "%7C");
                     Log.e("I am here in", "urlk" + fixedUrlStr);
 
 
-                    new FetchRouteAsyncTask().execute(fixedUrlStr);
+                    getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
+                    //new FetchRouteAsyncTask().execute(fixedUrlStr);
 
 
-                }
-                else {
+                } else {
                     double number = (float) lat.size() / 9;
                     int size = lat.size();
                     double i = Math.ceil(number);
                     int num = (int) size;
-                    int remainder = num % 10;
-                    Log.e("remainder is ",""+remainder);
-
-                    if(remainder==0){
-                    num  =(int) i-1;
+                    int remainder = num % 9;
+                    Log.e("remainder is ", "" + remainder + "====" + i);
+                    int num1;
+                    if (remainder == 0) {
+                        num1 = (int) i - 1;
+                    } else {
+                        num1 = (int) i - 1;
                     }
-                    else{
-                        num = (int) i;
-                    }
-                    for (int j = 0; j < num; j++) {
+                    for (int j = 0; j < num1; j++) {
 
 
                         //int finalSize = Math.abs(size-((10*(num-2))+remainder));
                         int finalSize = 9;
 
                         Log.e("final size before loop", "===" + (finalSize * (j + 1)) + "======" + size);
+//                        String origin = "origin=" + lat.get(finalSize * j) + "," + lng.get(finalSize * j);
+//                        Log.e("origin",""+lat.get(finalSize * j) + "," + lng.get(finalSize * j));
+//                        String destination = "destination=" + lat.get(finalSize * (j + 1)) + "," + lng.get(finalSize * (j + 1));
+                        String origin = lat.get(finalSize * j) + "," + lng.get(finalSize * j);
+                        Log.e("origin", "" + lat.get(finalSize * j) + "," + lng.get(finalSize * j));
+                        String destination = lat.get(finalSize * (j + 1)) + "," + lng.get(finalSize * (j + 1));
 
+                        Log.e("des", "" + lat.get(finalSize * (j + 1)) + "," + lng.get(finalSize * (j + 1)));
 
-                        String origin = "origin=" + lat.get(finalSize * j) + "," + lng.get(finalSize * j);
-                        Log.e("origin",""+lat.get(finalSize * j) + "," + lng.get(finalSize * j));
-                        String destination = "destination=" + lat.get(finalSize * (j + 1)-1) + "," + lng.get(finalSize * (j + 1)-1);
-                        Log.e("des",""+lat.get(finalSize * (j+1)-1) + "," + lng.get(finalSize * (j+1)-1));
-
-                        String waypoints = "waypoints=optimize:true|";
+                        String waypoints = "optimize:true|";
                         String path = "";
-                        int loop = (finalSize * (j + 1))-1;
-                        for (int k = (j * 9)+1; k < loop; k++) {
+                        int loop = (finalSize * (j + 1));
+                        for (int k = (j * 9) + 1; k < loop; k++) {
                             Log.e("final size", "===" + ((finalSize * (j)) + k));
-                            int index = (finalSize * (j)) + k;
-                            Log.e("size ======",""+k +"===="+ lat.get(index)+"===="+lng.get(index));
+                            //int index = (finalSize * (j)) + k;
+                            Log.e("size ======", "" + k + "====" + lat.get(k) + "====" + lng.get(k));
 
-                            path = path + lat.get(index) + "," + lng.get(index) + "|";
+                            path = path + lat.get(k) + "," + lng.get(k) + "|";
                         }
-                        num--;
+
 
                         waypoints = waypoints + path;
                         String sensor = "sensor=false";
                         String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
                         String output = "json";
-                        String url = "https://maps.googleapis.com/maps/api/directions/"
-                                + output + "?" + params;
+//                        String url = "https://maps.googleapis.com/maps/api/directions/"
+//                                + output + "?" + params;
+//                        String fixedUrlStr = url.replace("|", "%7C");
+//
+//                        Log.e("I am here in", "urlk" + fixedUrlStr);
+//                        String routeUrl = params.replace("|","%7C");
+//                        getRoutes(routeUrl);
+                        String url = output + "?" + params;
                         String fixedUrlStr = url.replace("|", "%7C");
-
+                        String routeUrl = params.replace("|", "%7C");
                         Log.e("I am here in", "urlk" + fixedUrlStr);
 
+                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
 
-                        new FetchRouteAsyncTask().execute(fixedUrlStr);
+                        //getRoutes(url);
+
+                        //new FetchRouteAsyncTask().execute(fixedUrlStr);
 
                         Log.e("Loop count", "====" + j);
 
@@ -659,95 +671,147 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                     }
 
 
-if(remainder!=0) {
+                    if (remainder != 0) {
 
-    Log.e("i am here", "in if condition");
-    String origin = "origin=" + lat.get(size - remainder) + "," + lng.get(size - remainder);
-    Log.e("origin", "" + lat.get(size - remainder) + "," + lng.get(size - remainder));
+                        Log.e("i am here", "in if condition");
+//    String origin = "origin=" + lat.get(size - remainder) + "," + lng.get(size - remainder);
+//    Log.e("origin", "" + lat.get(size - remainder) + "," + lng.get(size - remainder));
+//
+//    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
 
-    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
-    String waypoints = "waypoints=optimize:true|";
-    String path = "";
-    Log.e("des", "" + lat.get(size - 1) + "," + lng.get(size - 1));
-    for (int k = size + 1 - remainder; k < size; k++) {
+                        String origin = lat.get(size - remainder) + "," + lng.get(size - remainder);
+                        Log.e("origin", "" + lat.get(size - remainder) + "," + lng.get(size - remainder));
 
-        Log.e("size ======", "" + k + "====" + lat.get(k - 1) + "====" + lng.get(k - 1));
+                        String destination = lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+                        String waypoints = "optimize:true|";
+                        String path = "";
+                        Log.e("des", "" + lat.get(size - 1) + "," + lng.get(size - 1));
+                        for (int k = size + 1 - remainder; k < size; k++) {
 
-
-        path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
-    }
-    num--;
-
-    waypoints = waypoints + path;
-    String sensor = "sensor=false";
-    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
-    String output = "json";
-    String url = "https://maps.googleapis.com/maps/api/directions/"
-            + output + "?" + params;
-    String fixedUrlStr = url.replace("|", "%7C");
-
-    Log.e("I am here in", "ur" + fixedUrlStr);
+                            Log.e("size ======", "" + k + "====" + lat.get(k - 1) + "====" + lng.get(k - 1));
 
 
-    new FetchRouteAsyncTask().execute(fixedUrlStr);
-
-}
-else{
-
-    Log.e("i am here", "in if condition");
-    String origin = "origin=" + lat.get(size - (remainder+2)) + "," + lng.get(size - (remainder+2));
-    Log.e("origin", "" + lat.get(size - (remainder+1)) + "," + lng.get(size - (remainder+1)));
-
-    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
-    String waypoints = "waypoints=optimize:true|";
-    String path = "";
-    Log.e("des", "" + lat.get(size - 1) + "," + lng.get(size - 1));
-    for (int k = size + 1 - remainder; k < size; k++) {
-
-        Log.e("size ======", "" + k + "====" + lat.get(k - 1) + "====" + lng.get(k - 1));
+                            path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
+                        }
 
 
-        path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
-    }
-    num--;
+                        waypoints = waypoints + path;
+                        String sensor = "sensor=false";
+                        String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
+                        String output = "json";
+//    String url = "https://maps.googleapis.com/maps/api/directions/"
+//            + output + "?" + params;
+//    String fixedUrlStr = url.replace("|", "%7C");
+//
+//    String routeUrl = params.replace("|","%7C");
+//
+//    getRoutes(routeUrl);
+                        String url = output + "?" + params;
+                        String fixedUrlStr = url.replace("|", "%7C");
+                        String routeUrl = params.replace("|", "%7C");
+                        Log.e("I am here in", "urlk" + fixedUrlStr);
+                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
 
-    waypoints = waypoints + path;
-    String sensor = "sensor=false";
-    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
-    String output = "json";
-    String url = "https://maps.googleapis.com/maps/api/directions/"
-            + output + "?" + params;
-    String fixedUrlStr = url.replace("|", "%7C");
 
-    Log.e("I am here in", "ur" + fixedUrlStr);
+                        //getRoutes(url);
+                        Log.e("I am here in", "ur" + fixedUrlStr);
 
 
-    new FetchRouteAsyncTask().execute(fixedUrlStr);
-}
+                        //new FetchRouteAsyncTask().execute(fixedUrlStr);
+
+                    } else {
+
+
+                        Log.e("i am here", "in if condition");
+//        String origin = "origin=" + lat.get(size - 9) + "," + lng.get(size - 9);
+//        Log.e("origin", "" + lat.get(size - 9) + "," + lng.get(size - 9));
+//
+//        String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+                        String origin = lat.get(size - 9) + "," + lng.get(size - 9);
+                        Log.e("origin", "" + lat.get(size - 9) + "," + lng.get(size - 9));
+
+                        String destination = lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+                        //waypoints=
+                        String waypoints = "optimize:true|";
+                        String path = "";
+                        Log.e("des", "" + lat.get(size - 1) + "," + lng.get(size - 1));
+                        for (int k = size - 9 + 1; k < size - 1; k++) {
+
+                            Log.e("size ======", "" + k + "====" + lat.get(k) + "====" + lng.get(k));
+
+
+                            path = path + lat.get(k) + "," + lng.get(k) + "|";
+                        }
+
+
+                        waypoints = waypoints + path;
+                        String sensor = "sensor=false";
+                        String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
+                        String output = "json";
+//        String url = "https://maps.googleapis.com/maps/api/directions/"
+//                + output + "?" + params;
+//        String fixedUrlStr = url.replace("|", "%7C");
+//
+//        Log.e("I am here in", "ur" + fixedUrlStr);
+//    String routeUrl = params.replace("|","%7C");
+//
+//        getRoutes(routeUrl);
+                        String url = output + "?" + params;
+                        String fixedUrlStr = url.replace("|", "%7C");
+                        String routeUrl = params.replace("|", "%7C");
+                        Log.e("I am here in", "urlk" + fixedUrlStr);
+                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
+
+
+                        //getRoutes(url);
+                        // new FetchRouteAsyncTask().execute(fixedUrlStr);
+
+
+                    }
+//else{
+//
+//    Log.e("i am here", "in if condition");
+//    String origin = "origin=" + lat.get(size - (remainder+2)) + "," + lng.get(size - (remainder+2));
+//    Log.e("origin", "" + lat.get(size - (remainder+1)) + "," + lng.get(size - (remainder+1)));
+//
+//    String destination = "destination=" + lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+//    String waypoints = "waypoints=optimize:true|";
+//    String path = "";
+//    Log.e("des", "" + lat.get(size - 1) + "," + lng.get(size - 1));
+//    for (int k = size + 1 - remainder; k < size; k++) {
+//
+//        Log.e("size ======", "" + k + "====" + lat.get(k - 1) + "====" + lng.get(k - 1));
+//
+//
+//        path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
+//    }
+//    num--;
+//
+//    waypoints = waypoints + path;
+//    String sensor = "sensor=false";
+//    String params = origin + "&" + waypoints + "&" + destination + "&" + sensor;
+//    String output = "json";
+//    String url = "https://maps.googleapis.com/maps/api/directions/"
+//            + output + "?" + params;
+//    String fixedUrlStr = url.replace("|", "%7C");
+//
+//    Log.e("I am here in", "ur" + fixedUrlStr);
+//
+//
+//    new FetchRouteAsyncTask().execute(fixedUrlStr);
+//}
 
                 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 //new FetchRouteAsyncTask().execute(fixedUrlStr+"&key=AIzaSyBecdPIyJo4mC7dGsgIqmyRNKucAI28Cg0");
-                    //}
+                //}
 
 
-                for(int i = 0 ; i <
-                        lat.size() ; i++ ) {
+                for (int i = 0; i <
+                        lat.size(); i++) {
                     try {
-                        createMarker(i,lat.get(i), lng.get(i),"Salesman Name","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA","2018-02-20T15:55:23",lat.size());
+                        createMarker(i, lat.get(i), lng.get(i), "Salesman Name", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA", time.get(i), lat.size());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -764,15 +828,13 @@ else{
     }
 
 
-
-    public void getPermissions()
-    {
-        if(checkSelfPermission(getContext(), permissionsRequired[0]) != PackageManager.PERMISSION_GRANTED
+    public void getPermissions() {
+        if (checkSelfPermission(getContext(), permissionsRequired[0]) != PackageManager.PERMISSION_GRANTED
                 || checkSelfPermission(getContext(), permissionsRequired[1]) != PackageManager.PERMISSION_GRANTED
-               ){
-            if(shouldShowRequestPermissionRationale(permissionsRequired[0])
+                ) {
+            if (shouldShowRequestPermissionRationale(permissionsRequired[0])
                     || shouldShowRequestPermissionRationale(permissionsRequired[1])
-                   ){
+                    ) {
                 //Show Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Need Multiple Permissions");
@@ -781,7 +843,7 @@ else{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        requestPermissions(permissionsRequired,PERMISSION_CALLBACK_CONSTANT);
+                        requestPermissions(permissionsRequired, PERMISSION_CALLBACK_CONSTANT);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -791,7 +853,7 @@ else{
                     }
                 });
                 builder.show();
-            } else if (permissionStatus.getBoolean(permissionsRequired[0],false)) {
+            } else if (permissionStatus.getBoolean(permissionsRequired[0], false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -816,30 +878,30 @@ else{
                     }
                 });
                 builder.show();
-            }  else {
+            } else {
                 //just request the permission
-                requestPermissions(permissionsRequired,PERMISSION_CALLBACK_CONSTANT);
+                requestPermissions(permissionsRequired, PERMISSION_CALLBACK_CONSTANT);
             }
 
             //txtPermissions.setText("Permissions Required");
 
             SharedPreferences.Editor editor = permissionStatus.edit();
-            editor.putBoolean(permissionsRequired[0],true);
+            editor.putBoolean(permissionsRequired[0], true);
             editor.commit();
         } else {
             //You already have the permission, just go ahead.
             proceedAfterPermission();
-        }    
+        }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == PERMISSION_CALLBACK_CONSTANT){
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
             //check if all permissions are granted
             boolean allgranted = false;
-            for(int i=0;i<grantResults.length;i++){
-                if(grantResults[i]==PackageManager.PERMISSION_GRANTED){
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     allgranted = true;
                 } else {
                     allgranted = false;
@@ -847,11 +909,11 @@ else{
                 }
             }
 
-            if(allgranted){
+            if (allgranted) {
                 proceedAfterPermission();
-            } else if(shouldShowRequestPermissionRationale(permissionsRequired[0])
+            } else if (shouldShowRequestPermissionRationale(permissionsRequired[0])
                     || shouldShowRequestPermissionRationale(permissionsRequired[1])
-                    ){
+                    ) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Need Multiple Permissions");
                 builder.setMessage("This app needs Camera and Location permissions.");
@@ -859,7 +921,7 @@ else{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        requestPermissions(permissionsRequired,PERMISSION_CALLBACK_CONSTANT);
+                        requestPermissions(permissionsRequired, PERMISSION_CALLBACK_CONSTANT);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -870,7 +932,7 @@ else{
                 });
                 builder.show();
             } else {
-                Toast.makeText(getContext(),"Unable to get Permission",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Unable to get Permission", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -889,13 +951,47 @@ else{
 
     private void proceedAfterPermission() {
 
-        //getUserCoordinates();
+        getUserCoordinates();
 
-        plotMapTest();
+        //plotMapTest();
 
 
     }
 
+
+    public void getRoutes(String origin, String waypoints, String destination, String sensor) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+
+        progressDialog.setMessage("Fetching salesman route");
+        progressDialog.show();
+
+        RetrofitAPI retrofitAPI = APIClient.getMapsClient().create(RetrofitAPI.class);
+        Call<JsonElement> call = retrofitAPI.getMapPath(origin, waypoints, destination, sensor);
+        call.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                Log.e("url is ", "" + response.raw().request().url());
+                Log.e("url is ", "" + response + "=====" + response.isSuccessful());
+                if(response!=null & response.isSuccessful()){
+                    try {
+                        progressDialog.dismiss();
+                        drawPath(response.body().toString());
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+
+            }
+        });
+
+
+    }
 
     public void drawPath(String result) {
 
@@ -907,7 +1003,7 @@ else{
             JSONObject overviewPolylines = routes.getJSONObject("overview_polyline");
             String encodedString = overviewPolylines.getString("points");
             List<LatLng> list = decodePoly(encodedString);
-            Log.e("I am here in","Drawpath");
+            Log.e("I am here in", "Drawpath");
             googleMap.addPolyline(new PolylineOptions()
                     .addAll(list)
                     .width(12)
@@ -917,12 +1013,12 @@ else{
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.e("I am here in","Exception");
+            Log.e("I am here in", "Exception");
         }
     }
 
     private List<LatLng> decodePoly(String encoded) {
-        Log.e("I am here in","Decode poly");
+        Log.e("I am here in", "Decode poly");
 
         List<LatLng> poly = new ArrayList<LatLng>();
         int index = 0, len = encoded.length();
@@ -957,20 +1053,20 @@ else{
     }
 
 
-    protected void createMarker(final int index,final double latitude, final double longitude,final String markerText,final String imageUrl,final String time,int size) throws IOException {
+    protected void createMarker(final int index, final double latitude, final double longitude, final String markerText, final String imageUrl, final String time, int size) throws IOException {
 
         Geocoder geocoder;
         List<Address> addresses;
         geocoder = new Geocoder(getContext(), Locale.getDefault());
         addresses = geocoder.getFromLocation(latitude, longitude, 1);
-        Log.e("Adding","Marker");
+        Log.e("Adding", "Marker");
         LatLng marker = new LatLng(latitude, longitude);
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(marker).zoom(13).build();
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(marker).zoom(12).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        String userid  = getArguments().getString("user_id");
+        String userid = getArguments().getString("user_id");
 
         final InfoWindowData info = new InfoWindowData();
-        info.setImage("http://console.salelinecrm.com/saleslineapi/GetprofileImage/"+userid);
+        info.setImage("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + userid);
 
         info.setHotel(addresses.get(0).getAddressLine(0));
         info.setFood(addresses.get(0).getSubLocality());
@@ -978,25 +1074,8 @@ else{
         CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getContext());
         googleMap.setInfoWindowAdapter(customInfoWindow);
 
-        final View mCustomMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker, null);
+        final View mCustomMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker1, null);
 
-//        Glide.with(getContext())
-//                .asBitmap()
-//                .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/"+userid)
-//                .into(new SimpleTarget<Bitmap>() {
-//                    @Override
-//                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-//                        Marker m =googleMap.addMarker(new MarkerOptions()
-//                                .position(new LatLng(latitude, longitude))
-//                                .title(markerText)
-//                                .snippet("Salesman Info").icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,resource,mCustomMarkerView))));
-//                        m.setTag(info);
-//                        //m.showInfoWindow();
-//
-//                    }
-//
-//                    }
-//                );
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -1004,55 +1083,67 @@ else{
             Date d = sdf.parse(time);
             String formattedTime = d.toString();
 
+            SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:a");
 
-            if(index==0|| index==size-1) {
-                Marker m = googleMap.addMarker(new MarkerOptions()
-                        .title(getArguments().getString("username"))
-                        .snippet(""+latitude)
-                        .position(new LatLng(latitude, longitude))
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                );
-                m.setTag(info);
+            String format = sdf1.format(d);
+            if (index == 0) {
+                Bitmap resource = BitmapFactory.decodeResource(getContext().getResources(),
+                        R.drawable.delete);
+//                Glide.with(getContext())
+//                        .asBitmap()
+//                        .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/"+userid)
+//                        .into(new SimpleTarget<Bitmap>() {
+//                                  @Override
+//                                  public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                                      Marker m =googleMap.addMarker(new MarkerOptions()
+                                              .position(new LatLng(latitude, longitude))
+                                              .title(markerText)
+                                              .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,R.drawable.ic_start,mCustomMarkerView))));
+                                      m.setTag(info);
+                                      //m.showInfoWindow();
+
+//                                  }
+//
+//                              }
+//                        );
 
             }
-            else{
-                Marker m = googleMap.addMarker(new MarkerOptions()
-                        .title(getArguments().getString("username"))
-                        .snippet(""+latitude)
+            else if(index == size -1)
+            {
+                Marker m =googleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(latitude, longitude))
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
-                );
+                        .title(markerText)
+                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,R.drawable.ic_finish,mCustomMarkerView))));
+                m.setTag(info);
+                        //m.showInfoWindow();
+
+
+
+
+
+            }
+            else {
+                Marker m =googleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(latitude, longitude))
+                        .title(markerText)
+                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,R.drawable.ic_placeholder,mCustomMarkerView))));
+                m.setTag(info);
                 m.setTag(info);
             }
             //.icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,resource,mCustomMarkerView))));
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-
-
-    private Bitmap getMarkerBitmapFromView(String markerText,Bitmap bitmap,View view) {
+    private Bitmap getMarkerBitmapFromView(String markerText, int id, View view) {
 
         //View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker, null);
         final ImageView markerImageView = (ImageView) view.findViewById(R.id.profile_image);
-        TextView markerTextView = (TextView)view.findViewById(R.id.marker_text);
-        markerTextView.setText(markerText);
-        markerImageView.setImageBitmap(bitmap);
 
+        markerImageView.setImageDrawable(getResources().getDrawable(id));
 
-
-//        Glide.with(this)
-//                .load(imageUrl)
-//                .into(markerImageView);
-//        Glide.with(getContext()).load(imageUrl)
-//                .thumbnail(0.5f)
-//                .into(markerImageView);
-
-
-        // markerImageView.setImageResource(resId);
         view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
         view.buildDrawingCache();
@@ -1066,6 +1157,7 @@ else{
         view.draw(canvas);
         return returnedBitmap;
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -1083,9 +1175,10 @@ else{
         super.onLowMemory();
         mMapView.onLowMemory();
     }
+
     @Override
     public void onResume() {
-        
+
         super.onResume();
         if (sentToSettings) {
             if (checkSelfPermission(getContext(), permissionsRequired[0]) == PackageManager.PERMISSION_GRANTED) {
@@ -1106,16 +1199,16 @@ else{
 
     public class FetchRouteAsyncTask extends AsyncTask<String, String, String> {
 
-        final ProgressDialog progressDialog =  new ProgressDialog(getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
 
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             progressDialog.dismiss();
-            Log.e("In","post");
-            if(s!=null){
-                Log.e("In","post");
+            //Log.e("In", "post");
+            if (s != null) {
+                Log.e("In", "post");
                 drawPath(s);
             }
         }
@@ -1129,11 +1222,11 @@ else{
 
         @Override
         protected String doInBackground(String... strings) {
-            Log.e("In","Doinbackground" +strings[0]);
-                // defaultHttpClient
-                JSONParcer jParser = new JSONParcer();
-                String json = jParser.getJSONFromUrl(strings[0]);
-                return json;
+            Log.e("In", "Doinbackground" + strings[0]);
+            // defaultHttpClient
+            JSONParcer jParser = new JSONParcer();
+            String json = jParser.getJSONFromUrl(strings[0]);
+            return json;
 
 
         }
