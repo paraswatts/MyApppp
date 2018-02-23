@@ -142,7 +142,7 @@
         android:background="@drawable/text_link_selector_bg"
         android:gravity="left|center"
         android:padding="8dp"
-        android:text="Users Map View"
+        android:text="Track Salesman"
         android:textAllCaps="false"
         android:textColor="@drawable/text_link_selector" />
 </LinearLayout>

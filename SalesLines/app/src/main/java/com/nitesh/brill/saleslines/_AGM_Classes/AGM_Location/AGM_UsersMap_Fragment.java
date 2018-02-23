@@ -1,4 +1,4 @@
-package com.nitesh.brill.saleslines._Manager_Classes.Manager_Location;
+package com.nitesh.brill.saleslines._AGM_Classes.AGM_Location;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -37,11 +37,7 @@ import android.widget.Toast;
 
 import com.brill.nitesh.punjabpool.Common.BaseFragment;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -55,12 +51,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonElement;
 import com.nitesh.brill.saleslines.R;
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Location.CustomInfoWindowGoogleMap;
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Location.InfoWindowData;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.APIClient;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.RetrofitAPI;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -69,7 +66,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,11 +77,13 @@ import static android.support.v4.content.ContextCompat.checkSelfPermission;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link Manager_UsersMap_Fragment#newInstance} factory method to
+ * Use the {@link AGM_UsersMap_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 
-public class Manager_UsersMap_Fragment extends BaseFragment {
+
+
+public class AGM_UsersMap_Fragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -106,13 +104,13 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
     private GoogleMap googleMap;
     String[] permissionsRequired = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
-    public Manager_UsersMap_Fragment() {
+    public AGM_UsersMap_Fragment() {
         // Required empty public constructor
     }
 
 
-    public static Manager_UsersMap_Fragment newInstance(String param1, String param2) {
-        Manager_UsersMap_Fragment fragment = new Manager_UsersMap_Fragment();
+    public static AGM_UsersMap_Fragment newInstance(String param1, String param2) {
+        AGM_UsersMap_Fragment fragment = new AGM_UsersMap_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -629,8 +627,5 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
         super.onDetach();
 
     }
-
-
-
 
 }

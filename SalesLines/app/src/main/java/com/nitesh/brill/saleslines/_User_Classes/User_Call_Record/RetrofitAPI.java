@@ -43,6 +43,28 @@ public interface RetrofitAPI {
             @Path("Date")String date
     );
 
+    @GET("GetGPSLocationsGMDay/{GMId}/{ClientId}/{Date}")
+    Call<JsonElement> getGPSLocationsGMDay(
+            @Path("GMId")String managerId,
+            @Path("ClientId")String clientId,
+            @Path("Date")String date
+    );
+
+
+    @GET("GetGPSLocationsASMDay/{ASMId}/{ClientId}/{Date}")
+    Call<JsonElement> getGPSLocationsASMDay(
+            @Path("ASMId")String managerId,
+            @Path("ClientId")String clientId,
+            @Path("Date")String date
+    );
+
+    @GET("GetGPSLocationsAGMDay/{AGMId}/{ClientId}/{Date}")
+    Call<JsonElement> getGPSLocationsAGMDay(
+            @Path("AGMId")String managerId,
+            @Path("ClientId")String clientId,
+            @Path("Date")String date
+    );
+
     @GET("directions/json")
     Call<JsonElement> getMapPath(@Query(value = "origin",encoded = true) String origin,@Query(value = "waypoints",encoded = true)String waypoints,@Query(value = "destination",encoded = true) String destination,@Query("sensor") String sensor);
 

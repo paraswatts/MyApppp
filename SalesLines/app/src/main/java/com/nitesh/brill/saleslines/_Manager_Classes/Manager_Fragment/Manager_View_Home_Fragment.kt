@@ -120,19 +120,23 @@ class Manager_View_Home_Fragment : BaseFragment() {
         }
 
 
-        val roleId = objSaveData.getString("role_id")
-        Log.e("roleid",roleId)
-        if(roleId.equals("4")) {
+        //val roleId = objSaveData.getString("role_id")
+        //Log.e("roleid",roleId)
+        //if(roleId.equals("4")) {
             tv_MapView.visibility = View.VISIBLE;
             tv_MapView.setOnClickListener {
                 val fragment = Manager_UsersMap_Fragment.newInstance("", "")
+                val bundle = Bundle()
+                bundle.putString("user_id",""+arguments.getString("user_id"));
+                mFragment!!.arguments = bundle
                 //==== Call Fragment  ====\\
                 callFragment(fragment)
             }
-        }
-        else{
-            tv_MapView.visibility = View.GONE
-        }
+//            }
+//        }
+//        else{
+//            tv_MapView.visibility = View.GONE
+//        }
 
     }
 

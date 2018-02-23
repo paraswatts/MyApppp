@@ -70,14 +70,25 @@
         android:text="Lead Search"
         android:textAllCaps="false"
         android:textColor="@drawable/text_link_selector" />
+    <Button
+        android:visibility="visible"
+        android:id="@+id/tv_MapView"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_link_selector_bg"
+        android:gravity="left|center"
+        android:padding="8dp"
+        android:text="Track Salesman"
+        android:textAllCaps="false"
+        android:textColor="@drawable/text_link_selector" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_RecyclerView"
         android:layout_width="match_parent"
-
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
-
 
 </LinearLayout>

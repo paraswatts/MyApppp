@@ -1,7 +1,10 @@
 package com.nitesh.brill.saleslines._Manager_Classes.Manager_Location;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,21 +20,26 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,10 +51,18 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Dash;
+import com.google.android.gms.maps.model.Dot;
+import com.google.android.gms.maps.model.Gap;
+import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.maps.model.RoundCap;
+import com.google.android.gms.maps.model.SquareCap;
 import com.google.gson.JsonElement;
 import com.nitesh.brill.saleslines.R;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.APIClient;
@@ -59,6 +75,7 @@ import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -98,6 +115,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     private boolean sentToSettings = false;
     private SharedPreferences permissionStatus;
     private GoogleMap googleMap;
+    RelativeLayout map_root;
 
     public Manager_SingleLeadMap_Fragment() {
         // Required empty public constructor
@@ -150,6 +168,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             }
 
         };
+        map_root = (RelativeLayout)view.findViewById(R.id.map_root);
         et_mapDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,7 +252,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     }
 
 
-    public void plotMapTest(final ArrayList<Double> lat, final ArrayList<Double> lng, final ArrayList<String> time) {
+   public void plotMapTest(final ArrayList<Double> lat, final ArrayList<Double> lng, final ArrayList<String> time) {
+        //public void plotMapTest() {
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -241,10 +261,20 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             e.printStackTrace();
         }
         mMapView.getMapAsync(new OnMapReadyCallback() {
+
             @Override
             public void onMapReady(GoogleMap mMap) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startRevealAnimation();
+                }
+
                 googleMap = mMap;
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.setBuildingsEnabled(true);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//                googleMap.setMapStyle(
+//                        MapStyleOptions.loadRawResourceStyle(
+//                                getContext(), R.raw.style_json));
                 // For showing a move to my location button
                 if (checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -261,121 +291,121 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 //                ArrayList<Double> lng = new ArrayList<>();
 //                ArrayList<String> markerText = new ArrayList<>();
 //                ArrayList<String> imageUrl = new ArrayList<>();
-
+//
 //                //1
 //                lat.add(30.749483);
 //                lng.add(76.674680);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //2
 //                lat.add(30.740428);
 //                lng.add(76.674980);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //3
 //                lat.add(30.738224);
 //                lng.add(76.681731);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //4
 //                lat.add(30.733093);
 //                lng.add(76.696437);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //5
 //                lat.add(30.731725);
 //                lng.add(76.703490);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //6
 //                lat.add(30.735176);
 //                lng.add(76.708901);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //7
 //                lat.add(30.738541);
 //                lng.add(76.714588);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //8
 //                lat.add(30.743395);
 //                lng.add(76.721848);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //9
 //                lat.add(30.737324);
 //                lng.add(76.726827);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //10
 //                lat.add(30.731336);
 //                lng.add(76.731667);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //11
 //                lat.add(30.727649);
 //                lng.add(76.734264);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //12
 //                lat.add(30.730085);
 //                lng.add(76.739498);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //13
 //                lat.add(30.731759);
 //                lng.add(76.747428);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //14
 //                lat.add(30.726265);
 //                lng.add(76.751523);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //15
 //                lat.add(30.719591);
 //                lng.add(76.757200);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //16
 //                lat.add(30.722976);
 //                lng.add(76.762529);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //17
 //                lat.add(30.726852);
 //                lng.add(76.768748);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //18
 //                lat.add(30.720847);
 //                lng.add(76.773618);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //19
 //                lat.add(30.715010);
 //                lng.add(76.778863);
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
-
+//
 //                //20
 //                lat.add(30.709316);
 //                lng.add(76.784317);
@@ -445,6 +475,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                         lat.size(); i++) {
                     try {
                         createMarker(i, lat.get(i), lng.get(i), "Salesman Name", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA", time.get(i), lat.size());
+                        //createMarker(i, lat.get(i), lng.get(i), "Salesman Name", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA", "", lat.size());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -567,6 +598,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 
     private void proceedAfterPermission() {
         getUserCoordinates();
+        //plotMapTest();
+
     }
 
 
@@ -607,9 +640,12 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             JSONObject overviewPolylines = routes.getJSONObject("overview_polyline");
             String encodedString = overviewPolylines.getString("points");
             List<LatLng> list = decodePoly(encodedString);
+            List<PatternItem> pattern = Arrays.<PatternItem>asList(
+                    new Dot(), new Gap(20), new Dash(30), new Gap(20));
             googleMap.addPolyline(new PolylineOptions()
                     .addAll(list)
-                    .width(12)
+                    .width(6)
+                    .jointType(JointType.ROUND)
                     .color(Color.parseColor("#4dc412"))//Google maps blue color05b1fb
                     .geodesic(true)
             );
@@ -618,6 +654,39 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             Log.e("I am here in", "Exception");
         }
     }
+
+
+    void startRevealAnimation() {
+
+        int cx = map_root.getMeasuredWidth() / 2;
+        int cy = map_root.getMeasuredHeight() / 2;
+
+        Animator anim =
+                null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            anim = ViewAnimationUtils.createCircularReveal(map_root, cx, cy, 50, map_root.getWidth());
+        }
+
+        anim.setDuration(500);
+        anim.setInterpolator(new AccelerateInterpolator(2));
+        anim.addListener(new AnimatorListenerAdapter() {
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+
+            }
+        });
+
+        anim.start();
+    }
+
+
 
     private List<LatLng> decodePoly(String encoded) {
         List<LatLng> poly = new ArrayList<LatLng>();
@@ -673,11 +742,13 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             Date d = sdf.parse(time);
             SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:a");
             String format = sdf1.format(d);
+            //String format = "";
+
             if (index == 0) {
                                       Marker m =googleMap.addMarker(new MarkerOptions()
                                               .position(new LatLng(latitude, longitude))
                                               .title(markerText)
-                                              .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,R.drawable.ic_start,mCustomMarkerView))));
+                                              .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_start,mCustomMarkerView))));
                                       m.setTag(info);
                 }
             else if(index == size -1)
@@ -685,14 +756,14 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                 Marker m =googleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(latitude, longitude))
                         .title(markerText)
-                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,R.drawable.ic_finish,mCustomMarkerView))));
+                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_finish,mCustomMarkerView))));
                 m.setTag(info);
                    }
             else {
                 Marker m =googleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(latitude, longitude))
                         .title(markerText)
-                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(markerText,R.drawable.ic_placeholder,mCustomMarkerView))));
+                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_placeholder,mCustomMarkerView))));
                 m.setTag(info);
                 m.setTag(info);
             }
@@ -702,7 +773,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     }
 
 
-    private Bitmap getMarkerBitmapFromView(String markerText, int id, View view) {
+    private Bitmap getMarkerBitmapFromView(int id, View view) {
         final ImageView markerImageView = (ImageView) view.findViewById(R.id.profile_image);
         markerImageView.setImageDrawable(getResources().getDrawable(id));
         view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);

@@ -115,25 +115,26 @@ class Manager_User_View_Fragment : BaseFragment() {
 
         }
 
-        val roleId = objSaveData.getString("role_id")
-        Log.e("roleid",roleId)
-        if(roleId.equals("4")) {
-            btn_trackUser.visibility =  View.VISIBLE
-            btn_trackUser.setOnClickListener {
-                Log.e("Param1",mParam1+mParam2+"");
+//        val roleId = objSaveData.getString("role_id")
+//        Log.e("roleid",roleId)
+//        if(roleId.equals("4")) {
+//            btn_trackUser.visibility =  View.VISIBLE
+           btn_trackUser.setOnClickListener {
+               //                Log.e("Param1",mParam1+mParam2+"");
 
-                mFragment = Manager_SingleLeadMap_Fragment.newInstance("" + mParam1, "" + mParam2)
-                val bundle = Bundle()
-                bundle.putString("user_id",""+arguments.getString("user_id"));
-                bundle.putString("username",""+arguments.getString("username"));
-                mFragment!!.arguments = bundle
-                callFragment(mFragment)
-            }
-        }
-        else
-        {
-            btn_trackUser.visibility =  View.GONE
-        }
+               mFragment = Manager_SingleLeadMap_Fragment.newInstance("" + mParam1, "" + mParam2)
+               val bundle = Bundle()
+               bundle.putString("user_id", "" + arguments.getString("user_id"));
+               bundle.putString("username", "" + arguments.getString("username"));
+               mFragment!!.arguments = bundle
+               callFragment(mFragment)
+           }
+           // }
+//        }
+//        else
+//        {
+//            btn_trackUser.visibility =  View.GONE
+//        }
 
 
         /*

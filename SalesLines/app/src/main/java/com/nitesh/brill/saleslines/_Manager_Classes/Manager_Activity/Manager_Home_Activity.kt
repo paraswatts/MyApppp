@@ -139,7 +139,7 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
         iv_Notifibell.setOnClickListener {
 
             val fragment = Manager_NotificationView_Fragment.newInstance("", "")
-            //val fragment = Manager_UsersMap_Fragment.newInstance("", "")
+            //val fragment = GM_UsersMap_Fragment.newInstance("", "")
             //==== Call Fragment  ====\\
 
             callFragment(fragment)

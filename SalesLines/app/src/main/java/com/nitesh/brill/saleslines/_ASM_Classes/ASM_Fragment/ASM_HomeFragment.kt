@@ -16,6 +16,7 @@ import com.nitesh.brill.saleslines.Common_Fragment.Graph_Fragment
 import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._ASM_Classes.ASM_Fragment.ASM_All_Lead_Fragment
 import com.nitesh.brill.saleslines._ASM_Classes.ASM_Fragment.ASM_User_Fragment
+import com.nitesh.brill.saleslines._ASM_Classes.ASM_Location.ASM_UsersMap_Fragment
 import com.nitesh.brill.saleslines._GM_Classes.GM_Adapter.ASM_Home_Adapter
 import com.nitesh.brill.saleslines._GM_Classes.GM_PojoClass.GM_AsmView
 import com.nitesh.brill.saleslines._Manager_Classes.Manager_Fragment.Manager_Inactive_UserFragment
@@ -109,6 +110,14 @@ class ASM_HomeFragment : BaseFragment() {
 
         }
 
+        tv_MapView.setOnClickListener {
+            val fragment = ASM_UsersMap_Fragment.newInstance("", "")
+            val bundle = Bundle()
+            bundle.putString("user_id",""+arguments.getString("user_id"));
+            mFragment!!.arguments = bundle
+            //==== Call Fragment  ====\\
+            callFragment(fragment)
+        }
         //=======================================\\
 
 
@@ -119,6 +128,8 @@ class ASM_HomeFragment : BaseFragment() {
             mFragment = Manager_Inactive_UserFragment.newInstance("" + mParam2, "")
             callFragment(mFragment)
         }
+
+
 
         val mLayoutManager = GridLayoutManager(activity, 1)
         rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?

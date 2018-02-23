@@ -14,8 +14,10 @@ import com.nitesh.brill.saleslines.Common_Files.UsefullData
 import com.nitesh.brill.saleslines.Common_Fragment.Graph_Fragment
 import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._GM_Classes.GM_Adapter.GM_Home_Adapter
+import com.nitesh.brill.saleslines._GM_Classes.GM_Location.GM_UsersMap_Fragment
 import com.nitesh.brill.saleslines._GM_Classes.GM_PojoClass.GM_AsmView
 import com.nitesh.brill.saleslines._Manager_Classes.Manager_Fragment.GM_User_Fragment
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Location.Manager_UsersMap_Fragment
 import kotlinx.android.synthetic.main.fragment_gm__home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -94,6 +96,12 @@ class GM_HomeFragment : BaseFragment() {
             callFragment(mFragment)
 
 
+        }
+
+        tv_MapView.setOnClickListener{
+            val fragment = GM_UsersMap_Fragment.newInstance("", "")
+            //==== Call Fragment  ====\\
+            callFragment(fragment)
         }
 
 

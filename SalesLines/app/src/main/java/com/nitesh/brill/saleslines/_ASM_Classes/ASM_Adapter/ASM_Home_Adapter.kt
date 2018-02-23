@@ -2,6 +2,7 @@ package com.nitesh.brill.saleslines._GM_Classes.GM_Adapter
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -52,6 +53,9 @@ class ASM_Home_Adapter(activity: Activity, private val body: List<GM_AsmView>) :
             textViewName.setOnClickListener {
 
                 var mFragment = Manager_View_Home_Fragment.newInstance("", "" + gM_AsmView.UserId)
+                val bundle = Bundle()
+                bundle.putString("user_id",""+gM_AsmView.UserId);
+                mFragment.arguments = bundle
                 val fragmentManager = (mContext as AppCompatActivity).supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
                 fragmentTransaction.replace(R.id.content_frame, mFragment)
