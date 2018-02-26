@@ -2,7 +2,6 @@ package com.nitesh.brill.saleslines._Manager_Classes.Manager_Fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -125,10 +124,8 @@ class Manager_View_Home_Fragment : BaseFragment() {
         //if(roleId.equals("4")) {
             tv_MapView.visibility = View.VISIBLE;
             tv_MapView.setOnClickListener {
-                val fragment = Manager_UsersMap_Fragment.newInstance("", "")
-                val bundle = Bundle()
-                bundle.putString("user_id",""+arguments.getString("user_id"));
-                mFragment!!.arguments = bundle
+                val fragment = Manager_UsersMap_Fragment.newInstance(""+mParam2, "")
+
                 //==== Call Fragment  ====\\
                 callFragment(fragment)
             }

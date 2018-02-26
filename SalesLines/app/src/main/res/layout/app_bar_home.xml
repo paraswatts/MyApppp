@@ -48,7 +48,7 @@
 
 
                 <ImageView
-                    android:layout_margin="13dp"
+                    android:padding="8dp"
                     android:id="@+id/iv_Notifibell"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -58,7 +58,7 @@
                     />
                 <RelativeLayout
                     android:id="@+id/rl_not_count"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginRight="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_alignParentTop="true"

@@ -37,11 +37,7 @@ import android.widget.Toast;
 
 import com.brill.nitesh.punjabpool.Common.BaseFragment;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -60,7 +56,6 @@ import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.RetrofitAPI;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -69,7 +64,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -166,6 +160,8 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
             }
 
         };
+
+        Log.e("I am in manager","Map Fragement");
         et_mapDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,14 +276,18 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
         String date = TextUtils.isEmpty(et_mapDate.getText().toString().trim())?dateTime:et_mapDate.getText().toString().trim();
         retrofitAPI = APIClient.getClient().create(RetrofitAPI.class);
         String user_id;
-        if(!TextUtils.isEmpty(getArguments().getString("user_id")))
+        if(TextUtils.isEmpty(mParam1))
         {
             user_id =  objSaveData.getString("user_id");
+            Log.e("user id is1 mana",user_id);
+
         }
         else{
-            user_id = getArguments().getString("user_id");
+            user_id = mParam1;
+            Log.e("user id is2 mana",user_id);
+
         }
-        Call<JsonElement> call = retrofitAPI.getGPSLocationsAGMDay(user_id,objSaveData.getString("client_id"),date);
+        Call<JsonElement> call = retrofitAPI.getGPSLocationsManagerDay(user_id,objSaveData.getString("client_id"),date);
 
         call.enqueue(new Callback<JsonElement>() {
 
@@ -302,13 +302,25 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
 
                     JSONArray jsonArray = new JSONArray(response.body().toString());
                     Log.e("json array",jsonArray+""+jsonArray.length());
-                    for (int i=0;i<jsonArray.length();i++)
-                    {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                       lat.add(Double.parseDouble(jsonObject.get("latitude").toString()));
-                        lng.add(Double.parseDouble(jsonObject.get("longitude").toString()));
-                        names.add(jsonObject.get("Saleman").toString());
-                        userids.add(jsonObject.get("Userid").toString());
+                    if(jsonArray.length()>0) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            lat.add(Double.parseDouble(jsonObject.get("latitude").toString()));
+                            lng.add(Double.parseDouble(jsonObject.get("longitude").toString()));
+                            names.add(jsonObject.get("Saleman").toString());
+                            userids.add(jsonObject.get("Userid").toString());
+                        }
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setMessage("No map data found")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
 
                     plotMap(lat,lng,names,userids);

@@ -7,11 +7,11 @@ import android.app.PendingIntent
 import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.*
+import android.os.Bundle
+import android.os.Handler
+import android.os.StrictMode
 import android.provider.Settings
 import android.support.design.internal.NavigationMenuView
 import android.support.design.widget.NavigationView
@@ -30,12 +30,10 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import com.brill.nitesh.punjabpool.Common.BaseActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.firebase.jobdispatcher.*
@@ -49,20 +47,14 @@ import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.*
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioDbHelper
 import com.nitesh.brill.saleslines._User_Classes.User_Fragment.*
-import com.nitesh.brill.saleslines._User_Classes.User_Location.GPSTracker
 import com.nitesh.brill.saleslines._User_Classes.User_PojoClass.SaveRegId
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
 import kotlinx.android.synthetic.main.app_bar_home.*
-import kotlinx.android.synthetic.main.fragment_user_setting.*
-import kotlinx.android.synthetic.main.header_layout.*
 import org.jetbrains.anko.alert
 import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Response
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.ByteArrayOutputStream
-import java.io.File
 import java.util.*
 
 
@@ -165,10 +157,18 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
 
 
-        Picasso.with(this)
+//        Picasso.with(this)
+//                .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
+//                .into(mHomeImage)
+        Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
-                .into(mHomeImage)
+                .into(object: SimpleTarget<Bitmap>(){
+                    override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
+                        Log.e("Resource","is ready")
 
+                        mHomeImage.setImageBitmap(resource)
+                    }
+                })
 
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setTitle(null);

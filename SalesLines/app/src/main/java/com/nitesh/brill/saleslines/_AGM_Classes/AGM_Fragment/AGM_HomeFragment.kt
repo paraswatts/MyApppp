@@ -17,7 +17,6 @@ import com.nitesh.brill.saleslines._AAGM_Classes.AAGM_Fragment.AGM_All_Lead_Frag
 import com.nitesh.brill.saleslines._AGM_Classes.AGM_Adapter.AGM_Home_Adapter
 import com.nitesh.brill.saleslines._AGM_Classes.AGM_Fragment.AGM_User_Fragment
 import com.nitesh.brill.saleslines._AGM_Classes.AGM_Location.AGM_UsersMap_Fragment
-import com.nitesh.brill.saleslines._GM_Classes.GM_Location.GM_UsersMap_Fragment
 import com.nitesh.brill.saleslines._GM_Classes.GM_PojoClass.GM_AsmView
 import com.nitesh.brill.saleslines._Manager_Classes.Manager_Fragment.Manager_Inactive_UserFragment
 import kotlinx.android.synthetic.main.fragment_agm__home.*
@@ -115,11 +114,11 @@ class AGM_HomeFragment : BaseFragment() {
 
 
         tv_MapView.setOnClickListener {
-            val fragment = AGM_UsersMap_Fragment.newInstance("", "")
+            val fragment = AGM_UsersMap_Fragment.newInstance(mParam2!!, "")
             //==== Call Fragment  ====\\
-            val bundle = Bundle()
-            bundle.putString("user_id",""+arguments.getString("user_id"));
-            mFragment!!.arguments = bundle
+//            val bundle = Bundle()
+//            bundle.putString("user_id",""+arguments.getString("user_id"));
+//            fragment.arguments = bundle
             callFragment(fragment)
         }
         //=======================================\\

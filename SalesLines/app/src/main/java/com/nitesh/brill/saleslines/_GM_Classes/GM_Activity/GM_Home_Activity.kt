@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
@@ -17,6 +16,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.MenuItemCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
@@ -28,26 +28,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.brill.nitesh.punjabpool.Common.BaseActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.gson.JsonElement
 import com.nitesh.brill.saleslines.Authenticate.Login_Activity
-import com.nitesh.brill.saleslines.Common_Files.ConstantValue
-import com.nitesh.brill.saleslines.Common_Files.CustomDialogImageView
-import com.nitesh.brill.saleslines.Common_Files.UsefullData
+import com.nitesh.brill.saleslines.Common_Files.*
 import com.nitesh.brill.saleslines.Common_Fragment.*
+import com.nitesh.brill.saleslines.FirebaseService.MyFirebaseMessagingService
 import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._GM_Classes.GM_Fragment.*
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioDbHelper
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.ReminderAsyncTask
-import com.nitesh.brill.saleslines.Common_Files.UpdateProfilePicture
-import com.nitesh.brill.saleslines.Common_Files.updateNotIcon
-import com.nitesh.brill.saleslines.FirebaseService.MyFirebaseMessagingService
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
 import kotlinx.android.synthetic.main.app_bar_home.*
-import kotlinx.android.synthetic.main.header_layout.*
 import org.jetbrains.anko.alert
 import org.json.JSONArray
 import retrofit2.Call
@@ -111,19 +103,19 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
 
 
-        Picasso.with(this)
+//        Picasso.with(this)
+//                .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
+//                .into(mHomeImage)
+        Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
-                .into(mHomeImage)
+                .into(object: SimpleTarget<Bitmap>(){
+                    override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
+                        Log.e("Resource","is ready")
+
+                        mHomeImage.setImageBitmap(resource)
+                    }
+                })
         setSupportActionBar(toolbar)
-
-        mHomeImage.setOnClickListener {
-
-            val fragment = GM_HomeFragment.newInstance("", "")
-            //==== Call Fragment  ====\\
-
-            callFragment(fragment)
-
-        }
 
         //=======================================\\
         iv_Notifibell.setOnClickListener {
@@ -142,6 +134,26 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
         tv_Name = header.findViewById(R.id.tv_Name) as TextView
         tv_Email = header.findViewById(R.id.tv_Email) as TextView
         imageView = header.findViewById(R.id.imageView) as ImageView
+        val menu = navigationView!!.getMenu()
+        val menuItem = menu.findItem(R.id.nav_location)
+        val actionView = MenuItemCompat.getActionView(menuItem) as View
+        menuItem.isVisible = false;
+
+        mHomeImage.setOnClickListener {
+            for (i in 0 until menu.size()) {
+                val item = menu.getItem(i)
+                if(item.isChecked)
+                {
+                    item.setChecked(false)
+                }
+
+            }
+            val fragment = GM_HomeFragment.newInstance("", "")
+            //==== Call Fragment  ====\\
+
+            callFragment(fragment)
+
+        }
 
 
         //=====================================\\

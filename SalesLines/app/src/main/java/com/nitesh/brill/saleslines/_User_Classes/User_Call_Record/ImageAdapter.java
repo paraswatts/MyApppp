@@ -1,11 +1,14 @@
 package com.nitesh.brill.saleslines._User_Classes.User_Call_Record;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.nitesh.brill.saleslines.R;
 
 public class ImageAdapter extends BaseAdapter {
 	private Context mContext;
@@ -35,11 +38,13 @@ public class ImageAdapter extends BaseAdapter {
 		return 0;
 	}
 
+	@SuppressLint("ResourceAsColor")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {			
 		TextView imageView = new TextView(mContext);
         imageView.setText(mThumbIds[position]);
         imageView.setTextSize(30);
+        imageView.setTextColor(R.color.background);
 
 		imageView.setGravity(Gravity.CENTER_HORIZONTAL);
 

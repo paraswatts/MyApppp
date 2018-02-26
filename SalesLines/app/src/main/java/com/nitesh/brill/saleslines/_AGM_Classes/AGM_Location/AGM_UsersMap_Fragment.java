@@ -141,6 +141,7 @@ public class AGM_UsersMap_Fragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Log.e("I am in agm","Map Fragement");
 
         permissionStatus = getContext().getSharedPreferences("permissionStatus",MODE_PRIVATE);
         // Inflate the layout for this fragment
@@ -278,12 +279,16 @@ public class AGM_UsersMap_Fragment extends BaseFragment {
         String date = TextUtils.isEmpty(et_mapDate.getText().toString().trim())?dateTime:et_mapDate.getText().toString().trim();
         retrofitAPI = APIClient.getClient().create(RetrofitAPI.class);
         String user_id;
-        if(!TextUtils.isEmpty(getArguments().getString("user_id")))
+        if(TextUtils.isEmpty(mParam1))
         {
             user_id =  objSaveData.getString("user_id");
+            Log.e("user id is1 agm ",user_id);
+
         }
         else{
-            user_id = getArguments().getString("user_id");
+            user_id =mParam1 ;
+            Log.e("user id is2 agm",user_id);
+
         }
         Call<JsonElement> call = retrofitAPI.getGPSLocationsAGMDay(user_id,objSaveData.getString("client_id"),date);
 
@@ -300,13 +305,27 @@ public class AGM_UsersMap_Fragment extends BaseFragment {
 
                     JSONArray jsonArray = new JSONArray(response.body().toString());
                     Log.e("json array",jsonArray+""+jsonArray.length());
-                    for (int i=0;i<jsonArray.length();i++)
-                    {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                       lat.add(Double.parseDouble(jsonObject.get("latitude").toString()));
-                        lng.add(Double.parseDouble(jsonObject.get("longitude").toString()));
-                        names.add(jsonObject.get("Saleman").toString());
-                        userids.add(jsonObject.get("Userid").toString());
+                    if (jsonArray.length() > 0) {
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            lat.add(Double.parseDouble(jsonObject.get("latitude").toString()));
+                            lng.add(Double.parseDouble(jsonObject.get("longitude").toString()));
+                            names.add(jsonObject.get("Saleman").toString());
+                            userids.add(jsonObject.get("Userid").toString());
+                        }
+                    }
+                    else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setMessage("No map data found")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
 
                     plotMap(lat,lng,names,userids);

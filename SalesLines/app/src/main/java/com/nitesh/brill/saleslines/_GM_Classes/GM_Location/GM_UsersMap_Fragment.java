@@ -51,6 +51,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonElement;
 import com.nitesh.brill.saleslines.R;
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Location.CustomInfoWindowGoogleMap;
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Location.InfoWindowData;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.APIClient;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.RetrofitAPI;
 
@@ -286,6 +288,7 @@ public class GM_UsersMap_Fragment extends BaseFragment {
 
                     JSONArray jsonArray = new JSONArray(response.body().toString());
                     Log.e("json array",jsonArray+""+jsonArray.length());
+                    if(jsonArray.length()>0){
                     for (int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -293,6 +296,19 @@ public class GM_UsersMap_Fragment extends BaseFragment {
                         lng.add(Double.parseDouble(jsonObject.get("longitude").toString()));
                         names.add(jsonObject.get("Saleman").toString());
                         userids.add(jsonObject.get("Userid").toString());
+                    }
+                    }
+                    else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setMessage("No map data found")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
 
                     plotMap(lat,lng,names,userids);

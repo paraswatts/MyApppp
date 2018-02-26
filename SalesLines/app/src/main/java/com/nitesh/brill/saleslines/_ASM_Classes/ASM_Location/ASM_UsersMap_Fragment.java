@@ -51,6 +51,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonElement;
 import com.nitesh.brill.saleslines.R;
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Location.CustomInfoWindowGoogleMap;
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Location.InfoWindowData;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.APIClient;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.RetrofitAPI;
 
@@ -141,6 +143,8 @@ public class ASM_UsersMap_Fragment extends BaseFragment {
         permissionStatus = getContext().getSharedPreferences("permissionStatus",MODE_PRIVATE);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lead_map, container, false);
+        Log.e("I am in asm","Map Fragement");
+
         et_mapDate = (EditText)view.findViewById(R.id.et_mapDate );
         bt_mapDate = (Button) view.findViewById(R.id.bt_mapDate );
         final Calendar myCalendar = Calendar.getInstance();
@@ -275,14 +279,18 @@ public class ASM_UsersMap_Fragment extends BaseFragment {
         retrofitAPI = APIClient.getClient().create(RetrofitAPI.class);
 
         String user_id;
-        if(!TextUtils.isEmpty(getArguments().getString("user_id")))
+        if(TextUtils.isEmpty(mParam1))
         {
             user_id =  objSaveData.getString("user_id");
+            Log.e("user id is1 asm",user_id);
+
         }
         else{
-            user_id = getArguments().getString("user_id");
+            user_id = mParam1;
+            Log.e("user id is2 asm",user_id);
+
         }
-        Call<JsonElement> call = retrofitAPI.getGPSLocationsAGMDay(user_id,objSaveData.getString("client_id"),date);
+        Call<JsonElement> call = retrofitAPI.getGPSLocationsASMDay(user_id,objSaveData.getString("client_id"),date);
 
         call.enqueue(new Callback<JsonElement>() {
 
@@ -297,13 +305,25 @@ public class ASM_UsersMap_Fragment extends BaseFragment {
 
                     JSONArray jsonArray = new JSONArray(response.body().toString());
                     Log.e("json array",jsonArray+""+jsonArray.length());
-                    for (int i=0;i<jsonArray.length();i++)
-                    {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                       lat.add(Double.parseDouble(jsonObject.get("latitude").toString()));
-                        lng.add(Double.parseDouble(jsonObject.get("longitude").toString()));
-                        names.add(jsonObject.get("Saleman").toString());
-                        userids.add(jsonObject.get("Userid").toString());
+                    if(jsonArray.length()>0) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            lat.add(Double.parseDouble(jsonObject.get("latitude").toString()));
+                            lng.add(Double.parseDouble(jsonObject.get("longitude").toString()));
+                            names.add(jsonObject.get("Saleman").toString());
+                            userids.add(jsonObject.get("Userid").toString());
+                        }
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setMessage("No map data found")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
 
                     plotMap(lat,lng,names,userids);

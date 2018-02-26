@@ -111,10 +111,10 @@ class ASM_HomeFragment : BaseFragment() {
         }
 
         tv_MapView.setOnClickListener {
-            val fragment = ASM_UsersMap_Fragment.newInstance("", "")
-            val bundle = Bundle()
-            bundle.putString("user_id",""+arguments.getString("user_id"));
-            mFragment!!.arguments = bundle
+            val fragment = ASM_UsersMap_Fragment.newInstance(""+mParam2, "")
+//            val bundle = Bundle()
+//            bundle.putString("user_id",""+arguments.getString("user_id"));
+//            fragment.arguments = bundle
             //==== Call Fragment  ====\\
             callFragment(fragment)
         }

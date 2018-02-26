@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.StrictMode
@@ -25,30 +24,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.brill.nitesh.punjabpool.Common.BaseActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.gson.JsonElement
 import com.nitesh.brill.saleslines.Authenticate.Login_Activity
-import com.nitesh.brill.saleslines.Common_Files.ConstantValue
-import com.nitesh.brill.saleslines.Common_Files.CustomDialogImageView
-import com.nitesh.brill.saleslines.Common_Files.UsefullData
+import com.nitesh.brill.saleslines.Common_Files.*
 import com.nitesh.brill.saleslines.Common_Fragment.*
+import com.nitesh.brill.saleslines.FirebaseService.MyFirebaseMessagingService
 import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._Manager_Classes.Manager_Fragment.*
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioDbHelper
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.ReminderAsyncTask
-import com.nitesh.brill.saleslines.Common_Files.UpdateProfilePicture
-import com.nitesh.brill.saleslines.Common_Files.updateNotIcon
-import com.nitesh.brill.saleslines.FirebaseService.MyFirebaseMessagingService
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
 import kotlinx.android.synthetic.main.app_bar_home.*
-import kotlinx.android.synthetic.main.header_layout.*
 import org.jetbrains.anko.alert
 import org.json.JSONArray
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.ByteArrayOutputStream
@@ -145,21 +135,23 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
             callFragment(fragment)
 
         }
+//
+//        Picasso.with(this)
+//                .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
+//                .into(mHomeImage)
 
-        Picasso.with(this)
+        Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
-                .into(mHomeImage)
+                .into(object: SimpleTarget<Bitmap>(){
+                    override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
+                        Log.e("Resource","is ready")
 
-
+                        mHomeImage.setImageBitmap(resource)
+                    }
+                })
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setTitle(null);
-        mHomeImage.setOnClickListener {
-            val fragment = Manager_View_Home_Fragment.newInstance("" + objSaveData.getString(ConstantValue.MANAGER_ID), "" + objSaveData.getString(ConstantValue.USER_ID))
-            //==== Call Fragment  ====\\
 
-            callFragment(fragment)
-
-        }
         navigationView = findViewById(R.id.nav_view) as NavigationView
         navigationView!!.setNavigationItemSelectedListener(this)
         val header = navigationView!!.getHeaderView(0)
@@ -167,7 +159,25 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
         tv_Email = header.findViewById(R.id.tv_Email) as TextView
         imageView = header.findViewById(R.id.imageView) as ImageView
 
+        val menu = navigationView!!.getMenu()
+        val menuItem = menu.findItem(R.id.nav_location)
 
+
+        mHomeImage.setOnClickListener {
+            for (i in 0 until menu.size()) {
+                val item = menu.getItem(i)
+                if(item.isChecked)
+                {
+                    item.setChecked(false)
+                }
+
+            }
+            val fragment = Manager_View_Home_Fragment.newInstance("" + objSaveData.getString(ConstantValue.MANAGER_ID), "" + objSaveData.getString(ConstantValue.USER_ID))
+            //==== Call Fragment  ====\\
+
+            callFragment(fragment)
+
+        }
 
        // imageView.background = resources.getDrawable(R.drawable.ic_user)
 
