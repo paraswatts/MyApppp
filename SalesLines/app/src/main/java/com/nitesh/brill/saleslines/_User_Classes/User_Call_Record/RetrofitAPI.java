@@ -66,6 +66,6 @@ public interface RetrofitAPI {
     );
 
     @GET("directions/json")
-    Call<JsonElement> getMapPath(@Query(value = "origin",encoded = true) String origin,@Query(value = "waypoints",encoded = true)String waypoints,@Query(value = "destination",encoded = true) String destination,@Query("sensor") String sensor);
+    Call<JsonElement> getMapPath(@Query(value = "origin",encoded = true) String origin,@Query(value = "waypoints",encoded = true)String waypoints,@Query(value = "destination",encoded = true) String destination,@Query("sensor") String sensor,@Query("key") String apikey);
 
 }

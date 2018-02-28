@@ -150,7 +150,7 @@ public final class AudioContract {
 
         public final static String COLUMN_USER_COORDINATES_TIME ="coordinates_time";
 
-        public final static String COLUMN_USER_SAMPLE_COLUMN ="sample_column";
+        public final static String COLUMN_USER_COORDINATES_TYPE ="coords_type";
 
         public final static String COLUMN_AUDIO_FILE ="filename";
 

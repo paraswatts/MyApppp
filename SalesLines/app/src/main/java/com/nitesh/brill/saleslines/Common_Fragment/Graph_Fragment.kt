@@ -490,7 +490,6 @@ class Graph_Fragment : BaseFragment() {
                                     values.add(ChartData_(s.leadstages, s.leadcount.toInt()))
                                     Log.e("Month is", s.month
                                     )
-
                                 }
 
                                 tv_label_funnel_jan.text = "January"

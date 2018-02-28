@@ -348,7 +348,9 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
+
                 googleMap = mMap;
+                googleMap.clear();
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
                 // For showing a move to my location button
                 if (checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

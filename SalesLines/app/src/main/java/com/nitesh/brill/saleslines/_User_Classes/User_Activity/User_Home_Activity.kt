@@ -8,12 +8,17 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.location.Criteria
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.StrictMode
 import android.provider.Settings
 import android.support.design.internal.NavigationMenuView
+import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -55,10 +60,31 @@ import retrofit2.Call
 import retrofit2.Response
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 
-class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, updateNotIcon, UpdateProfilePicture {
+class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, updateNotIcon, UpdateProfilePicture, LocationListener {
+    override fun onLocationChanged(location: Location?) {
+    }
+
+    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+    }
+
+    override fun onProviderEnabled(provider: String?) {
+    }
+
+    override fun onProviderDisabled(provider: String?) {
+    }
+
+    internal var main_view: CoordinatorLayout? = null
+    internal var isGPSEnabled = false
+    internal var canGetLocation = false
+    internal var location: Location? = null // location
+    internal var latitude: Double = 0.toDouble() // latitude
+    internal var longitude: Double = 0.toDouble() // longitude
+    private var provider: String? = null
+    protected var locationManager: LocationManager? = null
 
     var locationSwitch: SwitchCompat? = null
 
@@ -189,6 +215,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 //            objSaveData.save("notificationSound",alert.toString())
 //        }
 
+        main_view = findViewById(R.id.main_view) as CoordinatorLayout
 
         navigationView = findViewById(R.id.nav_view) as NavigationView
         navigationView!!.setNavigationItemSelectedListener(this)
@@ -199,8 +226,32 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
         //=====================================\\
         val drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_menu_button_of_three_horizontal_lines, baseContext.theme)
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
-        val toggle = ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val menu = navigationView!!.getMenu()
+        val menuItem = menu.findItem(R.id.nav_location)
+        val actionView = MenuItemCompat.getActionView(menuItem) as View
+
+
+        var toggle = object:ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+            override fun onDrawerClosed(drawerView: View?) {
+                               supportInvalidateOptionsMenu();
+            }
+
+            override fun onDrawerOpened(drawerView: View?) {
+                supportInvalidateOptionsMenu();
+            }
+
+            override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+                super.onDrawerSlide(drawerView, slideOffset)
+                main_view!!.setTranslationX(slideOffset * drawerView!!.getWidth());
+                drawer.bringChildToFront(drawerView);
+                drawer.requestLayout();
+            }
+        }
+
+
+
+
         drawer.setDrawerListener(toggle)
 
         if(drawer.isDrawerOpen(GravityCompat.START)) {
@@ -208,10 +259,6 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
 
         }
-        val menu = navigationView!!.getMenu()
-        val menuItem = menu.findItem(R.id.nav_location)
-            val actionView = MenuItemCompat.getActionView(menuItem) as View
-
 
 
         mHomeImage.setOnClickListener {
@@ -591,10 +638,15 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
             }
         }
     }
-
+    //https://maps.googleapis.com/maps/api/directions/json?origin=17.44638818,78.51188972&waypoints=optimize:true|17.44638818,78.51188972|17.44996022,78.5059135|17.444069,78.49879287|17.44231017,78.49761323|17.44231017,78.49761323|17.44231017,78.49761323|17.43616439,78.50028259|17.43582405,78.49980843|&destination=17.43550938,78.4998931&sensor=false
 
     fun proceedAfterPermission()
     {
+
+        getLocation();
+
+
+
         Log.e("proceeding","After permission")
         //bt_location.text = "Stop Location Sharing"
         objSaveData.save("locationSharing"+objSaveData.getString(ConstantValue.USER_ID), "yes")
@@ -623,6 +675,92 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
         //context.startService(locationIntent)
 
     }
+
+    fun getLocation(){
+        try {
+            locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+
+            val criteria = Criteria()
+            criteria.accuracy = Criteria.ACCURACY_FINE
+            criteria.powerRequirement = Criteria.POWER_HIGH
+            provider = locationManager!!.getBestProvider(criteria, false)
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
+
+            // getting GPS status
+            isGPSEnabled = locationManager!!
+                    .isProviderEnabled(LocationManager.GPS_PROVIDER)
+            if (!isGPSEnabled) {
+                showSettingsAlert()
+
+            } else {
+
+                locationManager!!.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0.0f, this)
+                location = locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+                if (location != null) {
+                    Log.e("Provider ", provider + " has been selected." + location!!.getLatitude() + "===" + location!!.getLongitude())
+                    saveLocation(location!!.getLatitude(), location!!.getLongitude())
+
+                    onLocationChanged(location)
+                }
+            }
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun saveLocation(latitude: Double?, longitude: Double?) {
+        objSaveData = SaveData(this)
+
+        Log.e("Saving Coordinates", latitude.toString() + " " + longitude)
+        val audioDbHelper = AudioDbHelper(this)
+        val userCoordinates = UserCoordinates()
+        userCoordinates.latitude = latitude.toString()
+        userCoordinates.longitude = longitude.toString()
+        userCoordinates.uploaded = "no"
+        val objSaveData = SaveData(this)
+        userCoordinates.userEmail = objSaveData.getString("LoginId")
+        userCoordinates.type = "insert"
+        val time = SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(Calendar.getInstance().time)
+        userCoordinates.locationTime = time
+        audioDbHelper.addCoordinates(userCoordinates)
+    }
+
+    fun showSettingsAlert() {
+        val alertDialog = android.app.AlertDialog.Builder(this)
+
+        // Setting Dialog Title
+        alertDialog.setTitle("GPS settings")
+
+        // Setting Dialog Message
+        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?")
+
+        // On pressing Settings button
+        alertDialog.setPositiveButton("Settings") { dialog, which ->
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            startActivity(intent)
+        }
+
+
+        // on pressing cancel button
+        alertDialog.setNegativeButton("Cancel") { dialog, which -> dialog.cancel() }
+
+        // Showing Alert Message
+        alertDialog.show()
+    }
     fun cancelAlarm() {
 
 //        val locationIntent=Intent(context,GPSTracker_DUP::class.java)
@@ -645,6 +783,8 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 //                    context, 300, myIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 //
 //            alarmManager.cancel(pendingIntent)
+
+        getLocation();
         val dispatcher = FirebaseJobDispatcher( GooglePlayDriver(baseContext));
 //
 ////        val myJob = dispatcher.newJobBuilder()

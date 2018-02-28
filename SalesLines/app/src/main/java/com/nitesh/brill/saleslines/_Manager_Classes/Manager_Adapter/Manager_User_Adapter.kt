@@ -64,9 +64,9 @@ class Manager_User_Adapter(activity: Activity, val userList: List<Manager_User_L
 
                 var mFragment = Manager_User_View_Fragment.newInstance(""+gM_AsmView.ManagerId, "" + gM_AsmView.UserId,""+gM_AsmView.Name)
                 val bundle = Bundle()
-                bundle.putString("user_id",""+gM_AsmView.UserId);
-                bundle.putString("username",""+gM_AsmView.Name);
-                mFragment.arguments = bundle
+//                bundle.putString("user_id",""+gM_AsmView.UserId);
+//                bundle.putString("username",""+gM_AsmView.Name);
+//                mFragment.arguments = bundle
                 val fragmentManager = (mContext as AppCompatActivity).supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
                 fragmentTransaction.replace(R.id.content_frame, mFragment)

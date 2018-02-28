@@ -83,7 +83,7 @@ public class CoordinatesUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 //                            content_Values,
 //                            AudioContract.AudioEntry.COLUMN_USER_EMAIL + "= ?",
 //                            new String[]{email});
-                    saveLocation(Double.valueOf(query.getString(1)),Double.valueOf(query.getString(2)),query.getInt(0));
+                    saveLocation(Double.valueOf(query.getString(1)),Double.valueOf(query.getString(2)),query.getInt(0),query.getString(4),query.getString(6));
                 //}
             }
         }
@@ -110,15 +110,21 @@ public class CoordinatesUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 
     }
 
-    public void saveLocation(Double latitude,Double longitude,final int id){
+    public void saveLocation(Double latitude,Double longitude,final int id,String time,String type){
         objSaveData = new SaveData(ctx);
 
-            Log.e("Coordinates", latitude + " " + longitude);
+
             try {
+                String updateType;
+                if(type.equals("insert"))
+                    updateType = "0";
+                else
+                    updateType = "1";
                 Calendar c = Calendar.getInstance();
 
                 SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
                 String date = df.format(c.getTime());
+                Log.e("Coordinates Uploading", latitude + " " + longitude+"Time is "+time +"===="+date);
 
                 Log.e("Date time ",date);
                 JSONObject jsonObject = new JSONObject();
@@ -127,7 +133,8 @@ public class CoordinatesUploadAsyncTask extends AsyncTask<Void, Void, Void> {
                 jsonObject.put("ClientId",Integer.parseInt(objSaveData.getString("client_id")));
                 jsonObject.put("Latitude",latitude);
                 jsonObject.put("Longitude",longitude);
-                jsonObject.put("LocationDatetime",date);
+                jsonObject.put("LocationDatetime",time);
+                jsonObject.put("UpdateType",Integer.parseInt(updateType));
                 Log.e("=", "================JSOn ObJeCt" + jsonObject.toString());
 
 
@@ -140,9 +147,9 @@ public class CoordinatesUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         Log.d("URL", "=====" + response.raw().request().url());
-                        Log.e("=============", response.body().toString());
-                        try {
 
+                        try {
+                            Log.e("=============", response.body().toString());
                             deleteCoordinates(id);
                         }catch (Exception e){
                             e.printStackTrace();

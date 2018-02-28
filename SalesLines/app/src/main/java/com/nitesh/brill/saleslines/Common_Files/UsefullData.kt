@@ -555,6 +555,7 @@ class UsefullData(private val _context: Context) : ConstantValue {
 
                 }, mYear, mMonth, mDay)
         datePickerDialog.datePicker.minDate = System.currentTimeMillis()
+        datePickerDialog.setTitle(null)
 
         datePickerDialog.show()
 

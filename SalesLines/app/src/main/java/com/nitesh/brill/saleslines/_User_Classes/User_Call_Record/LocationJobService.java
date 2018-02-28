@@ -16,6 +16,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -63,6 +64,9 @@ public class LocationJobService extends JobService implements LocationListener {
     // flag for network status
     boolean isNetworkEnabled = false;
 
+    static double startLat = 0.0;
+    static double startLng = 0.0;
+    String type;
     // flag for GPS status
     boolean canGetLocation = false;
 
@@ -147,12 +151,46 @@ public class LocationJobService extends JobService implements LocationListener {
 
                         if (location != null) {
                             Log.e("Provider ",  provider + " has been selected."+location.getLatitude()+"==="+location.getLongitude());
-                            saveLocation(location.getLatitude(),location.getLongitude());
+
+                            if(startLat<=0.0) {
+
+                                startLat = location.getLatitude();
+                                startLng = location.getLongitude();
+                                Log.e("Lat Lng if",startLat+"===="+startLng);
+                                saveLocation(location.getLatitude(),location.getLongitude(),"insert");
+                            }
+                            else{
+                                Location loc1 = new Location("");
+                                loc1.setLatitude(startLat);
+                                loc1.setLongitude(startLng);
+
+                                Location loc2 = new Location("");
+                                loc2.setLatitude(location.getLatitude());
+                                loc2.setLongitude(location.getLongitude());
+
+                                float distanceInMeters = loc1.distanceTo(loc2);
+
+                                Log.e("Distance in meters",""+distanceInMeters +startLat+"===="+startLng+"====="+location.getLatitude()+"======="+location.getLongitude());
+
+                                if(distanceInMeters>300){
+                                    startLat = location.getLatitude();
+                                    startLng = location.getLongitude();
+                                    Log.e("Lat Lng if distance",startLat+"===="+startLng);
+                                    saveLocation(startLat,startLng,"insert");
+                                }
+                                else{
+                                    startLat = location.getLatitude();
+                                    startLng = location.getLongitude();
+                                    Log.e("Lat Lng else distance",startLat+"===="+startLng);
+                                    saveLocation(startLat,startLng,"update");
+                                }
+                            }
+
+
 
                             onLocationChanged(location);
                         }
                     }
-
 
 
                 } catch (Exception e) {
@@ -165,7 +203,8 @@ public class LocationJobService extends JobService implements LocationListener {
                         .setService(LocationJobService.class) // the JobService that will be called
                         .setRecurring(false)
                         .setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL)
-                        .setTrigger(Trigger.executionWindow(0, 300))
+                        //.setTrigger(Trigger.executionWindow(0, 60))
+                        .setTrigger(Trigger.executionWindow(10*60, 15*60))
                         .setLifetime(Lifetime.FOREVER)
                         .setTag(objSaveData.getString("user_id"))        // uniquely identifies the job
                         .build();
@@ -268,7 +307,7 @@ public class LocationJobService extends JobService implements LocationListener {
         //saveLocation(location.getLatitude(),location.getLongitude());
 
     }
-    public void saveLocation(Double latitude,Double longitude){
+    public void saveLocation(Double latitude,Double longitude,String type){
         objSaveData = new SaveData(this);
 
         Log.e("Saving Coordinates", latitude + " " + longitude);
@@ -279,8 +318,9 @@ public class LocationJobService extends JobService implements LocationListener {
         userCoordinates.setUploaded("no");
         SaveData objSaveData = new SaveData(this);
         userCoordinates.setUserEmail(objSaveData.getString("LoginId"));
-        String time = new SimpleDateFormat("hh:mm: aa").format(Calendar.getInstance().getTime());
+        String time = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
         userCoordinates.setLocationTime(time);
+        userCoordinates.setType(type);
         audioDbHelper.addCoordinates(userCoordinates);
     }
 

@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.StrictMode
 import android.support.design.internal.NavigationMenuView
+import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat
@@ -55,6 +56,7 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
                     }
                 })
     }
+    internal var main_view: CoordinatorLayout? = null
 
     lateinit var tv_Name: TextView
     lateinit var tv_Email: TextView
@@ -213,12 +215,28 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
                 objUsefullData.showMsgOnUI("No Image From Server")
             }
         }
+        main_view = findViewById(R.id.main_view) as CoordinatorLayout
 
         //=====================================\\
         val drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_menu_button_of_three_horizontal_lines, baseContext.theme)
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
-        val toggle = ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = object:ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+        override fun onDrawerClosed(drawerView: View?) {
+            supportInvalidateOptionsMenu();
+        }
+
+        override fun onDrawerOpened(drawerView: View?) {
+            supportInvalidateOptionsMenu();
+        }
+
+        override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+            super.onDrawerSlide(drawerView, slideOffset)
+            main_view!!.setTranslationX(slideOffset * drawerView!!.getWidth());
+            drawer.bringChildToFront(drawerView);
+            drawer.requestLayout();
+        }
+    }
         drawer.setDrawerListener(toggle)
         toggle.syncState()
         toggle.isDrawerIndicatorEnabled = false

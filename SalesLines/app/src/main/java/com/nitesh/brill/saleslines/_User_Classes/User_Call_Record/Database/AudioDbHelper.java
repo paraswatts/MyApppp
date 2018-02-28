@@ -66,11 +66,11 @@ import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Databas
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_REMINDER_SET;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_REMINDER_USER_NAME;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_USER_COORDINATES_TIME;
+import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_USER_COORDINATES_TYPE;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_USER_COORDINATES_UPLOADED;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_USER_EMAIL;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_USER_LATITUDE;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_USER_LONGITUDE;
-import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_USER_SAMPLE_COLUMN;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.TABLE_AUDIO;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.TABLE_NOTIFICATIONS_MISSED_FOLLOWUPS;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.TABLE_REMINDERS;
@@ -101,7 +101,7 @@ public class AudioDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     /**
      * Constructs a new instance of {@link AudioDbHelper}.
@@ -171,7 +171,8 @@ public class AudioDbHelper extends SQLiteOpenHelper {
                 + COLUMN_USER_LONGITUDE + " TEXT,"
                 + COLUMN_USER_EMAIL + " TEXT,"
                 + COLUMN_USER_COORDINATES_TIME + " TEXT,"
-                + COLUMN_USER_COORDINATES_UPLOADED + " TEXT " + ")";
+                + COLUMN_USER_COORDINATES_UPLOADED + " TEXT,"
+                + COLUMN_USER_COORDINATES_TYPE + " TEXT " + ")";
 
 
         db.execSQL(SQL_CREATE_COORDINATES_TABLE);
@@ -193,7 +194,7 @@ public class AudioDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // The database is still at version 1, so there's nothing to do be done here.
 
-        db.execSQL("ALTER TABLE " + TABLE_AUDIO +" ADD COLUMN "+ COLUMN_AUDIO_MOBILE_NUMBER);
+        db.execSQL("ALTER TABLE " + TABLE_USER_COORDINATES +" ADD COLUMN "+ COLUMN_USER_COORDINATES_TYPE);
 
        // onCreate(db);
     }
@@ -208,7 +209,7 @@ public class AudioDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USER_EMAIL, userCoordinates.getUserEmail());
         values.put(COLUMN_USER_COORDINATES_UPLOADED, userCoordinates.getUploaded());
         values.put(COLUMN_USER_COORDINATES_TIME, userCoordinates.getLocationTime());
-
+        values.put(COLUMN_USER_COORDINATES_TYPE,userCoordinates.getType());
         db.insert(AudioEntry.TABLE_USER_COORDINATES, null, values);
         db.close();
 

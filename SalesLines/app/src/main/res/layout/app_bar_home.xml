@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -48,14 +49,14 @@
 
 
                 <ImageView
-                    android:padding="8dp"
+                    android:padding="12dp"
                     android:id="@+id/iv_Notifibell"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_alarm"
-
                     />
+
                 <RelativeLayout
                     android:id="@+id/rl_not_count"
                     android:visibility="visible"
@@ -65,6 +66,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="18dp"
                     android:layout_height="18dp">
+
                 <ImageView
                     android:layout_centerInParent="true"
                     android:layout_alignParentTop="true"

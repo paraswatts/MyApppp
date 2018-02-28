@@ -1,4 +1,4 @@
-package com.nitesh.brill.saleslines._Manager_Classes.Manager_Fragment
+package com.nitesh.brill.saleslines._AGM_Classes.AGM_Fragment
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -22,7 +22,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.CompoundButton
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import com.brill.nitesh.punjabpool.Common.BaseFragment
 import com.google.gson.JsonElement
 import com.intentfilter.androidpermissions.PermissionManager
@@ -32,23 +35,21 @@ import com.nitesh.brill.saleslines.Common_Fragment.Search_Fragment
 import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._Manager_Classes.Manager_PojoClass.Manager_User_List
 import kotlinx.android.synthetic.main.fragment_user_add_enquiry.*
+import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.selector
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.lang.reflect.InvocationTargetException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-class Manager_Add_Enquiry_Fragment : BaseFragment() {
+class AGM_Add_Enquiry_Fragment : BaseFragment() {
     val PHOTOCAM = 10
     val PHOTOGAL = 11
     val VC1CAM = 12
@@ -85,7 +86,19 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
     var ContentType_PC: String? = "jpg"
     var ContentType_VC1: String? = "jpg"
     var ContentType_VC2: String? = "jpg"
+    var mUserIdSalesman: String = "0"
+    var mUserIdManager: String = "0"
 
+    var mArrayNameAGM: MutableList<String> = ArrayList()
+    var mArrayUserIdAGM: MutableList<String> = ArrayList()
+
+
+    var mArrayNameASM: MutableList<String> = ArrayList()
+    var mArrayUserIdASM: MutableList<String> = ArrayList()
+
+
+    var mArrayNameManager: MutableList<String> = ArrayList()
+    var mArrayUserIdManager: MutableList<String> = ArrayList()
 
     var Img_PC: String = ""
     var Img_VC1: String = ""
@@ -145,7 +158,7 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
 
         //=================================\\
         if (isNetworkConnected) {
-            getAllUserUnderManager()
+            getAllUserUnderAGM()
 
             //=================================\\
 
@@ -374,13 +387,30 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
 
         }
 
-        sp_Assign_Employee.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.arrow_spinner, 0);
-        sp_Assign_Employee.setOnClickListener {
+        sp_Assign_ASM.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.arrow_spinner, 0);
+        sp_Assign_ASM.setOnClickListener {
 
             //=================================\\
 
             if (isNetworkConnected)
-                mShowAlertDialogWithListviewUser(sp_Assign_Employee, mArrayName as ArrayList<String>, "Assign Employee")
+                mShowAlertDialogWithListviewASM(sp_Assign_ASM, mArrayNameAGM as ArrayList<String>, "Assign ASM")
+        }
+
+        sp_Assign_Manager.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.arrow_spinner, 0);
+        sp_Assign_Manager.setOnClickListener {
+
+            //=================================\\
+
+            if (isNetworkConnected)
+                mShowAlertDialogWithListviewManager(sp_Assign_Manager, mArrayNameASM as ArrayList<String>, "Assign manager")
+        }
+        sp_Assign_Employee.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.arrow_spinner, 0);
+
+        sp_Assign_Employee.setOnClickListener {
+            //=================================\\
+
+            if (isNetworkConnected)
+                mShowAlertDialogWithListviewSalesman(sp_Assign_Employee, mArrayNameManager as ArrayList<String>, "Assign Salesman")
         }
 
 
@@ -443,10 +473,6 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
             if (!hasFocus) {
                 if (isNetworkConnected)
                     checkDuplicateNumber("" + et_Phone.text.toString())
-            } else {
-
-                mShowAlertDialogWithListviewUser(sp_Assign_Employee, mArrayName as ArrayList<String>, "Assign Employee")
-
             }
 
         }
@@ -472,18 +498,13 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
             }
 
         }
-
         ll_AGM.visibility = View.GONE
-        ll_ASM.visibility = View.GONE
-        ll_manager.visibility = View.GONE
 
 
     }
 
-//=======================================================\\
 
-
-    private fun mShowAlertDialogWithListviewUser(sp_Assign_Employee: EditText?, animals: ArrayList<String>, s: String) {
+    private fun mShowAlertDialogWithListviewASM(sp_Assign_Employee: EditText?, animals: ArrayList<String>, s: String) {
 
         val dialogBuilder = AlertDialog.Builder(activity)
         dialogBuilder.setTitle(s)
@@ -494,8 +515,29 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
             sp_Assign_Employee!!.setText(animals!![item].toString())
             position = item
 
-            mUserId = "" + mArrayUserId.get(item)
+            mUserId = "" + mArrayUserIdAGM.get(item)
+            getAllUserUnderASM(mUserId)
 
+        })
+
+        val alertDialogObject = dialogBuilder.create()
+        alertDialogObject.show()
+
+    }
+
+    private fun mShowAlertDialogWithListviewManager(sp_Assign_Employee: EditText?, animals: ArrayList<String>, s: String) {
+
+        val dialogBuilder = AlertDialog.Builder(activity)
+        dialogBuilder.setTitle(s)
+
+        val cs = animals.toArray(arrayOfNulls<CharSequence>(animals.size))
+        dialogBuilder.setItems(cs, DialogInterface.OnClickListener { dialog, item ->
+
+            sp_Assign_Employee!!.setText(animals!![item].toString())
+            position = item
+
+            mUserIdManager = "" + mArrayUserIdASM.get(item)
+            getAllUserUnderManager(mUserIdManager);
 
         })
 
@@ -504,6 +546,51 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
 
 
     }
+
+    private fun mShowAlertDialogWithListviewSalesman(sp_Assign_Employee: EditText?, animals: ArrayList<String>, s: String) {
+
+        val dialogBuilder = AlertDialog.Builder(activity)
+        dialogBuilder.setTitle(s)
+
+        val cs = animals.toArray(arrayOfNulls<CharSequence>(animals.size))
+        dialogBuilder.setItems(cs, DialogInterface.OnClickListener { dialog, item ->
+
+            sp_Assign_Employee!!.setText(animals!![item].toString())
+            position = item
+
+            mUserIdSalesman = "" + mArrayUserIdManager.get(item)
+
+        })
+
+        val alertDialogObject = dialogBuilder.create()
+        alertDialogObject.show()
+
+
+    }
+//=======================================================\\
+
+
+//    private fun mShowAlertDialogWithListviewUser(sp_Assign_Employee: EditText?, animals: ArrayList<String>, s: String) {
+//
+//        val dialogBuilder = AlertDialog.Builder(activity)
+//        dialogBuilder.setTitle(s)
+//
+//        val cs = animals.toArray(arrayOfNulls<CharSequence>(animals.size))
+//        dialogBuilder.setItems(cs, DialogInterface.OnClickListener { dialog, item ->
+//
+//            sp_Assign_Employee!!.setText(animals!![item].toString())
+//            position = item
+//
+//            mUserId = "" + mArrayUserId.get(item)
+//
+//
+//        })
+//
+//        val alertDialogObject = dialogBuilder.create()
+//        alertDialogObject.show()
+//
+//
+//    }
 
 
     //=======================================\\
@@ -671,10 +758,114 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
 
     }
 
-    private fun getAllUserUnderManager() {
+
+    private fun getAllUserUnderManager(userId:String) {
 
 
-        objUsefullData.showProgress("getting users ...", "")
+        mArrayNameManager.clear()
+        mArrayUserIdManager.clear()
+        objUsefullData.showProgress("Getting Salesman...", "")
+        val mCall = apiEndpointInterface!!.getUserUnderManager(userId)
+        mCall.enqueue(object : Callback<List<Manager_User_List>> {
+            override fun onResponse(call: Call<List<Manager_User_List>>?, response: Response<List<Manager_User_List>>?) {
+
+                objUsefullData.dismissProgress()
+                Log.d("URL", "===" + response!!.raw().request().url())
+                try{
+                    if (response.isSuccessful) {
+                        sp_Assign_Employee.isEnabled = true
+                        val size = response!!.body().size
+                        UsefullData.Log("" + size + "User_Response    " + response.body().toString())
+                        if (size > 0) {
+                            for (s in response.body()) {
+
+                                mArrayNameManager.add(s.Name)
+                                mArrayUserIdManager.add("" + s.UserId)
+
+                            }
+                        }
+
+                    } else {
+                        UsefullData.Log("========" + response.code())
+                        objUsefullData.getError("" + response.code())
+                    }
+                } catch (e: Exception) {
+                    objUsefullData.getException(e)
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<Manager_User_List>>?, t: Throwable?) {
+                objUsefullData.dismissProgress()
+
+                objUsefullData.showMsgOnUI("Failed To fetch data")
+
+                UsefullData.Log("onFailure ===" + t)
+
+
+            }
+
+        })
+
+
+    }
+
+    private fun getAllUserUnderASM(userId:String) {
+
+        mArrayNameASM.clear()
+        mArrayUserIdASM.clear()
+        objUsefullData.showProgress("Getting Managers...", "")
+        val mCall = apiEndpointInterface!!.getUserUnderManager(userId)
+        mCall.enqueue(object : Callback<List<Manager_User_List>> {
+            override fun onResponse(call: Call<List<Manager_User_List>>?, response: Response<List<Manager_User_List>>?) {
+
+                objUsefullData.dismissProgress()
+                Log.d("URL", "===" + response!!.raw().request().url())
+                try{
+                    if (response.isSuccessful) {
+                        sp_Assign_Manager.isEnabled = true
+                        val size = response!!.body().size
+                        UsefullData.Log("" + size + "User_Response    " + response.body().toString())
+                        if (size > 0) {
+                            for (s in response.body()) {
+
+
+                                mArrayNameASM.add(s.Name)
+                                mArrayUserIdASM.add("" + s.UserId)
+
+
+                            }
+                        }
+
+                    } else {
+                        UsefullData.Log("========" + response.code())
+                        objUsefullData.getError("" + response.code())
+                    }
+                } catch (e: Exception) {
+                    objUsefullData.getException(e)
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<Manager_User_List>>?, t: Throwable?) {
+                objUsefullData.dismissProgress()
+
+                objUsefullData.showMsgOnUI("Failed To fetch data")
+
+                UsefullData.Log("onFailure ===" + t)
+
+
+            }
+
+        })
+
+
+    }
+
+    private fun getAllUserUnderAGM() {
+
+
+        objUsefullData.showProgress("getting ASM ...", "")
         val mCall = apiEndpointInterface!!.getUserUnderManager(objSaveData.getString(ConstantValue.USER_ID))
         mCall.enqueue(object : Callback<List<Manager_User_List>> {
             override fun onResponse(call: Call<List<Manager_User_List>>?, response: Response<List<Manager_User_List>>?) {
@@ -683,15 +874,15 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
                 Log.d("URL", "===" + response!!.raw().request().url())
                 try{
                 if (response.isSuccessful) {
-                    sp_Assign_Employee.isEnabled = true
+                    sp_Assign_ASM.isEnabled = true
                     val size = response!!.body().size
                     UsefullData.Log("" + size + "User_Response    " + response.body().toString())
                     if (size > 0) {
                         for (s in response.body()) {
 
 
-                            mArrayName.add(s.Name)
-                            mArrayUserId.add("" + s.UserId)
+                            mArrayNameAGM.add(s.Name)
+                            mArrayUserIdAGM.add("" + s.UserId)
 
 
                         }
@@ -752,9 +943,9 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
         paramObject.put("UserId", Integer.parseInt(objSaveData.getString(ConstantValue.USER_ID)))
 
         paramObject.put("RoleId", Integer.parseInt(objSaveData.getString(ConstantValue.ROLE_ID)))
-        paramObject.put("ManagerId", Integer.parseInt(objSaveData.getString(ConstantValue.MANAGER_ID)))
+        paramObject.put("ManagerId", mUserIdManager)
         paramObject.put("ClientId", Integer.parseInt(objSaveData.getString(ConstantValue.CLIENT_ID)))
-        paramObject.put("EmployeeCode", mUserId)
+        paramObject.put("EmployeeCode", mUserIdSalesman)
         paramObject.put("H_Checked", H!!)
         paramObject.put("W_Checked", W!!)
         paramObject.put("C_Checked", C!!)
@@ -778,14 +969,14 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
         if(TextUtils.isEmpty(et_DemoDate.text.toString())) {
             val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.US)
             val d = sdf.parse("01/01/1990")
-            Log.e("Paras","Demo date null"+sdf.format(d))
+            Log.e("Paras", "Demo date null" + sdf.format(d))
 
             paramObject.put("DemoDate", sdf.format(d))
 
         }
         else
         {
-            Log.e("Paras","Demo date is not null"+et_DemoDate.text.toString())
+            Log.e("Paras", "Demo date is not null" + et_DemoDate.text.toString())
             paramObject.put("DemoDate", et_DemoDate.text.toString())
 
         }
@@ -803,7 +994,7 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
         UsefullData.Log("==========addLead========" + paramObject.toString())
 
 
-        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
+        val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
         val mCall = apiEndpointInterface!!.addLead(body)
 
         mCall.enqueue(object : Callback<JsonElement> {
@@ -839,7 +1030,7 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
                             objSaveData.save(ConstantValue.CLOSELEAD, "0")
                             val fragment = Search_Fragment.newInstance("1", mParam2!!, "", "")
                             val fragmentManager = fragmentManager
-                            val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
+                            val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right).addToBackStack(null)
                             fragmentTransaction.replace(R.id.content_frame, fragment)
                             fragmentTransaction.commit()
 
@@ -1102,6 +1293,23 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
             return false
         }
 
+        if (objValidation.checkEmpty(sp_Assign_ASM, " Assign ASM")) {
+            sp_Assign_ASM.setError(null)
+            objUsefullData.showMsgOnUI("Please select ASM for assigning lead")
+            sp_Assign_ASM.setBackgroundResource((R.drawable.red_border))
+            sp_Assign_ASM.requestFocus()
+            sp_Assign_ASM.isFocusableInTouchMode = true
+            return false
+        }
+
+        if (objValidation.checkEmpty(sp_Assign_Manager, " Assign manager")) {
+            sp_Assign_Manager.setError(null)
+            objUsefullData.showMsgOnUI("Please select manager for assigning lead")
+            sp_Assign_Manager.setBackgroundResource((R.drawable.red_border))
+            sp_Assign_Manager.requestFocus()
+            sp_Assign_Manager.isFocusableInTouchMode = true
+            return false
+        }
 
         if (objValidation.checkEmpty(sp_Assign_Employee, " Assign Employee")) {
             sp_Assign_Employee.setError(null)
@@ -1171,7 +1379,7 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
                 .createFile("userfile.png")
         val intent = Intent(
                 Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), code)
 
 
@@ -1378,8 +1586,8 @@ class Manager_Add_Enquiry_Fragment : BaseFragment() {
 
 
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): Manager_Add_Enquiry_Fragment {
-            val fragment = Manager_Add_Enquiry_Fragment()
+        fun newInstance(param1: String, param2: String): AGM_Add_Enquiry_Fragment {
+            val fragment = AGM_Add_Enquiry_Fragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)

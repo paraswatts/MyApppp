@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.StrictMode
 import android.support.design.internal.NavigationMenuView
+import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat
@@ -37,6 +38,7 @@ import com.nitesh.brill.saleslines.Common_Fragment.*
 import com.nitesh.brill.saleslines.FirebaseService.MyFirebaseMessagingService
 import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._GM_Classes.GM_Fragment.*
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Fragment.Manager_Add_Enquiry_Fragment
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioDbHelper
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.ReminderAsyncTask
 import kotlinx.android.synthetic.main.app_bar_home.*
@@ -56,6 +58,7 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
     lateinit var tv_Email: TextView
     lateinit var imageView: ImageView
     var navigationView: NavigationView? = null
+    internal var main_view: CoordinatorLayout? = null
 
 
     override fun attachBaseContext(newBase: Context) {
@@ -85,7 +88,7 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
         //==================\\
 
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_manager)
 
         registerReceiver(myReceiver, IntentFilter(MyFirebaseMessagingService.INTENT_FILTER_GM));
         registerReceiver(myReceiver1, IntentFilter(ConstantValue.INTENT_FILTER));
@@ -135,9 +138,9 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
         tv_Email = header.findViewById(R.id.tv_Email) as TextView
         imageView = header.findViewById(R.id.imageView) as ImageView
         val menu = navigationView!!.getMenu()
-        val menuItem = menu.findItem(R.id.nav_location)
-        val actionView = MenuItemCompat.getActionView(menuItem) as View
-        menuItem.isVisible = false;
+//        val menuItem = menu.findItem(R.id.nav_location)
+//        val actionView = MenuItemCompat.getActionView(menuItem) as View
+//        menuItem.isVisible = false;
 
         mHomeImage.setOnClickListener {
             for (i in 0 until menu.size()) {
@@ -155,12 +158,28 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
         }
 
+        main_view = findViewById(R.id.main_view) as CoordinatorLayout
 
         //=====================================\\
         val drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_menu_button_of_three_horizontal_lines, baseContext.theme)
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
-        val toggle = ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = object:ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+            override fun onDrawerClosed(drawerView: View?) {
+                supportInvalidateOptionsMenu();
+            }
+
+            override fun onDrawerOpened(drawerView: View?) {
+                supportInvalidateOptionsMenu();
+            }
+
+            override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+                super.onDrawerSlide(drawerView, slideOffset)
+                main_view!!.setTranslationX(slideOffset * drawerView!!.getWidth());
+                drawer.bringChildToFront(drawerView);
+                drawer.requestLayout();
+            }
+        }
         drawer.setDrawerListener(toggle)
         toggle.syncState()
         toggle.isDrawerIndicatorEnabled = false
@@ -439,6 +458,8 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
         var title: String? = null
         when (id) {
             R.id.nav_home -> fragment = GM_HomeFragment.newInstance("", "" + objSaveData.getString(ConstantValue.USER_ID))
+            R.id.nav_lead -> fragment = GM_Add_Enquiry_Fragment.newInstance("", "" + objSaveData.getString(ConstantValue.USER_ID))
+
             R.id.nav_profile -> fragment = Update_profile_Fragment.newInstance("", "" + objSaveData.getString(ConstantValue.USER_ID))
             R.id.nav_picture_upload -> fragment = ProfilePic_Upload_Fragment.newInstance("", "")
             R.id.nav_recomend -> fragment = Recommend_Fragment.newInstance("", "")

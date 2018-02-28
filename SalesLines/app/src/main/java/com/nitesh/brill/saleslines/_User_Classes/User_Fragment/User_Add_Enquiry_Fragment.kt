@@ -478,6 +478,9 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
                 }
         }
 
+        ll_AGM.visibility = View.GONE
+        ll_ASM.visibility = View.GONE
+        ll_manager.visibility = View.GONE
 
     }
 

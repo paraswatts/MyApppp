@@ -42,11 +42,11 @@ class Manager_User_View_Fragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        UsefullData.Log("=======user id=====" + mParam2)
+        UsefullData.Log("=======user id=====" + mParam2 +mParam1 +mParam3)
         //=========================================\\
 
 
-        title.setText(arguments.getString("username") + " details ")
+        title.setText(arguments.getString(ARG_PARAM3) + " details ")
         btn_Graph.setOnClickListener {
             mFragment = Graph_Fragment.newInstance("", "" + mParam2)
             callFragment(mFragment)
@@ -122,11 +122,11 @@ class Manager_User_View_Fragment : BaseFragment() {
            btn_trackUser.setOnClickListener {
                //                Log.e("Param1",mParam1+mParam2+"");
 
-               mFragment = Manager_SingleLeadMap_Fragment.newInstance("" + mParam1, "" + mParam2)
-               val bundle = Bundle()
-               bundle.putString("user_id", "" + arguments.getString("user_id"));
-               bundle.putString("username", "" + arguments.getString("username"));
-               mFragment!!.arguments = bundle
+               mFragment = Manager_SingleLeadMap_Fragment.newInstance("" + mParam1, "" + mParam2,""+mParam3)
+//               val bundle = Bundle()
+//               bundle.putString("user_id", "" + arguments.getString("user_id"));
+//               bundle.putString("username", "" + arguments.getString("username"));
+//               mFragment!!.arguments = bundle
                callFragment(mFragment)
            }
            // }

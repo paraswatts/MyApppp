@@ -11,7 +11,13 @@ public class UserCoordinates {
     String userEmail;
     String uploaded;
     String locationTime;
+    String type;
 
+    public String getType(){return type;}
+
+    public void setType(String type){
+        this.type = type;
+    }
         public String getLatitude(){return latitude;}
 
         public void setLatitude(String latitude){this.latitude = latitude;}

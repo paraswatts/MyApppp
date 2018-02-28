@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -86,6 +87,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
 /**
@@ -95,11 +97,14 @@ import static android.support.v4.content.ContextCompat.checkSelfPermission;
  * Use the {@link Manager_SingleLeadMap_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
 public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
     private static final int PERMISSION_CALLBACK_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
     RetrofitAPI retrofitAPI;
@@ -110,6 +115,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mParam3;
+
     private Button bt_mapDate;
     private EditText et_mapDate;
     private boolean sentToSettings = false;
@@ -121,11 +128,13 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public static Manager_SingleLeadMap_Fragment newInstance(String param1, String param2) {
+    public static Manager_SingleLeadMap_Fragment newInstance(String param1, String param2,String param3) {
         Manager_SingleLeadMap_Fragment fragment = new Manager_SingleLeadMap_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param3);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -136,6 +145,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam3 = getArguments().getString(ARG_PARAM3);
+
         }
 
     }
@@ -168,6 +179,8 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             }
 
         };
+
+        Log.e("Params",mParam1+"==="+mParam2);
         map_root = (RelativeLayout)view.findViewById(R.id.map_root);
         et_mapDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,7 +192,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         });
 
         title = (TextView) view.findViewById(R.id.textView2);
-        title.setText(getArguments().getString("username") + " Map");
+        title.setText(mParam3 + " Map");
         bt_mapDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,12 +222,13 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         String userid = getArguments().getString("user_id");
         String date = TextUtils.isEmpty(et_mapDate.getText().toString().trim()) ? dateTime : et_mapDate.getText().toString().trim();
         retrofitAPI = APIClient.getClient().create(RetrofitAPI.class);
-        Call<JsonElement> call = retrofitAPI.getGPSLocationsUserDay(userid, objSaveData.getString("client_id"), date);
+        Call<JsonElement> call = retrofitAPI.getGPSLocationsUserDay(mParam2, objSaveData.getString("client_id"), date);
         call.enqueue(new Callback<JsonElement>() {
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                try {
                 Log.d("URL", "=====" + response.raw().request().url());
                 Log.e("=============", response.body().toString());
-                try {
+
                     ArrayList<Double> lat = new ArrayList<>();
                     ArrayList<Double> lng = new ArrayList<>();
                     ArrayList<String> time = new ArrayList<>();
@@ -269,9 +283,9 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                 }
 
                 googleMap = mMap;
+                googleMap.clear();
+
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
-                googleMap.setBuildingsEnabled(true);
-                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 //                googleMap.setMapStyle(
 //                        MapStyleOptions.loadRawResourceStyle(
 //                                getContext(), R.raw.style_json));
@@ -412,64 +426,66 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 //                markerText.add("Paras Watts");
 //                imageUrl.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbeNZvEaAoQWVCPolqCs7UR7d6JBfZeX1qmV01XSn4C65k4-pCVA");
 
-                if (lat.size() < 11) {
-                    String origin = lat.get(0) + "," + lng.get(0);
-                    String destination = lat.get(lat.size() - 1) + "," + lng.get(lng.size() - 1);
-                    String waypoints = "optimize:true|";
-                    String path = "";
-                    for (int i = 1; i <lat.size() - 1; i++) {
-                        path = path + lat.get(i) + "," + lng.get(i) + "|";
-                    }
-                    waypoints = waypoints + path;
-                    getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
-                } else {
-                    double number = (float) lat.size() / 9;
-                    int size = lat.size();
-                    double i = Math.ceil(number);
-                    int num = (int) size;
-                    int remainder = num % 9;
-                    int num1;
-                    if (remainder == 0) {
-                        num1 = (int) i - 1;
-                    } else {
-                        num1 = (int) i - 1;
-                    }
-                    for (int j = 0; j < num1; j++) {
-                        int finalSize = 9;
-                        String origin = lat.get(finalSize * j) + "," + lng.get(finalSize * j);
-                        String destination = lat.get(finalSize * (j + 1)) + "," + lng.get(finalSize * (j + 1));
-                        String waypoints = "optimize:true|";
-                        String path = "";
-                        int loop = (finalSize * (j + 1));
-                        for (int k = (j * 9) + 1; k < loop; k++) {
-                            path = path + lat.get(k) + "," + lng.get(k) + "|";
-                        }
-                        waypoints = waypoints + path;
-                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
-                    }
 
-                    if (remainder != 0) {
-                        String origin = lat.get(size - remainder) + "," + lng.get(size - remainder);
-                        String destination = lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
-                        String waypoints = "optimize:true|";
-                        String path = "";
-                        for (int k = size + 1 - remainder; k < size; k++) {
-                            path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
-                        }
-                        waypoints = waypoints + path;
-                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
-                    } else {
-                        String origin = lat.get(size - 9) + "," + lng.get(size - 9);
-                        String destination = lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
-                        String waypoints = "optimize:true|";
-                        String path = "";
-                        for (int k = size - 9 + 1; k < size - 1; k++) {
-                            path = path + lat.get(k) + "," + lng.get(k) + "|";
-                        }
-                        waypoints = waypoints + path;
-                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
-                    }
-                }
+//                if (lat.size() < 26) {
+//                    String origin = lat.get(0) + "," + lng.get(0);
+//                    String destination = lat.get(lat.size() - 1) + "," + lng.get(lng.size() - 1);
+//                    String waypoints = "optimize:true|";
+//                    String path = "";
+//                    for (int i = 1; i <lat.size() - 1; i++) {
+//                        path = path + lat.get(i) + "," + lng.get(i) + "|";
+//                    }
+//                    waypoints = waypoints + path;
+//                    getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
+//                } else {
+//                    double number = (float) lat.size() / 24;
+//                    int size = lat.size();
+//                    double i = Math.ceil(number);
+//                    int num = size;
+//                    int remainder = num % 24;
+//                    int num1;
+//                   // if (remainder == 0) {
+//                        num1 = (int) i - 1;
+////                    } else {
+////                        num1 = (int) i - 1;
+//
+////                    }
+//                    for (int j = 0; j < num1; j++) {
+//                        int finalSize = 24;
+//                        String origin = lat.get(finalSize * j) + "," + lng.get(finalSize * j);
+//                        String destination = lat.get(finalSize * (j + 1)) + "," + lng.get(finalSize * (j + 1));
+//                        String waypoints = "optimize:true|";
+//                        String path = "";
+//                        int loop = (finalSize * (j + 1));
+//                        for (int k = (j * 24) + 1; k < loop; k++) {
+//                            path = path + lat.get(k) + "," + lng.get(k) + "|";
+//                        }
+//                        waypoints = waypoints + path;
+//                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
+//                    }
+//
+//                    if (remainder != 0) {
+//                        String origin = lat.get(size - remainder) + "," + lng.get(size - remainder);
+//                        String destination = lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+//                        String waypoints = "optimize:true|";
+//                        String path = "";
+//                        for (int k = size + 1 - remainder; k < size; k++) {
+//                            path = path + lat.get(k - 1) + "," + lng.get(k - 1) + "|";
+//                        }
+//                        waypoints = waypoints + path;
+//                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
+//                    } else {
+//                        String origin = lat.get(size - 24) + "," + lng.get(size - 24);
+//                        String destination = lat.get(lat.size() - 1) + "," + lng.get(lat.size() - 1);
+//                        String waypoints = "optimize:true|";
+//                        String path = "";
+//                        for (int k = size - 24 + 1; k < size - 1; k++) {
+//                            path = path + lat.get(k) + "," + lng.get(k) + "|";
+//                        }
+//                        waypoints = waypoints + path;
+//                        getRoutes(origin, waypoints.replace("|", "%7C"), destination, "false");
+//                    }
+//                }
 
                 for (int i = 0; i <
                         lat.size(); i++) {
@@ -608,20 +624,24 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
         progressDialog.setMessage("Fetching salesman route");
         progressDialog.show();
         RetrofitAPI retrofitAPI = APIClient.getMapsClient().create(RetrofitAPI.class);
-        Call<JsonElement> call = retrofitAPI.getMapPath(origin, waypoints, destination, sensor);
+        Call<JsonElement> call = retrofitAPI.getMapPath(origin, waypoints, destination, sensor,"AIzaSyCy4fGD12vaukTpJdrZPYdB1nOSbJYvGNg");
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                Log.e("url is ", "" + response.raw().request().url());
+                try {
+
+                    Log.e("url is ", "" + response.raw().request().url());
                 if(response!=null & response.isSuccessful()){
-                    try {
-                        progressDialog.dismiss();
                         drawPath(response.body().toString());
                     }
-                    catch (Exception e){
-                        e.printStackTrace();
-                    }
+
+
+                } catch (Exception e){
+                    e.printStackTrace();
                 }
+
+                progressDialog.dismiss();
+
             }
 
             @Override
@@ -657,7 +677,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 
 
     void startRevealAnimation() {
-
+        Log.e("Animation","starts");
         int cx = map_root.getMeasuredWidth() / 2;
         int cy = map_root.getMeasuredHeight() / 2;
 
@@ -721,6 +741,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
 
 
     protected void createMarker(final int index, final double latitude, final double longitude, final String markerText, final String imageUrl, final String time, int size) throws IOException {
+
         Geocoder geocoder;
         List<Address> addresses;
         geocoder = new Geocoder(getContext(), Locale.getDefault());
@@ -742,13 +763,14 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             Date d = sdf.parse(time);
             SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:a");
             String format = sdf1.format(d);
-            //String format = "";
 
             if (index == 0) {
                                       Marker m =googleMap.addMarker(new MarkerOptions()
                                               .position(new LatLng(latitude, longitude))
                                               .title(markerText)
-                                              .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_start,mCustomMarkerView))));
+                                              //.snippet("was here at "+index).icon(BitmapDescriptorFactory.fromBitmap(textAsBitmap(String.valueOf(index),40.0f,getResources().getColor(R.color.red)))));
+
+                                             .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_start,mCustomMarkerView,index))));
                                       m.setTag(info);
                 }
             else if(index == size -1)
@@ -756,14 +778,17 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
                 Marker m =googleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(latitude, longitude))
                         .title(markerText)
-                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_finish,mCustomMarkerView))));
+                        //.snippet("was here at "+index).icon(BitmapDescriptorFactory.fromBitmap(textAsBitmap(String.valueOf(index),40.0f,getResources().getColor(R.color.red)))));
+
+                       .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_finish,mCustomMarkerView,index))));
                 m.setTag(info);
                    }
             else {
                 Marker m =googleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(latitude, longitude))
                         .title(markerText)
-                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_placeholder,mCustomMarkerView))));
+                        //.snippet("was here at "+index).icon(BitmapDescriptorFactory.fromBitmap(textAsBitmap(String.valueOf(index),40.0f,getResources().getColor(R.color.red)))));
+                        .snippet("was here at "+format).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_placeholder,mCustomMarkerView,index))));
                 m.setTag(info);
                 m.setTag(info);
             }
@@ -773,7 +798,7 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
     }
 
 
-    private Bitmap getMarkerBitmapFromView(int id, View view) {
+    private Bitmap getMarkerBitmapFromView(int id, View view,int index) {
         final ImageView markerImageView = (ImageView) view.findViewById(R.id.profile_image);
         markerImageView.setImageDrawable(getResources().getDrawable(id));
         view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -788,6 +813,20 @@ public class Manager_SingleLeadMap_Fragment extends BaseFragment {
             drawable.draw(canvas);
         view.draw(canvas);
         return returnedBitmap;
+    }
+
+    public Bitmap textAsBitmap(String text, float textSize, int textColor) {
+        Paint paint = new Paint(ANTI_ALIAS_FLAG);
+        paint.setTextSize(textSize);
+        paint.setColor(textColor);
+        paint.setTextAlign(Paint.Align.LEFT);
+        float baseline = -paint.ascent(); // ascent() is negative
+        int width = (int) (paint.measureText(text) + 0.5f); // round
+        int height = (int) (baseline + paint.descent() + 0.5f);
+        Bitmap image = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(image);
+        canvas.drawText(text, 0, baseline, paint);
+        return image;
     }
 
     @Override
