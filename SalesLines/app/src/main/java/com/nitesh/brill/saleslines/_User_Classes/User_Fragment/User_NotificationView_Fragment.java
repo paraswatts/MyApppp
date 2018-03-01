@@ -103,7 +103,8 @@ public class User_NotificationView_Fragment extends Fragment implements LoaderMa
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_notification, container, false);
-        TextView tv_empty_notifications = (TextView) view.findViewById(R.id.tv_empty_notifications);
+        ImageView tv_empty_notifications = (ImageView) view.findViewById(R.id.tv_empty_notifications);
+        tv_empty_notifications.setImageBitmap(getMarkerBitmapFromView());
         listView = (ListView) view.findViewById(R.id.lv_Notification_List);
         listView.setEmptyView(tv_empty_notifications);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);

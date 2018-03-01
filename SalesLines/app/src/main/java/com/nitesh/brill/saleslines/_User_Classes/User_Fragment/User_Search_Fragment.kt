@@ -2,6 +2,7 @@ package com.nitesh.brill.saleslines._User_Classes.User_Fragment
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Build
 
@@ -29,6 +30,8 @@ import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.view.inputmethod.InputMethodManager
 
 
 class User_Search_Fragment : BaseFragment() {
@@ -292,6 +295,17 @@ class User_Search_Fragment : BaseFragment() {
         popupWindow = PopupWindow(filterView, objUsefullData.dpToPx(250), ViewGroup.LayoutParams.WRAP_CONTENT)
 
         if (!isOpen!!) {
+
+            //========Hide keyboard on popup window open===========//
+
+            try{
+            val view = activity.getCurrentFocus()
+            if (view != null) {
+                val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view!!.getWindowToken(), 0)
+            }
+            }catch (e:Exception){e.printStackTrace()}
+
 
             //================================================\\
 

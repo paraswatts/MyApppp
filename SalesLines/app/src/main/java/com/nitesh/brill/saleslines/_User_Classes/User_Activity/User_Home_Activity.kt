@@ -308,7 +308,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
 
 
-        disableNavigationViewScrollbars(navigationView!!);
+        //disableNavigationViewScrollbars(navigationView!!);
         toggle.syncState()
         toggle.isDrawerIndicatorEnabled = false
         toggle.setHomeAsUpIndicator(drawable)

@@ -242,7 +242,7 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
         toggle.isDrawerIndicatorEnabled = false
         toggle.setHomeAsUpIndicator(drawable)
 
-        disableNavigationViewScrollbars(navigationView!!)
+        //disableNavigationViewScrollbars(navigationView!!)
         toggle.toolbarNavigationClickListener = View.OnClickListener {
             if (drawer.isDrawerVisible(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START)

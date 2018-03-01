@@ -3,9 +3,15 @@ package com.nitesh.brill.saleslines._AGM_Classes.AGM_Fragment;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -95,7 +102,8 @@ public class AGM_NotificationView_Fragment extends Fragment implements android.s
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_notification, container, false);
-        TextView tv_empty_notifications = (TextView) view.findViewById(R.id.tv_empty_notifications);
+        ImageView tv_empty_notifications = (ImageView) view.findViewById(R.id.tv_empty_notifications);
+        tv_empty_notifications.setImageBitmap(getMarkerBitmapFromView());
         listView = (ListView) view.findViewById(R.id.lv_Notification_List);
         listView.setEmptyView(tv_empty_notifications);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
@@ -150,6 +158,23 @@ public class AGM_NotificationView_Fragment extends Fragment implements android.s
         changeReadState();
 
         return view;
+    }
+
+    private Bitmap getMarkerBitmapFromView() {
+        final View view = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.no_notifications, null);
+
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.buildDrawingCache();
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(returnedBitmap);
+        canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        Drawable drawable = view.getBackground();
+        if (drawable != null)
+            drawable.draw(canvas);
+        view.draw(canvas);
+        return returnedBitmap;
     }
 
     @Override

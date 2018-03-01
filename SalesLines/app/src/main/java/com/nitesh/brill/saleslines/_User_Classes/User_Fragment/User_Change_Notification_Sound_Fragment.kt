@@ -28,9 +28,11 @@ import android.content.DialogInterface
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.media.RingtoneManager
+import android.media.ToneGenerator
 import com.nitesh.brill.saleslines.Common_Files.ConstantValue
 import com.nitesh.brill.saleslines.Common_Files.UsefullData
 import com.nitesh.brill.saleslines.R.layout.dialog
+import org.jetbrains.anko.db.INTEGER
 import java.io.IOException
 
 
@@ -160,6 +162,7 @@ class User_Change_Notification_Sound_Fragment : BaseFragment() {
                 val selectedPosition = (dialog as AlertDialog).listView.checkedItemPosition
                 objSaveData.save(ConstantValue.DialPadTone,""+selectedPosition)
                 UsefullData.Log("=====Pos "+ selectedPosition)
+
 
 
             }.setNegativeButton("Cancel") { dialog, id ->

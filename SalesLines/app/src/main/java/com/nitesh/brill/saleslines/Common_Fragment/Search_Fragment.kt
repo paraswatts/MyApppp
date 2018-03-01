@@ -1,6 +1,7 @@
 package com.nitesh.brill.saleslines.Common_Fragment
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Rect
 import android.os.Build
@@ -15,6 +16,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.PopupWindow
@@ -430,7 +432,6 @@ class Search_Fragment : BaseFragment() {
                 mShowAlertDialogWithListview_(et_Lead_Stage, mArrayBindStages as ArrayList<String>, "Lead Stage")
             }
 
-
         }
         //=========================================\\
         sp_Spinner_Interested_Product.setOnClickListener {
@@ -448,6 +449,14 @@ class Search_Fragment : BaseFragment() {
 
         if (!isOpen!!) {
 
+            //========Hide keyboard on popup window open===========//
+            try{
+                val view = activity.getCurrentFocus()
+                if (view != null) {
+                    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(view!!.getWindowToken(), 0)
+                }
+            }catch (e:Exception){e.printStackTrace()}
             //================================================\\
 
             et_FromDate!!.setOnClickListener {

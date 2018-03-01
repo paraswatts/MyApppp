@@ -146,7 +146,7 @@ public class LocationJobService extends JobService implements LocationListener {
                     else
                     {
 
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000*60*2,5000,this);
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
                         location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
                         if (location != null) {
@@ -302,7 +302,7 @@ public class LocationJobService extends JobService implements LocationListener {
     public void onLocationChanged(Location location) {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-        Log.e("onlocation","changed"+latitude+"======="+longitude);
+        //Log.e("onlocation","changed"+latitude+"======="+longitude);
 
         //saveLocation(location.getLatitude(),location.getLongitude());
 

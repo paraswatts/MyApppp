@@ -197,7 +197,7 @@ class AGM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelecte
         }
         //=====================================\\
 
-        disableNavigationViewScrollbars(navigationView!!)
+        //disableNavigationViewScrollbars(navigationView!!)
 
         tv_Name.setText(objSaveData.getString(ConstantValue.NAME))
         tv_Email.setText(objSaveData.getString(ConstantValue.EMAIL))

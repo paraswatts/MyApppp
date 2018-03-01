@@ -216,7 +216,7 @@ class GM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
 
         //=====================================\\
-        disableNavigationViewScrollbars(navigationView!!)
+        //disableNavigationViewScrollbars(navigationView!!)
 
         tv_Name.text = objSaveData.getString(ConstantValue.NAME)
         tv_Email.text = objSaveData.getString(ConstantValue.EMAIL)

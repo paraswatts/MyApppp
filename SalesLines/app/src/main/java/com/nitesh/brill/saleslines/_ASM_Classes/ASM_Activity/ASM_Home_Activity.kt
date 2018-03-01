@@ -202,7 +202,7 @@ class ASM_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelecte
                 drawer.openDrawer(GravityCompat.START)
             }
         }
-        disableNavigationViewScrollbars(navigationView!!)
+        //disableNavigationViewScrollbars(navigationView!!)
         //=====================================\\
         tv_Name.setText(objSaveData.getString(ConstantValue.NAME))
         tv_Email.setText(objSaveData.getString(ConstantValue.EMAIL))
