@@ -121,7 +121,7 @@ public class LocationJobService extends JobService implements LocationListener {
 
                     Criteria criteria = new Criteria();
                     criteria.setAccuracy(Criteria.ACCURACY_FINE);
-                    criteria.setPowerRequirement(Criteria.POWER_HIGH);
+                    criteria.setPowerRequirement(Criteria.POWER_LOW);
                     provider = locationManager.getBestProvider(criteria, false);
 
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -146,7 +146,7 @@ public class LocationJobService extends JobService implements LocationListener {
                     else
                     {
 
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000*60*5,100,this);
                         location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
                         if (location != null) {
@@ -172,7 +172,7 @@ public class LocationJobService extends JobService implements LocationListener {
 
                                 Log.e("Distance in meters",""+distanceInMeters +startLat+"===="+startLng+"====="+location.getLatitude()+"======="+location.getLongitude());
 
-                                if(distanceInMeters>300){
+                                if(distanceInMeters>150){
                                     startLat = location.getLatitude();
                                     startLng = location.getLongitude();
                                     Log.e("Lat Lng if distance",startLat+"===="+startLng);

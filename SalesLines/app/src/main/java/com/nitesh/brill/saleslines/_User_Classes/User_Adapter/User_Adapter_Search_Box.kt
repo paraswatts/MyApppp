@@ -3,6 +3,7 @@ package com.nitesh.brill.saleslines._User_Classes.User_Adapter
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.support.v4.app.FragmentActivity
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.text.Html
@@ -11,6 +12,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.*
 import com.nitesh.brill.saleslines.Common_Files.UsefullData
 import com.nitesh.brill.saleslines.R
@@ -23,16 +26,18 @@ import java.util.ArrayList
  * Created by Web Designing Brill on 04-07-2017.
  */
 
-class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:  List<GetAllLeadsData>) : RecyclerView.Adapter<User_Adapter_Search_Box.ViewHolder>(),Filterable {
+class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:  List<GetAllLeadsData>,private val selectedList:  List<GetAllLeadsData>) : RecyclerView.Adapter<User_Adapter_Search_Box.ViewHolder>(),Filterable {
 
 
-    private val mContext: Context
-    private var filterAlbumbList:  List<GetAllLeadsData>? = null
-
+    public val mContext: Context
+    public var filterAlbumbList:  List<GetAllLeadsData>? = null
+    public var filterSelectedList:  List<GetAllLeadsData>? = null
+    var lastPosition = -1
     init {
 
         this.mContext = mContext
         this.filterAlbumbList = albumList
+        this.filterSelectedList = selectedList
 
     }
 
@@ -82,6 +87,10 @@ class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:
         return ViewHolder(layout)
     }
 
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.clearAnimation()
+    }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var list = filterAlbumbList!![position]
         holder.tv_Date.setText(list.EnquiryDate)
@@ -120,7 +129,10 @@ class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:
             holder.iv_ImageView.setImageBitmap(decodedByte)
         }
 
+        val animation: Animation = AnimationUtils.loadAnimation(mContext,if(position>lastPosition){ R.anim.up_from_bottom}else {R.anim.down_from_top})
 
+             holder.itemView.startAnimation(animation);
+             lastPosition = position;
 
         holder.rl_RootLayput.setOnClickListener {
 
@@ -132,6 +144,16 @@ class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:
             fragmentTransaction.replace(R.id.content_frame, mFragment)
             fragmentTransaction.commit()
         }
+
+        if(filterSelectedList!!.contains(filterAlbumbList!!.get(position)))
+        {
+            holder.rl_RootLayput.setBackgroundColor(ContextCompat.getColor(mContext,R.color.colorPrimary))
+        }
+        else {
+            holder.rl_RootLayput.setBackgroundColor(ContextCompat.getColor(mContext,R.color.white))
+        }
+
+
     }
 
     override fun getItemCount(): Int {

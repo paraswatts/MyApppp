@@ -305,14 +305,28 @@ public class RecordService extends Service {
             Log.e("I am in stop ", "recorderStopped");
             String phoneNumber = objSaveData.getString("MobileNumber");
             if (phoneNumber.matches("[0-9]+")) {
-                Log.e("Phone matches", phoneNumber);
-                if(isConnected(getBaseContext())){
-                checkLeadExistOrNot(phoneNumber);
+                if (objSaveData.getString("role_id").equals("5")) {
+                    saveToDatabaseActivity();
+                    Log.e("Phone matches", phoneNumber);
+                    if(isConnected(getBaseContext())){
+                        checkLeadExistOrNot(phoneNumber);
+                    }
                 }
                 else{
-                    Log.e("Going to ","Database");
-                    saveToDatabaseActivity();
+                    File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
+                            for (File f : file.listFiles()) {
+                                if (f.getName().startsWith(objSaveData.getString("MobileNumber"))) {
+                                  //  Log.e("File delete karan laga", f.getAbsolutePath() + "");
+                                    f.delete();
+                                }
+                            }
                 }
+
+
+//                else{
+//                    saveToDatabaseActivity();
+//                }
+
             }
 
             Log.e("Phone Number call", phoneNumber);
@@ -335,69 +349,71 @@ public class RecordService extends Service {
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-            //    Log.d("URL", "=====" + response.raw().request().url());
-//                Log.e("=============", response.body().toString());
+               Log.d("URL", "=====" + response.raw().request().url());
+                Log.e("=============", response.body().toString());
                 String mExist = response.body().toString();
                 try {
                     if (mExist.equals("0")) {
-                    //    Log.e("Lead", "does not exist");
+                        //    Log.e("Lead", "does not exist");
 
-                        if (objSaveData.getString("role_id").equals("5")) {
-                            if (objSaveData.getString(objSaveData.getString("MobileNumber")).equals("yes")) {
-                             //   Log.e("Deleting files", "Else case");
-                                File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
-
-                                final File[] files = file.listFiles();
-                                for (File f : file.listFiles()) {
-                                    if (f.getName().startsWith(objSaveData.getString("MobileNumber"))) {
-                                     //   Log.e("File delete karan laga", f.getAbsolutePath() + "");
-                                        f.delete();
-                                    }
-                                }
-
-
-                                objSaveData.remove("MobileNumber");
-                                if (objSaveData.getString("MobileNumber") != null) {
-                                  //  Log.e("Key Removed", objSaveData.getString("MobileNumber"));
-                                }
-                            } else {
-                                Intent addLeadYesOrNo = new Intent(RecordService.this, CustomDialog.class);
-                                addLeadYesOrNo.putExtra("phoneNumber", phoneNumber);
-                                //addLeadYesOrNo.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                addLeadYesOrNo.putExtra("leadExist", "no");
-                                addLeadYesOrNo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(addLeadYesOrNo);
-                            }
-                        } else {
-
-                         //   Log.e("Deleting files", "Else case");
-                            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
-
-                            final File[] files = file.listFiles();
-                            for (File f : file.listFiles()) {
-                                if (f.getName().startsWith(objSaveData.getString("MobileNumber"))) {
-                                  //  Log.e("File delete karan laga", f.getAbsolutePath() + "");
-                                    f.delete();
-                                }
-                            }
-                            objSaveData.remove("MobileNumber");
-                            if (objSaveData.getString("MobileNumber") != null) {
-                               // Log.e("Key Removed", objSaveData.getString("MobileNumber"));
-                            }
-
-                        }
-
-                    } else {
-
-                      //  Log.e("", "Lead Already Exists");
-                        String phoneNumber = objSaveData.getString("MobileNumber");
-                        if (objSaveData.getString("role_id").equals("5")) {
-                          //  Log.e("Update Lead", "From user");
-                            getLeadEnquiryDetails(phoneNumber);
-                        }
+//                        if (objSaveData.getString("role_id").equals("5")) {
+//                            if (objSaveData.getString(objSaveData.getString("MobileNumber")).equals("yes")) {
+//                             //   Log.e("Deleting files", "Else case");
+//                                File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
+//
+//                                final File[] files = file.listFiles();
+//                                for (File f : file.listFiles()) {
+//                                    if (f.getName().startsWith(objSaveData.getString("MobileNumber"))) {
+//                                     //   Log.e("File delete karan laga", f.getAbsolutePath() + "");
+//                                        f.delete();
+//                                    }
+//                                }
+//
+//
+//                                objSaveData.remove("MobileNumber");
+//                                if (objSaveData.getString("MobileNumber") != null) {
+//                                  //  Log.e("Key Removed", objSaveData.getString("MobileNumber"));
+//                                }
+//                            } else {
+                        Intent addLeadYesOrNo = new Intent(RecordService.this, CustomDialog.class);
+                        addLeadYesOrNo.putExtra("phoneNumber", phoneNumber);
+                        //addLeadYesOrNo.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        addLeadYesOrNo.putExtra("leadExist", "no");
+                        addLeadYesOrNo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(addLeadYesOrNo);
+//                            }
+//                        } else {
+//
+//                         //   Log.e("Deleting files", "Else case");
+//                            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
+//
+//                            final File[] files = file.listFiles();
+//                            for (File f : file.listFiles()) {
+//                                if (f.getName().startsWith(objSaveData.getString("MobileNumber"))) {
+//                                  //  Log.e("File delete karan laga", f.getAbsolutePath() + "");
+//                                    f.delete();
+//                                }
+//                            }
+//                            objSaveData.remove("MobileNumber");
+//                            if (objSaveData.getString("MobileNumber") != null) {
+//                               // Log.e("Key Removed", objSaveData.getString("MobileNumber"));
+//                            }
 
 
+//                    }
                     }
+                    else {
+
+                            //  Log.e("", "Lead Already Exists");
+                            String phoneNumber = objSaveData.getString("MobileNumber");
+//                            if (objSaveData.getString("role_id").equals("5")) {
+                                //  Log.e("Update Lead", "From user");
+                                getLeadEnquiryDetails(phoneNumber);
+                            //}
+
+
+                        }
+
 
                 }catch (Exception e)
                 {
@@ -592,7 +608,7 @@ public class RecordService extends Service {
 //
 //
 //                    }
-                    uploadFilesUpdateLead(item.getString("eid"));
+                    //uploadFilesUpdateLead(item.getString("eid"));
 
                     //Log.e("Going to update","Updating");
 
@@ -611,43 +627,6 @@ public class RecordService extends Service {
         });
     }
 
-    private void uploadActivityFromFile(String audioFile) {
-
-        type = "yes";
-        Intent intent = new Intent(this, UploadService.class);
-        intent.putExtra("type", type);
-        intent.putExtra("audioFile", audioFile);
-        this.startService(intent);
-        //new UploadAsync().execute(audioFile);
-
-    }
-
-
-    private void uploadActivity() {
-        String fileName = null;
-        Log.e("========", fileName + "=======here you are======");
-
-        try {
-//            fileName = FileHelper.getFilename(objSaveData.getString("phoneNumber"));
-            fileName = mAudiofile.getAbsolutePath();
-            Log.e("", "File path paras" + fileName);
-            //new UploadAsync().execute(mFilePath);
-            type = "yes";
-            Intent intent = new Intent(this, UploadService.class);
-            intent.putExtra("type", type);
-            intent.putExtra("fileName", mAudioFileName);
-            intent.putExtra("audioFile", fileName);
-            this.startService(intent);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-
-
-    }
-
-
 
     private void saveToDatabaseActivity() {
         String fileName;
@@ -656,9 +635,15 @@ public class RecordService extends Service {
         Log.e("Saving audio","File to database");
         try {
             //fileName = FileHelper.getFilename(objSaveData.getString("phoneNumber"));
+            long fileSizeInBytes = mAudiofile.length();
+            long fileSizeInKB = fileSizeInBytes / 1024;
+
             fileName = mAudiofile.getAbsolutePath();
             audio.setAudioMobile(objSaveData.getString("MobileNumber"));
+            audio.setSize(String.valueOf(fileSizeInKB));
+            audio.setLeadId(objSaveData.getString("user_id"));
             audio.setAudioRecording(fileName);
+
             audioDbHelper.addAudio(audio);
         } catch (Exception e) {
             e.printStackTrace();

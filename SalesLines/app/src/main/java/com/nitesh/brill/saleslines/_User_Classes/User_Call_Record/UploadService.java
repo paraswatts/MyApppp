@@ -122,10 +122,10 @@ public class UploadService extends IntentService {
 
                 JSONObject jsonObject = new JSONObject();
                 String fileName = files[j].getAbsolutePath().substring(files[j].getAbsolutePath().lastIndexOf("/") + 1);
-                if (fileName.startsWith(objSaveData.getString("MobileNumber"))) {
+               // if (fileName.startsWith(objSaveData.getString("MobileNumber"))) {
                     Log.e("Uploading file","Name start with "+objSaveData.getString("MobileNumber"));
                     final int index = j;
-
+                    filePath = files[j].getAbsolutePath();
                     try {
                         FileInputStream fis = new FileInputStream(files[j]);
                         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -194,6 +194,8 @@ public class UploadService extends IntentService {
                                 notificationManager.cancelAll();
                                 Log.e("I am here", "");
                                 deleteFiles(files[index].getAbsolutePath());
+
+                                deleteRecords();
                                 //deleteRecords();
 
 
@@ -222,7 +224,7 @@ public class UploadService extends IntentService {
                     });
 
 
-                }
+               // }
             }
         }
 

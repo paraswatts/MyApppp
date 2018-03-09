@@ -15,6 +15,9 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 }
 
 dependencies {
@@ -42,6 +45,7 @@ dependencies {
     compile 'com.github.sujithkanna:smileyrating:1.6.8'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    compile 'com.android.support:multidex:1.0.1'
 
     compile 'com.google.firebase:firebase-messaging:11.6.2'
 

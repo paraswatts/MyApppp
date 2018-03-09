@@ -10,6 +10,18 @@ public class Audio {
 
     String audioMobile;
 
+    String leadId;
+
+    String size;
+
+    public String getSize(){return size;}
+
+    public void setSize(String size){this.size = size;}
+
+    public String getLeadId(){return leadId;}
+
+    public void setLeadId(String leadId){this.leadId = leadId;}
+
     public String getAudioMobile(){return audioMobile;}
 
     public void setAudioMobile(String audioMobile){this.audioMobile = audioMobile;}

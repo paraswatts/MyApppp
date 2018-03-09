@@ -128,7 +128,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 .setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL)
                 .setLifetime(Lifetime.FOREVER)
                 .setRecurring(false)
-                .setTrigger(Trigger.executionWindow(0, 300))
+                .setTrigger(Trigger.executionWindow(0, 60))
                 .setConstraints(
                         // only run on an unmetered network
                         Constraint.ON_ANY_NETWORK
@@ -721,6 +721,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
             e.printStackTrace()
         }
     }
+
 
     fun saveLocation(latitude: Double?, longitude: Double?) {
         objSaveData = SaveData(this)

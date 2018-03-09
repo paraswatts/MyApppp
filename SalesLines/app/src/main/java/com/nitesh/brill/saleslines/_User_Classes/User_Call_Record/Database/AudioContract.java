@@ -154,7 +154,11 @@ public final class AudioContract {
 
         public final static String COLUMN_AUDIO_FILE ="filename";
 
-        public final static String COLUMN_AUDIO_ENQ_ID ="audio_enqid";
+        public final static String COLUMN_AUDIO_SIZE ="audio_size";
+
+
+        public final static String COLUMN_AUDIO_LEAD_ID ="audio_leadid";
+
 
         public final static String COLUMN_AUDIO_MOBILE_NUMBER ="audio_mobile";
 

@@ -30,8 +30,10 @@ import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.view.inputmethod.InputMethodManager
+import com.nitesh.brill.saleslines._User_Classes.User_PojoClass.RecyclerItemClickListener
+import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.toast
 
 
 class User_Search_Fragment : BaseFragment() {
@@ -39,6 +41,9 @@ class User_Search_Fragment : BaseFragment() {
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
+    var context_menu: Menu? = null
+    var mActionMode: ActionMode? = null
+    var isMultiSelect = false
 
     //http://console.salelinecrm.com/saleslineapi/GetDemoStageProduct/95/null
     private var isOpen = false
@@ -48,6 +53,8 @@ class User_Search_Fragment : BaseFragment() {
 
 
     private val dataList: MutableList<GetAllLeadsData> = ArrayList()
+
+    private var multiselect_List: MutableList<GetAllLeadsData> = ArrayList()
 
     //=============================\\
 
@@ -186,7 +193,7 @@ class User_Search_Fragment : BaseFragment() {
 
                 val mLayoutManager = GridLayoutManager(activity, 1)
                 rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
-                adapterSearch = User_Adapter_Search_Box(activity, filteredList)
+                adapterSearch = User_Adapter_Search_Box(activity, filteredList,multiselect_List)
 
                 rc_RecyclerView!!.adapter = adapterSearch
 
@@ -195,7 +202,116 @@ class User_Search_Fragment : BaseFragment() {
             }
 
         })
+//
 
+        rc_RecyclerView.addOnItemTouchListener (
+            RecyclerItemClickListener(
+                    context,
+                    rc_RecyclerView,
+                    object : RecyclerItemClickListener.OnItemClickListener {
+                        override fun onItemClick(view: View, position: Int) {
+                            if (isMultiSelect)
+                                multi_select(position);
+                            else{}
+
+                        }
+
+
+                        override fun onItemLongClick(view: View?, position: Int) {
+                            if (!isMultiSelect){
+
+                                multiselect_List = ArrayList<GetAllLeadsData>()
+                                isMultiSelect = true;
+                                if (mActionMode == null) {
+                                    mActionMode = activity.startActionMode(mActionModeCallback);
+                                }
+                        }
+                            multi_select(position);
+
+                        }
+
+
+                        }
+            )
+        )
+
+    }
+
+     fun multi_select(position:Int) {
+        if (mActionMode != null) {
+            if (multiselect_List.contains(dataList.get(position)))
+                multiselect_List.remove(dataList.get(position));
+            else
+                multiselect_List.add(dataList.get(position));
+
+            if (multiselect_List.size > 0)
+                mActionMode!!.setTitle("" + multiselect_List.size);
+            else
+                mActionMode!!.setTitle("");
+
+            refreshAdapter();
+
+        }
+    }
+
+    var mActionModeCallback:ActionMode.Callback = object:ActionMode.Callback{
+        override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+            when (item!!.getItemId()) {
+                R.id.action_email -> {
+                    alert("Send Email","") {
+                        positiveButton("Yes") {
+                            toast("Total selected count for email is "+multiselect_List.size)
+                        }
+                        negativeButton("No") {
+                            toast("Email sending cancelled")
+                        }
+                    }.show()
+                    //alertDialogHelper.showAlertDialog("", "Delete Contact", "DELETE", "CANCEL", 1, false)
+                    return true
+                }
+                R.id.action_sms->{
+                    alert("Send SMS","") {
+                        positiveButton("Yes") {
+                            toast("Total selected count for sms is "+multiselect_List.size)
+                        }
+                        negativeButton("No") {
+                            toast("SMS sending cancelled")
+                        }
+                    }.show()
+                    return true;
+                }
+                else -> return false
+            }
+        }
+
+        override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+            var inflater:MenuInflater = mode!!.getMenuInflater();
+
+            inflater.inflate(R.menu.menu_multi_select, menu);
+            context_menu = menu;
+            return true;
+        }
+
+        override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+            return false; // Return false if nothing is done
+
+        }
+
+        override fun onDestroyActionMode(mode: ActionMode?) {
+            mActionMode = null
+            isMultiSelect = false
+            //multiselect_List: MutableList<GetAllLeadsData> = ArrayList()
+            multiselect_List = ArrayList<GetAllLeadsData>()
+
+            refreshAdapter()
+        }
+    }
+
+
+        fun refreshAdapter() {
+            adapterSearch!!.filterSelectedList = multiselect_List
+            adapterSearch!!.filterAlbumbList = dataList
+            adapterSearch!!.notifyDataSetChanged()
     }
 
     private fun callSearch() {
@@ -415,7 +531,7 @@ class User_Search_Fragment : BaseFragment() {
                                     dataList.add(data)
                                 }
 
-                                adapterSearch = User_Adapter_Search_Box(activity, dataList)
+                                adapterSearch = User_Adapter_Search_Box(activity, dataList,multiselect_List)
                                 val mLayoutManager = GridLayoutManager(activity, 1)
                                 rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
                                 rc_RecyclerView!!.adapter = adapterSearch
@@ -630,7 +746,7 @@ class User_Search_Fragment : BaseFragment() {
                                     , ManagerId = item.getString("Mgr"), UserId = item.getString("saleman"))
                             dataList.add(data)
                         }
-                        adapterSearch = User_Adapter_Search_Box(activity, dataList)
+                        adapterSearch = User_Adapter_Search_Box(activity, dataList,multiselect_List)
                         val mLayoutManager = GridLayoutManager(activity, 1)
                         rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
                         rc_RecyclerView!!.adapter = adapterSearch
@@ -690,7 +806,7 @@ class User_Search_Fragment : BaseFragment() {
                             dataList.add(data)
                         }
 
-                        adapterSearch = User_Adapter_Search_Box(activity, dataList)
+                        adapterSearch = User_Adapter_Search_Box(activity, dataList,multiselect_List)
                         val mLayoutManager = GridLayoutManager(activity, 1)
                         rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
                         rc_RecyclerView!!.adapter = adapterSearch
@@ -749,7 +865,7 @@ class User_Search_Fragment : BaseFragment() {
                             dataList.add(data)
                         }
 
-                        adapterSearch = User_Adapter_Search_Box(activity, dataList)
+                        adapterSearch = User_Adapter_Search_Box(activity, dataList,multiselect_List)
                         val mLayoutManager = GridLayoutManager(activity, 1)
                         rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
                         rc_RecyclerView!!.adapter = adapterSearch
@@ -807,7 +923,7 @@ class User_Search_Fragment : BaseFragment() {
                             dataList.add(data)
                         }
 
-                        adapterSearch = User_Adapter_Search_Box(activity, dataList)
+                        adapterSearch = User_Adapter_Search_Box(activity, dataList,multiselect_List)
                         val mLayoutManager = GridLayoutManager(activity, 1)
                         rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
                         rc_RecyclerView!!.adapter = adapterSearch
@@ -871,7 +987,7 @@ class User_Search_Fragment : BaseFragment() {
                             dataList.add(data)
                         }
 
-                        adapterSearch = User_Adapter_Search_Box(activity, dataList)
+                        adapterSearch = User_Adapter_Search_Box(activity, dataList,multiselect_List)
                         val mLayoutManager = GridLayoutManager(activity, 1)
                         rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
                         rc_RecyclerView!!.adapter = adapterSearch
@@ -933,7 +1049,7 @@ class User_Search_Fragment : BaseFragment() {
                             dataList.add(data)
                         }
 
-                        adapterSearch = User_Adapter_Search_Box(activity, dataList)
+                        adapterSearch = User_Adapter_Search_Box(activity, dataList,multiselect_List)
                         val mLayoutManager = GridLayoutManager(activity, 1)
                         rc_RecyclerView!!.layoutManager = mLayoutManager as RecyclerView.LayoutManager?
                         rc_RecyclerView!!.adapter = adapterSearch

@@ -546,6 +546,8 @@ class UsefullData(private val _context: Context) : ConstantValue {
 
 
                                 et_NextInteractionDate.setText(setFormat((monthOfYear + 1).toString()) + "/" + setFormat(dayOfMonth.toString()) + "/" + year + " " + get_Time(hourOfDay, minute))
+                                Log.e("Time while updating","lead"+et_NextInteractionDate.text)
+
 
                             }, mHour, mMinute, false)
 
@@ -558,7 +560,6 @@ class UsefullData(private val _context: Context) : ConstantValue {
         datePickerDialog.setTitle(null)
 
         datePickerDialog.show()
-
 
 
         return time
