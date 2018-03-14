@@ -141,6 +141,7 @@ class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:
             var mFragment = User_Update_Lead_Details.newInstance(list.EnquiryId, list.LeadId, list.DemoId, "" + list.rating, list.ManagerId, list.UserId)
             val fragmentManager = (mContext as AppCompatActivity).supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
+            //val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right)
             fragmentTransaction.replace(R.id.content_frame, mFragment)
             fragmentTransaction.commit()
         }

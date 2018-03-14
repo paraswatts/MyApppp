@@ -50,6 +50,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Call;
@@ -183,6 +184,7 @@ public class RecordService extends Service {
 
                     //this.startActivity(customDialog);
                 } else if (commandType == Constants.STATE_CALL_START) {
+                    objSaveData.saveBoolean("onCall",true);
                     Log.e(Constants.TAG, "RecordService STATE_CALL_START");
                     onCall = true;
                    // Log.e(Constants.TAG, "Phone check kar dujji wari  " +objSaveData.getString("phoneNumber"));
@@ -198,6 +200,7 @@ public class RecordService extends Service {
                     Log.e(Constants.TAG, "RecordService STATE_CALL_END");
                     onCall = false;
                     phoneNumber = null;
+                    objSaveData.saveBoolean("onCall",false);
 
 
                     stopAndReleaseRecorder();
@@ -523,42 +526,16 @@ public class RecordService extends Service {
                 try {
                     JSONArray array = new JSONArray(response.body().toString());
 
-//                    for ( int i = 0; i< array.length() ;i++) {
                     final JSONObject item = array.getJSONObject(0);
 
                     final Intent  updateLeadIntent = new Intent(getApplicationContext(), User_Home_Activity.class);
 
-//                        if(objSaveData.getString("role_id").equals("4")) {
-//                            Log.e("Update Lead","From manager");
-//                            updateLeadIntent = new Intent(getApplicationContext(), Manager_Home_Activity.class);
-//                        }
-//
-//                        if(objSaveData.getString("role_id").equals("3")) {
-//                            Log.e("Update Lead","From asm");
-//                            updateLeadIntent = new Intent(getApplicationContext(), ASM_Home_Activity.class);
-//                        }
-//
-//                        if(objSaveData.getString("role_id").equals("2")) {
-//                            Log.e("Update Lead","From agm");
-//                            updateLeadIntent = new Intent(getApplicationContext(), AGM_Home_Activity.class);
-//                        }
-//
-//                        if(objSaveData.getString("role_id").equals("1")) {
-//                            Log.e("Update Lead","From gm");
-//                            updateLeadIntent = new Intent(getApplicationContext(), GM_Home_Activity.class);
-//                        }
 
                     updateLeadIntent.putExtra("addLeadFromCall", "updateLead");
                     if (!item.getString("LeadId").equals(null) && !item.getString("LeadId").equals("null")) {
                         //Log.e("Lead id ", "Updatecall is " + item.getString("LeadId"));
                         updateLeadIntent.putExtra("leadId", item.getString("LeadId"));
                     }
-
-//                    if (!item.getString("UserId").equals(null) && !item.getString("UserId").equals("null")) {
-//                        Log.e("UserId id ", "Updatecall is " + item.getString("UserId"));
-//                        updateLeadIntent.putExtra("userId", item.getString("UserId"));
-//
-//                    }
 
                     if (!item.getString("Rating").equals(null) && !item.getString("Rating").equals("null")) {
                         //Log.e("Rating id ", "Updatecall is " + item.getString("Rating"));
@@ -589,11 +566,6 @@ public class RecordService extends Service {
 
                             }
                         });
-
-
-
-                        //mDemoId = getDemoIdFromServer(item.getString("eid"));
-
                     }
 
 //                    if (!item.getString("eid").equals(null) && !item.getString("eid").equals("null")) {
@@ -639,6 +611,8 @@ public class RecordService extends Service {
             long fileSizeInKB = fileSizeInBytes / 1024;
 
             fileName = mAudiofile.getAbsolutePath();
+            String time = new SimpleDateFormat("dd/MM/yyyy hh:mm:a").format(Calendar.getInstance().getTime());
+            audio.setAudioDate(time);
             audio.setAudioMobile(objSaveData.getString("MobileNumber"));
             audio.setSize(String.valueOf(fileSizeInKB));
             audio.setLeadId(objSaveData.getString("user_id"));

@@ -71,7 +71,7 @@ class Manager_Inactive_UserFragment : BaseFragment() {
 
     private fun sendInactiveUserData() {
 
-        objUsefullData.showProgress("Please Waitt...", "")
+        objUsefullData.showProgress("Please Wait...", "")
         val paramObject = JSONObject()
         paramObject.put("Status", "In-Active")
         paramObject.put("UserId", mParam2)

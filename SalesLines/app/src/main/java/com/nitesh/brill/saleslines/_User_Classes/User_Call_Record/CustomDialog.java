@@ -104,28 +104,6 @@ public class CustomDialog extends AppCompatActivity implements ConstantValue {
                 bt_no.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
-                        try {
-                            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
-
-                            final File[] files = file.listFiles();
-                            for (File f : file.listFiles()) {
-                                if (f.getName().startsWith(saveData.getString("MobileNumber"))) {
-                                    Log.e("File delete karan laga", f.getAbsolutePath() + "");
-                                    f.delete();
-                                }
-                            }
-
-                            saveData.save(saveData.getString("MobileNumber"), "yes");
-                            saveData.remove("MobileNumber");
-                            if (saveData.getString("MobileNumber") != null) {
-                                Log.e("Key Removed", saveData.getString("MobileNumber"));
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            e.printStackTrace();
-                        }
-//
 //
                         finish();
                     }
@@ -148,81 +126,81 @@ public class CustomDialog extends AppCompatActivity implements ConstantValue {
         bt_no   = (Button) findViewById(R.id.bt_no);
     }
 
-    @Override
-    protected void onPause() {
-        try {
-            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
-
-            final File[] files = file.listFiles();
-            for (File f : file.listFiles()) {
-                if (f.getName().startsWith(saveData.getString("MobileNumber"))) {
-                    Log.e("File delete karan laga", "on Pause"+f.getAbsolutePath() + "");
-                    f.delete();
-                }
-            }
-
-            saveData.save(saveData.getString("MobileNumber"), "yes");
-            saveData.remove("MobileNumber");
-            if (saveData.getString("MobileNumber") != null) {
-                Log.e("Key Removed", saveData.getString("MobileNumber"));
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        super.onPause();
-    }
-
-    @Override
-    public void onBackPressed() {
-        try {
-            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
-
-            final File[] files = file.listFiles();
-            for (File f : file.listFiles()) {
-                if (f.getName().startsWith(saveData.getString("MobileNumber"))) {
-                    Log.e("File delete karan laga", "on Back Pressed"+f.getAbsolutePath() + "");
-                    f.delete();
-                }
-            }
-
-            saveData.save(saveData.getString("MobileNumber"), "yes");
-            saveData.remove("MobileNumber");
-            if (saveData.getString("MobileNumber") != null) {
-                Log.e("Key Removed", saveData.getString("MobileNumber"));
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        super.onBackPressed();
-    }
-
-    @Override
-    protected void onDestroy() {
-        try {
-            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
-
-            final File[] files = file.listFiles();
-            for (File f : file.listFiles()) {
-                if (f.getName().startsWith(saveData.getString("MobileNumber"))) {
-                    Log.e("File delete karan laga", "on destroy"+f.getAbsolutePath() + "");
-                    f.delete();
-                }
-            }
-
-            saveData.save(saveData.getString("MobileNumber"), "yes");
-            saveData.remove("MobileNumber");
-            if (saveData.getString("MobileNumber") != null) {
-                Log.e("Key Removed", saveData.getString("MobileNumber"));
-            }
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-
-        }
-        super.onDestroy();
-    }
+//    @Override
+//    protected void onPause() {
+//        try {
+//            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
+//
+//            final File[] files = file.listFiles();
+//            for (File f : file.listFiles()) {
+//                if (f.getName().startsWith(saveData.getString("MobileNumber"))) {
+//                    Log.e("File delete karan laga", "on Pause"+f.getAbsolutePath() + "");
+//                    f.delete();
+//                }
+//            }
+//
+//            saveData.save(saveData.getString("MobileNumber"), "yes");
+//            saveData.remove("MobileNumber");
+//            if (saveData.getString("MobileNumber") != null) {
+//                Log.e("Key Removed", saveData.getString("MobileNumber"));
+//            }
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        super.onPause();
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        try {
+//            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
+//
+//            final File[] files = file.listFiles();
+//            for (File f : file.listFiles()) {
+//                if (f.getName().startsWith(saveData.getString("MobileNumber"))) {
+//                    Log.e("File delete karan laga", "on Back Pressed"+f.getAbsolutePath() + "");
+//                    f.delete();
+//                }
+//            }
+//
+//            saveData.save(saveData.getString("MobileNumber"), "yes");
+//            saveData.remove("MobileNumber");
+//            if (saveData.getString("MobileNumber") != null) {
+//                Log.e("Key Removed", saveData.getString("MobileNumber"));
+//            }
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        super.onBackPressed();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        try {
+//            File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
+//
+//            final File[] files = file.listFiles();
+//            for (File f : file.listFiles()) {
+//                if (f.getName().startsWith(saveData.getString("MobileNumber"))) {
+//                    Log.e("File delete karan laga", "on destroy"+f.getAbsolutePath() + "");
+//                    f.delete();
+//                }
+//            }
+//
+//            saveData.save(saveData.getString("MobileNumber"), "yes");
+//            saveData.remove("MobileNumber");
+//            if (saveData.getString("MobileNumber") != null) {
+//                Log.e("Key Removed", saveData.getString("MobileNumber"));
+//            }
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//
+//        }
+//        super.onDestroy();
+//    }
 }

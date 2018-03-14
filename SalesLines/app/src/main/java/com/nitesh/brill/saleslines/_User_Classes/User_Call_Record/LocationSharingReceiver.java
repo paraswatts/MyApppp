@@ -99,21 +99,15 @@ public class LocationSharingReceiver extends JobService implements GoogleApiClie
                     // GPSTracker gpsTracker1 = new GPSTracker(getBaseContext());
                     //gpsTracker1.getLocation();
 //
-                    if (mGoogleApiClient != null) {
+                    mGoogleApiClient = new GoogleApiClient.Builder(this)
+                            .addApi(LocationServices.API)
+                            .addConnectionCallbacks(this)
+                            .addOnConnectionFailedListener(this)
+                            .build();
+
+                    if (!mGoogleApiClient.isConnected() || !mGoogleApiClient.isConnecting()) {
                         mGoogleApiClient.connect();
                     }
-
-
-
-                    if (checkPlayServices()) {
-
-                        // Building the GoogleApi client
-                        buildGoogleApiClient();
-
-                        createLocationRequest();
-                    }
-
-
 
                     FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
                     Job myJob = dispatcher.newJobBuilder()

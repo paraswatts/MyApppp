@@ -25,6 +25,7 @@ import com.nitesh.brill.saleslines.Common_Files.ConstantValue
 import com.nitesh.brill.saleslines.Common_Files.UsefullData
 import com.nitesh.brill.saleslines.R
 import kotlinx.android.synthetic.main.fragment_user_sale_clouser.*
+import kotlinx.android.synthetic.main.fragment_user_update_enquiry.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONArray
@@ -45,6 +46,16 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
     private var mParam3: String? = null
     private var mParam4: String? = null
     private var mParam5: String? = null
+    private var demoDate: String? = null
+    private var leadStage: String? = null
+    private var Comments: String? = null
+    private var ResponseOfInteraction: String? = null
+    private var Rating: String? = null
+    private var H: String? = null
+    private var W: String? = null
+    private var C: String? = null
+
+
     var ImageName_PC: String? = null
     var Img_PC: String = ""
     private var userfile_profile: File? = null
@@ -59,6 +70,16 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
             mParam3 = arguments.getString(ARG_PARAM3)
             mParam4 = arguments.getString(ARG_PARAM4)
             mParam5 = arguments.getString(ARG_PARAM5)
+            demoDate = arguments.getString(ARG_PARAM6)
+            leadStage = arguments.getString(ARG_PARAM7)
+            Comments = arguments.getString(ARG_PARAM8)
+            ResponseOfInteraction = arguments.getString(ARG_PARAM10)
+            Rating = arguments.getString(ARG_PARAM11)
+            H = arguments.getString(ARG_PARAM12)
+            W = arguments.getString(ARG_PARAM13)
+            C = arguments.getString(ARG_PARAM14)
+
+
         }
     }
 
@@ -79,11 +100,9 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
 
         et_EmiDate.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                //    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -144,7 +163,7 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
 
             if (checkValidation()) {
                 if (isNetworkConnected)
-                    mSaveSaleClosedDeatails()
+                    sendSaleCloseLeadDemoDetails()//mSaveSaleClosedDeatails()
             }
         }
 
@@ -257,6 +276,151 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
 
     }
 
+    private fun sendSaleCloseLeadDemoDetails() {
+
+
+        objUsefullData.showProgress("Please Wait...", "")
+        val paramObject = JSONObject()
+        paramObject.put("LeadId", mParam1)
+        paramObject.put("DemoDate", demoDate)
+        paramObject.put("LeadSource", "")
+        paramObject.put("LeadStage", leadStage)
+        paramObject.put("InteractProduct", ARG_PARAM5)
+        paramObject.put("Interaction_By", "")
+        paramObject.put("Interaction_On", "1/1/1900 0:00:00")
+        paramObject.put("Comments",Comments )
+        paramObject.put("ResponseOfInteraction", ResponseOfInteraction)
+        paramObject.put("Rating", Rating!!)
+        paramObject.put("H_Checked", H!!)
+        paramObject.put("W_Checked", W!!)
+        paramObject.put("C_Checked", C!!)
+        paramObject.put("EnquiryId", mParam2)
+        paramObject.put("DemoId", mParam3)
+
+        UsefullData.Log("========sendDataToServerForUpdate==========" + paramObject.toString())
+
+
+        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
+
+
+        val mCall = apiEndpointInterface!!.mSaleCloseLeadDemoDetails("" + mParam3, body)
+
+        mCall.enqueue(object : Callback<JsonElement> {
+            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+                objUsefullData.dismissProgress()
+                objUsefullData. getThrowableException(t)
+                UsefullData.Log("onFailure ===" + t)
+            }
+
+            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                objUsefullData.dismissProgress()
+                Log.d("URL", "===" + response!!.raw().request().url())
+                try {
+
+                    if (response.isSuccessful) {
+                        UsefullData.Log("User_Response    " + response.body().toString())
+
+
+                        var array = JSONArray(response!!.body().toString())
+                        var success = ""
+                        for (i in 0..(array.length() - 1)) {
+                            val item = array.getJSONObject(0)
+                            success = item.optString("Success")
+
+                        }
+                        if (success.equals("1")) {
+                            //objUsefullData.showMsgOnUI("Successfully Saved")
+                            //=================================\\
+                            sendUpdateEnqDetails_()
+
+                        } else {
+                            objUsefullData.showMsgOnUI("Update failed")
+                        }
+                    } else {
+
+                        UsefullData.Log("========" + response.code())
+                        objUsefullData.showMsgOnUI(activity.resources.getString(R.string.server_error))
+
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+            }
+
+        })
+
+
+    }
+
+    private fun sendUpdateEnqDetails_() {
+
+        objUsefullData.showProgress("Please Wait...", "")
+        val paramObject = JSONObject()
+        paramObject.put("IneterestProduct", ARG_PARAM5)
+        paramObject.put("LeadStage", leadStage)
+        paramObject.put("Status", "A")
+        paramObject.put("NextInteractionBy", "")
+        paramObject.put("NextInteractionDate", "1/1/1900 0:00:00")
+        paramObject.put("DemoGivenDate", demoDate)
+        paramObject.put("EnquiryId", mParam2)
+        paramObject.put("LeadId", mParam1)
+        UsefullData.Log("========sendDataToServerForUpdate==========" + paramObject.toString())
+        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
+
+        val mCall = apiEndpointInterface!!.mUpdateEnquiryDetails("" + mParam2, "" + mParam1, body)
+
+        mCall.enqueue(object : Callback<JsonElement> {
+            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+                objUsefullData.dismissProgress()
+                objUsefullData. getThrowableException(t)
+                UsefullData.Log("onFailure ===" + t)
+            }
+
+            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                objUsefullData.dismissProgress()
+                Log.d("URL", "===" + response!!.raw().request().url())
+
+                try {
+                    if (response.isSuccessful) {
+
+                        UsefullData.Log("User_Response    " + response.body().toString())
+
+
+                        var array = JSONArray(response!!.body().toString())
+                        var success = ""
+                        for (i in 0..(array.length() - 1)) {
+                            val item = array.getJSONObject(0)
+                            success = item.optString("Success")
+
+                        }
+
+                        if (success.equals("1")) {
+                            //objUsefullData.showMsgOnUI("Successfully Update")
+                            mSaveSaleClosedDeatails()
+//                            var mFragment = User_Sale_Clouser_Fragment.newInstance("" + mLeadId, "" + mEnqId, "" + mDemoId, "" + mEnqNumber, "" + InteractProduct)
+//                            val fragmentManager = fragmentManager
+//                            val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
+//                            fragmentTransaction.replace(R.id.content_frame, mFragment)
+//                            fragmentTransaction.commit()
+
+                        } else {
+                            objUsefullData.showMsgOnUI("Update Failed")
+                        }
+                    } else {
+
+                        UsefullData.Log("========" + response.code())
+                        objUsefullData.showMsgOnUI(activity.resources.getString(R.string.server_error))
+
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+            }
+
+        })
+
+
+    }
 
     private fun closedLead() {
 
@@ -343,13 +507,12 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+        //super.onActivityResult(requestCode, resultCode, data)
+
 
         when (requestCode) {
+                GALLERY_REQUEST -> if (Activity.RESULT_OK == resultCode) {
 
-            GALLERY_REQUEST -> if (Activity.RESULT_OK == resultCode) {
-
-                try {
                     // When an Image is picked
 
                     val picturePath = getPath(data!!.data)
@@ -357,7 +520,7 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
                     userfile_profile = File(picturePath)
 
                     var length = userfile_profile!!.length()
-                    length = length/1024
+                    length = length / 1024
 
 //                    if(length>200)
 //                    {
@@ -367,21 +530,21 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
 //                    else {
 //
 
-                        val imgBmp = BitmapFactory.decodeFile((picturePath))
+                    val imgBmp = BitmapFactory.decodeFile((picturePath))
 
 
-                        iv_Document!!.setImageBitmap(imgBmp)
+                    iv_Document!!.setImageBitmap(imgBmp)
 
-                        reCreateFile(imgBmp)
-                   // }
+                    reCreateFile(imgBmp)
+                    // }
 
-                } catch (e: Exception) {
-
-                    Toast.makeText(activity, "Something went wrong", Toast.LENGTH_LONG).show()
-                    UsefullData.Log("================" + e.printStackTrace())
                 }
             }
-        }
+
+
+
+
+
     }
 
     // ==========================================//
@@ -463,10 +626,33 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
         private val ARG_PARAM3 = "param3"
         private val ARG_PARAM4 = "param4"
         private val ARG_PARAM5 = "param5"
+        private val ARG_PARAM6 = "demoDate"
+        private val ARG_PARAM7 = "leadStage"
+        private val ARG_PARAM8 = "InteractProduct"
+        private val ARG_PARAM9 = "Comments"
+        private val ARG_PARAM10 = "ResponseOfInteraction"
+        private val ARG_PARAM11 = "Rating"
 
+        private val ARG_PARAM12 = "H"
+        private val ARG_PARAM13 = "W"
+        private val ARG_PARAM14 = "C"
 
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String, param3: String, s: String, s1: String): User_Sale_Clouser_Fragment {
+        fun newInstance(param1: String,
+                        param2: String,
+                        param3: String,
+                        s: String,
+                        s1: String,
+                        demoDate:String,
+                        leadStage:String,
+                        InteractProduct:String,
+                        Comments:String,
+                        ResponseOfInteraction:String,
+                        Rating:String,
+                        H:String,
+                        W:String,
+                        C:String
+                        ): User_Sale_Clouser_Fragment {
             val fragment = User_Sale_Clouser_Fragment()
 
             val args = Bundle()
@@ -475,6 +661,16 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
             args.putString(ARG_PARAM3, param3)
             args.putString(ARG_PARAM4, s)
             args.putString(ARG_PARAM5, s1)
+            args.putString(ARG_PARAM6, demoDate)
+            args.putString(ARG_PARAM7, leadStage)
+            args.putString(ARG_PARAM8, InteractProduct)
+            args.putString(ARG_PARAM9, Comments)
+            args.putString(ARG_PARAM10, ResponseOfInteraction)
+            args.putString(ARG_PARAM11, Rating)
+            args.putString(ARG_PARAM12, H)
+            args.putString(ARG_PARAM13, W)
+            args.putString(ARG_PARAM14, C)
+
             fragment.arguments = args
             return fragment
         }
@@ -547,4 +743,5 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
         }
         return true
     }
-}// Required empty public constructor
+}
+// Required empty public constructor

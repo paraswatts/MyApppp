@@ -1,5 +1,6 @@
 package com.nitesh.brill.saleslines._User_Classes.User_Call_Record;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -18,7 +19,9 @@ import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.RetryStrategy;
 import com.firebase.jobdispatcher.Trigger;
 import com.google.gson.JsonElement;
+import com.nitesh.brill.saleslines.Common_Files.ConstantValue;
 import com.nitesh.brill.saleslines.Common_Files.SaveData;
+import com.nitesh.brill.saleslines.Common_Files.UpdateProfilePicture;
 import com.nitesh.brill.saleslines.Ritrofit.ApiEndpointInterface;
 import com.nitesh.brill.saleslines._User_Classes.User_Activity.User_Home_Activity;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioDbHelper;
@@ -43,7 +46,7 @@ import retrofit2.Response;
 public class ScheduledJobService extends JobService {
     SaveData objSaveData;
     RetrofitAPI retrofitAPI;
-
+    Activity activity;
     @Override
     public boolean onStartJob(JobParameters job) {
         String time1 = new SimpleDateFormat("hh:mm:ss aa").format(Calendar.getInstance().getTime());
@@ -55,8 +58,9 @@ public class ScheduledJobService extends JobService {
 
 
 
-
             if(objSaveData.getBoolean("loginState")){
+                Intent intent = new Intent("INTENT_PROFILE");
+                sendBroadcast(intent);
                 if(objSaveData.getString("role_id").equals("5"))
                     {
                         if (dbHelper.getNoCountUserLocation(objSaveData.getString("LoginId"), "no") > 0) {

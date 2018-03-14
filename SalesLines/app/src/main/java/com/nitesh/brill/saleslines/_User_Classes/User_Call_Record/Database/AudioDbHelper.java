@@ -28,6 +28,7 @@ import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Notification;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Reminders;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.UserCoordinates;
 
+import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_AUDIO_DATE;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_AUDIO_FILE;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_AUDIO_LEAD_ID;
 import static com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract.AudioEntry.COLUMN_AUDIO_MOBILE_NUMBER;
@@ -100,7 +101,7 @@ public class AudioDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     /**
      * Constructs a new instance of {@link AudioDbHelper}.
@@ -124,7 +125,8 @@ public class AudioDbHelper extends SQLiteOpenHelper {
                 + COLUMN_AUDIO_FILE + " TEXT NOT NULL,"
                 + COLUMN_AUDIO_LEAD_ID + " TEXT NOT NULL,"
                 + COLUMN_AUDIO_SIZE + " TEXT NOT NULL,"
-                + COLUMN_AUDIO_MOBILE_NUMBER + " TEXT NOT NULL " + ")";
+                + COLUMN_AUDIO_MOBILE_NUMBER + " TEXT NOT NULL,"
+                + COLUMN_AUDIO_DATE + " TEXT NOT NULL " + ")";
 
 
 
@@ -199,7 +201,7 @@ public class AudioDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // The database is still at version 1, so there's nothing to do be done here.
 
-        db.execSQL("ALTER TABLE " + TABLE_AUDIO +" ADD COLUMN "+ COLUMN_AUDIO_MOBILE_NUMBER);
+        db.execSQL("ALTER TABLE " + TABLE_AUDIO +" ADD COLUMN "+ COLUMN_AUDIO_DATE);
 
        // onCreate(db);
     }
@@ -254,6 +256,7 @@ public class AudioDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_AUDIO_SIZE, audio.getSize());
         values.put(COLUMN_AUDIO_LEAD_ID, audio.getLeadId());
         values.put(COLUMN_AUDIO_MOBILE_NUMBER, audio.getAudioMobile());
+        values.put(COLUMN_AUDIO_DATE, audio.getAudioDate());
 
         db.insert(AudioEntry.TABLE_AUDIO, null, values);
         db.close();

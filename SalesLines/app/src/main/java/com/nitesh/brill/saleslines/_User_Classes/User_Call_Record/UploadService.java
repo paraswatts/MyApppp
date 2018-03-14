@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import okhttp3.RequestBody;
@@ -53,17 +54,16 @@ public class UploadService extends IntentService {
      * Creates an IntentService.  Invoked by your subclass's constructor.
      */
 
-    static String filePath;
     Context context;
 
     public UploadService() {
         super("Download Service");
     }
 
-    public void deleteRecords() {
+    public void deleteRecords(String _id) {
 
         AudioDbHelper audioDbHelper = new AudioDbHelper(getApplicationContext());
-        String query = "Delete from " + AudioContract.AudioEntry.TABLE_AUDIO + "where filename = " + filePath;
+        String query = "Delete from " + AudioContract.AudioEntry.TABLE_AUDIO + " where _id = " + "'"+_id+"'";
         SQLiteDatabase sqLiteDatabase = audioDbHelper.getWritableDatabase();
 
         int count = sqLiteDatabase.rawQuery(query, null).getCount();
@@ -71,7 +71,7 @@ public class UploadService extends IntentService {
         try {
 
             if (count > 0) {
-                sqLiteDatabase.execSQL(query);
+               sqLiteDatabase.execSQL(query);
             }
         } finally {
 
@@ -88,7 +88,7 @@ public class UploadService extends IntentService {
         File file = new File(path);
         file.getAbsolutePath();
         Log.e("File Path Delete", file.getAbsolutePath() + "");
-        file.delete();
+       file.delete();
     }
 
     @Override
@@ -108,26 +108,29 @@ public class UploadService extends IntentService {
 
 
 
-        File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings");
 
-        final File[] files = file.listFiles();
+       // final File[] files = file.listFiles();
 
 
-        if (files != null) {
+        //if (files != null) {
 
-            for (int j = 0; j < files.length; j++) {
-                files[j].getAbsolutePath();
+            //for (int j = 0; j < files.length; j++) {
+                //files[j].getAbsolutePath();
                 //type = "yes";
-                Log.e("File Path Upload " + j, files[j].getAbsolutePath() + "");
+                Log.e("File Path Upload " , intent.getStringExtra("filePath") + "");
 
                 JSONObject jsonObject = new JSONObject();
-                String fileName = files[j].getAbsolutePath().substring(files[j].getAbsolutePath().lastIndexOf("/") + 1);
+                String fileName = intent.getStringExtra("filePath").substring(intent.getStringExtra("filePath").lastIndexOf("/") + 1);
                // if (fileName.startsWith(objSaveData.getString("MobileNumber"))) {
-                    Log.e("Uploading file","Name start with "+objSaveData.getString("MobileNumber"));
-                    final int index = j;
-                    filePath = files[j].getAbsolutePath();
+                    Log.e("Uploading file","Name start with "+fileName);
+                    //final int index = j;
+                    intent.getStringExtra("filePath");
                     try {
-                        FileInputStream fis = new FileInputStream(files[j]);
+                        File file = new File(Environment.getExternalStorageDirectory() + "/SalesLineCallRecordings/"+fileName);
+
+                        //File file = new File(intent.getStringExtra("filePath"));
+
+                        FileInputStream fis = new FileInputStream(file);
                         ByteArrayOutputStream out = new ByteArrayOutputStream();
                         int read = 0;
                         byte[] buffer = new byte[1024];
@@ -140,7 +143,7 @@ public class UploadService extends IntentService {
                         Log.e("File name in ", "upload service" + fileName);
 
 
-                        byte[] bytes = convert(intent, files[j].getAbsolutePath());
+                        byte[] bytes = convert(intent, intent.getStringExtra("filePath"));
 
                         String audioBase64String = Base64.encodeToString(bytes, Base64.NO_WRAP);
 
@@ -166,37 +169,33 @@ public class UploadService extends IntentService {
 
                         jsonObject.put("AudioData", audioBase64String);
                         jsonObject.put("CreatedUserId", saveData.getString("userID"));
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    } catch (JSONException ex) {
-                        ex.printStackTrace();
-                    }
+
 
                     Log.e("=", "================JSOn ObJeCt" + jsonObject.toString());
 
 
-                    retrofitAPI = APIClient.getClient().create(RetrofitAPI.class);
+                        retrofitAPI = APIClient.getClient().create(RetrofitAPI.class);
 
-                    RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
-                    Call<JsonElement> call = retrofitAPI.SaveAudioRecord(body);
+                        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+                        Call<JsonElement> call = retrofitAPI.SaveAudioRecord(body);
 
-                    call.enqueue(new Callback<JsonElement>() {
+                        call.enqueue(new Callback<JsonElement>() {
 
-                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                            Log.d("URL", "=====" + response.raw().request().url());
-                            Log.e("=============", response.body().toString());
+                            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                                    Log.d("URL", "=====" + response.raw().request().url());
+                                Log.e("=============", response.body().toString());
 //                        if (type.equals("yes")) {
-                            try {
-                                builder.setContentText("Upload Complete");
-                                builder.setProgress(0, 0, false);
-                                notificationManager.notify(1, builder.build());
+                                    builder.setContentText("Upload Complete");
+                                    builder.setProgress(0, 0, false);
+                                    notificationManager.notify(1, builder.build());
 
-                                notificationManager.cancelAll();
-                                Log.e("I am here", "");
-                                deleteFiles(files[index].getAbsolutePath());
+                                    notificationManager.cancelAll();
+                                    Log.e("I am here", "");
+                                    deleteFiles(intent.getStringExtra("filePath"));
 
-                                deleteRecords();
-                                //deleteRecords();
+                                    deleteRecords(intent.getStringExtra("_id"));
+                                    //deleteRecords();
 
 
 //                        }
@@ -212,21 +211,26 @@ public class UploadService extends IntentService {
 //                            deleteRecords();
 //
 //                        }
-                            }catch (Exception e){
-                                e.printStackTrace();
+
                             }
-                        }
 
 
-                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            public void onFailure(Call<JsonElement> call, Throwable t) {
 
-                        }
-                    });
+                            }
+                        });
+                    } catch (FileNotFoundException e){
+                        e.printStackTrace();
+                    } catch (IOException ex) {
+        ex.printStackTrace();
+    } catch (JSONException ex) {
+        ex.printStackTrace();
+    }
 
 
-               // }
-            }
-        }
+        // }
+           // }
+       // }
 
 
 

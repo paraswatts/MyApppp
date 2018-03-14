@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -34,11 +35,18 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:background="@drawable/menu_text_bg"
+                    android:layout_centerInParent="true"
                     android:id="@+id/toolbarLogo"
                     android:layout_width="145dp"
                     android:layout_height="45dp"
-
                     android:gravity="center" />
+                <!--<TextClock-->
+                    <!--android:format12Hour="hh:mm:ss:a"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="10sp"-->
+                    <!--tools:targetApi="jelly_bean_mr1" />-->
             </LinearLayout>
 
             <RelativeLayout

@@ -11,6 +11,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.*
 import com.nitesh.brill.saleslines.Common_Files.UsefullData
 import com.nitesh.brill.saleslines.Common_Fragment.Update_Lead_Details
@@ -25,6 +27,7 @@ import com.nitesh.brill.saleslines._User_Classes.User_PojoClass.GetAllLeadsData
 class Search_Adapter(mContext: Activity, private val albumList: List<GetAllLeadsData>) : RecyclerView.Adapter<Search_Adapter.ViewHolder>(), Filterable {
     private val mContext: Context
     private var filterAlbumbList: List<GetAllLeadsData>? = null
+    var lastPosition = -1
 
     init {
 
@@ -117,7 +120,10 @@ class Search_Adapter(mContext: Activity, private val albumList: List<GetAllLeads
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
             holder.iv_ImageView.setImageBitmap(decodedByte)
         }
+        val animation: Animation = AnimationUtils.loadAnimation(mContext,if(position>lastPosition){ R.anim.up_from_bottom}else {R.anim.down_from_top})
 
+        holder.itemView.startAnimation(animation);
+        lastPosition = position;
 
 
         holder.rl_RootLayput.setOnClickListener {

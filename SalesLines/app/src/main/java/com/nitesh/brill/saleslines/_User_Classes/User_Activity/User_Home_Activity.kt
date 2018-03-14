@@ -39,6 +39,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.brill.nitesh.punjabpool.Common.BaseActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.firebase.jobdispatcher.*
@@ -53,6 +55,7 @@ import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.*
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioDbHelper
 import com.nitesh.brill.saleslines._User_Classes.User_Fragment.*
 import com.nitesh.brill.saleslines._User_Classes.User_PojoClass.SaveRegId
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.app_bar_home.*
 import org.jetbrains.anko.alert
 import org.json.JSONArray
@@ -105,6 +108,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
     var mDemoId: String? = null
     lateinit var imageView: ImageView
     var navigationView: NavigationView? = null
+    lateinit var mHomeImage: ImageView
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
@@ -167,7 +171,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
         // callFragment(fragment)
 
         val toolbar = findViewById(R.id.toolbar) as Toolbar
-        val mHomeImage = toolbar.findViewById(R.id.toolbarLogo) as ImageView
+        mHomeImage = toolbar.findViewById(R.id.toolbarLogo) as ImageView
         val iv_Notifibell = toolbar.findViewById(R.id.iv_Notifibell) as ImageView
         val tv_not_count  = toolbar.findViewById(R.id.tv_not_count) as TextView
         //=======================================\\
@@ -188,6 +192,8 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 //                .into(mHomeImage)
         Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
+                .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
+
                 .into(object: SimpleTarget<Bitmap>(){
                     override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                         Log.e("Resource","is ready")
@@ -318,30 +324,9 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
             UsefullData.Log("=====check image====="+objSaveData.getString("checkProfileImage"))
 
 
-//            if(objSaveData.getString("checkProfileImage").equals("yes")) {
-
-//            Picasso.with(baseContext)
-//                    .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
-//                    .placeholder(R.drawable.profile_pic)
-//                    .into(object: com.squareup.picasso.Target {
-//                        override fun onBitmapFailed(errorDrawable: Drawable?) {
-//                        }
-//
-//                        override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-//                        }
-//
-//                        override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-//                            Log.e("I am ","here")
-//                            imageView.setImageBitmap(bitmap);
-//
-//                        }
-//                    })
-//                Picasso.with(this)
-//                        .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID)).resize(400, 400)
-//                        .placeholder(R.drawable.profile_pic).into(imageView)
-
             Glide.with(baseContext).asBitmap()
                     .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+                    .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(object: SimpleTarget<Bitmap>(){
                         override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                             Log.e("Resource","is ready")
@@ -349,11 +334,6 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             imageView.setImageBitmap(resource)
                         }
                     })
-//                objSaveData.save("checkProfileImage","no")
-//
-//
-//
-//            }
 
             if (drawer.isDrawerVisible(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START)
@@ -366,7 +346,7 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
         registerReceiver(myReceiver, IntentFilter(MyFirebaseMessagingService.INTENT_FILTER));
        // val fr = fragmentManager.findFragmentById(R.id.p) as ProfilePic_Upload_Fragment
 
-       // registerReceiver(myReceiver1, IntentFilter(ConstantValue.INTENT_FILTER));
+        registerReceiver(myReceiver1, IntentFilter(ConstantValue.INTENT_FILTER));
 
         permissionStatus = getSharedPreferences("permissionStatus", Context.MODE_PRIVATE)
 
@@ -611,7 +591,8 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.e("in on activity","result")
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_PERMISSION_SETTING) {
             if (ContextCompat.checkSelfPermission(this, __permissionsRequired[0]) == PackageManager.PERMISSION_GRANTED) {
@@ -820,57 +801,27 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
     val myReceiver1 = object: BroadcastReceiver() {
         override fun onReceive(context: Context, intent:Intent) {
-            navigationView = findViewById(R.id.nav_view) as NavigationView
-        val header = navigationView!!.getHeaderView(0)
-        imageView = header.findViewById(R.id.imageView) as ImageView
-            Log.e("in", "receiverUpdaing dp");
-//            navigationView = findViewById(R.id.nav_view) as NavigationView
-//            val header = navigationView!!.getHeaderView(0)
-//            imageView = header.findViewById(R.id.imageView) as ImageView
-            Log.e("Changing profile ","Profile picture change user home activity " +"http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID));
-//            val imgFile= File(intent.getStringExtra("imagePath"))
-//            if(imgFile.exists()) {
-//                Log.e("File ","image exist"+imgFile.absolutePath)
-//                val myBitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
-//                imageView.setImageBitmap(myBitmap);
-//
-//            }
-//            val target = object : Target {
-//                override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
-//                    imageView.setImageBitmap(bitmap)
-//
-//                }
-//
-//                override fun onBitmapFailed(errorDrawable: Drawable) {
-//
-//                }
-//
-//                override fun onPrepareLoad(placeHolderDrawable: Drawable) {
-//
-//                }
-//            }
-//            Picasso.with(baseContext)
-//                    .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString("user_id"))
-//                    .into(target)
-//
-//            imageView.setTag(target)
-
-            Glide.with(context).asBitmap()
-                    .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+            Glide.with(baseContext).asBitmap()
+                    .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
+                    .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(object: SimpleTarget<Bitmap>(){
                         override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
-                            imageView.setImageBitmap(resource)
+                            Log.e("Resource","is ready")
+
+                            mHomeImage.setImageBitmap(resource)
                         }
-
-
                     })
 
         }
     }
 
     override fun updateDp(imagePath: String?) {
+
+
         Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+                .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
+
                 .into(object: SimpleTarget<Bitmap>(){
                     override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                         Log.e("Resource","is ready")

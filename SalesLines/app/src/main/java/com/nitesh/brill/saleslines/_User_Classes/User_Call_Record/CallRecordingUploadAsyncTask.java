@@ -22,8 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -72,21 +74,49 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
                 null, null, null);
 
         Log.e("Count call recordings=",""+query.getCount()+"query "+query.toString());
-        try
-        {
-            while(query.moveToNext()) {
-                if(Long.parseLong(query.getString(3))<5){
-                    File file = new File(query.getString(1));
-                    file.getAbsolutePath();
-                    Log.e("File Path Delete", file.getAbsolutePath() + "");
-                    file.delete();
+        try {
+            if (!objSaveData.getBoolean("onCall")){
+                if(query.getCount()>0) {
+                    while (query.moveToNext()) {
+                        if (Long.parseLong(query.getString(3)) < 5) {
+                            Log.e("file size", "is less than 5");
+                            File file = new File(query.getString(1));
+                            file.getAbsolutePath();
+                            Log.e("File Path Delete", file.getAbsolutePath() + "");
+                            file.delete();
 
-                    deleteRecords(query.getString(1));
-                }
-                else {
-                    checkLeadExistOrNot(query.getString(4), query.getString(1));
-                }
+                            deleteRecords(String.valueOf(query.getInt(0)));
+                        } else {
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:a");
+                            Date date1 = simpleDateFormat.parse(query.getString(5));
+                            String time = new SimpleDateFormat("dd/MM/yyyy hh:mm:a").format(Calendar.getInstance().getTime());
+                            Date date2 = simpleDateFormat.parse(time);
+                            long difference = date2.getTime() - date1.getTime();
+                            Log.e("diff", difference + "");
+                            int min = (int) (difference / (1000 * 60));
+                            Log.e("======= Minutes", " :: " + min + "===" + query.getString(5) + "===" + time);
+                            Log.e("else", "upload" + query.getString(4));
+                            if (min < 30) {
+                                checkLeadExistOrNot(query.getString(4), query.getString(1), String.valueOf(query.getInt(0)));
+                            } else {
+                                Log.e("minutes past", "deleting file now");
+                                File file = new File(query.getString(1));
+                                file.getAbsolutePath();
+                                Date lastModDate = new Date(file.lastModified());
+                                Log.e("File Path Delete ", "minutes" + file.getAbsolutePath() + "");
+                                file.delete();
+                                deleteRecords(String.valueOf(query.getInt(0)));
+                            }
+                        }
 
+                    }
+                }
+                else{
+                    Log.e("Nothing","To delete");
+                }
+        }
+        else{
+                Log.e("Currently oncall","can not upload");
             }
         }
         catch (Exception ex)
@@ -97,12 +127,13 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
     }
 
 
-    private void checkLeadExistOrNot(final String phoneNumber,final String filepath) {
+    private void checkLeadExistOrNot(final String phoneNumber,final String filepath,final String _id) {
         //  Log.d("checkLeadExistOrNot", "==checkLeadExistOrNot===");
+        Log.e("Phone number ",phoneNumber+"");
         final SaveData objSaveData = new SaveData(ctx);
         ApiEndpointInterface apiEndpointInterface = APIClient.getClient().create(ApiEndpointInterface.class);
 
-        Call<JsonElement> call = apiEndpointInterface.mCheckAddUpdateLead("" + phoneNumber, objSaveData.getString("client_id"), objSaveData.getString("user_id"));
+        Call<JsonElement> call = apiEndpointInterface.mCheckAddUpdateLead( phoneNumber, objSaveData.getString("client_id"), objSaveData.getString("user_id"));
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
@@ -113,20 +144,19 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
                     if (mExist.equals("0")) {
                         //    Log.e("Lead", "does not exist");
 
-                            File file = new File(filepath);
-                            file.getAbsolutePath();
-                            Log.e("File Path Delete", file.getAbsolutePath() + "");
-                            file.delete();
-
-                                deleteRecords(filepath);
+//                            File file = new File(filepath);
+//                            file.getAbsolutePath();
+//                            Log.e("File Path Delete", file.getAbsolutePath() + "");
+//                            file.delete();
+//
+//                            deleteRecords(filepath);
 
 
                     } else {
 
                         //  Log.e("", "Lead Already Exists");
-                        String phoneNumber = objSaveData.getString("MobileNumber");
                             //  Log.e("Update Lead", "From user");
-                            getLeadEnquiryDetails(phoneNumber);
+                            getLeadEnquiryDetails(phoneNumber,filepath,_id);
 
 
 
@@ -147,14 +177,14 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 
     }
 
-    public void deleteRecords(String filepath) {
+    public void deleteRecords(String _id) {
 
         AudioDbHelper audioDbHelper = new AudioDbHelper(ctx);
-        String query = "Delete from " + AudioContract.AudioEntry.TABLE_AUDIO + "where filename = " + filepath;
+        String query = "Delete from " + AudioContract.AudioEntry.TABLE_AUDIO + " where _id = " + "'"+_id+"'";
         SQLiteDatabase sqLiteDatabase = audioDbHelper.getWritableDatabase();
 
         int count = sqLiteDatabase.rawQuery(query, null).getCount();
-        Log.e("Count Delete", "" + count);
+        Log.e("Count Delete", "" + count +" "+query);
         try {
 
             if (count > 0) {
@@ -169,7 +199,7 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 
     }
 
-    private void getLeadEnquiryDetails(String phoneNumber) {
+    private void getLeadEnquiryDetails(String phoneNumber,final String filePath,final String _id) {
 
         SaveData objSaveData = new SaveData(ctx);
         //Log.e("Get lead", "Enquiry Details" + phoneNumber + objSaveData.getString("user_id") + objSaveData.getString("client_id"));
@@ -190,10 +220,11 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 //                    for ( int i = 0; i< array.length() ;i++) {
                     final JSONObject item = array.getJSONObject(0);
 
+                    Log.e("eid is",item.getString("eid"));
 
                     if (!item.getString("eid").equals(null) && !item.getString("eid").equals("null")) {
-
-                        uploadFilesUpdateLead(item.getString("eid"));
+                        Log.e("eid is",item.getString("eid"));
+                        uploadFilesUpdateLead(item.getString("eid"),filePath,_id);
                     }
 
                     //Log.e("Going to update","Updating");
@@ -216,8 +247,9 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 
 
 
-    public void uploadFilesUpdateLead(String enqID)
+    public void uploadFilesUpdateLead(String enqID,String filePath,String _id)
     {
+        Log.e("Upload files","Uploading files");
         //Log.e("EngID id uploading", " " +enqID);
         SaveData objSaveData = new SaveData(ctx);
 
@@ -227,6 +259,8 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
             if (isConnectedWifi(ctx)) {
                 Intent intent = new Intent(ctx, UploadService.class);
                 intent.putExtra("enqID",enqID);
+                intent.putExtra("filePath",filePath);
+                intent.putExtra("_id",_id);
                 ctx.startService(intent);
             }
         } else if (syncState.equals("2")) {
@@ -234,6 +268,8 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
 
                 Intent intent = new Intent(ctx, UploadService.class);
                 intent.putExtra("enqID",enqID);
+                intent.putExtra("filePath",filePath);
+                intent.putExtra("_id",_id);
                 ctx.startService(intent);
 
             }
@@ -241,6 +277,8 @@ public class CallRecordingUploadAsyncTask extends AsyncTask<Void, Void, Void> {
             if (isConnected(ctx)) {
                 Intent intent = new Intent(ctx, UploadService.class);
                 intent.putExtra("enqID",enqID);
+                intent.putExtra("filePath",filePath);
+                intent.putExtra("_id",_id);
                 ctx.startService(intent);
 
             }

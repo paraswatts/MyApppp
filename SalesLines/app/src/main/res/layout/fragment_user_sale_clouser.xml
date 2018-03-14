@@ -179,7 +179,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" 1=1month and max 240months"
+                android:text=" Min 1 month and Max 240 months"
                 android:textColor="@color/red"
 
                 android:textSize="15dp"

@@ -14,6 +14,16 @@ public class Audio {
 
     String size;
 
+    String audioDate;
+
+    public String getAudioDate() {
+        return audioDate;
+    }
+
+    public void setAudioDate(String audioDate) {
+        this.audioDate = audioDate;
+    }
+
     public String getSize(){return size;}
 
     public void setSize(String size){this.size = size;}

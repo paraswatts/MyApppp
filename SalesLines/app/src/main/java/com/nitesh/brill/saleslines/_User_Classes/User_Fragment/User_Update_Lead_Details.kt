@@ -373,15 +373,15 @@ class User_Update_Lead_Details : BaseFragment() {
 
 
         //=======================State=====================\\
-        tv_State.setOnClickListener {
-
-            selector("State", mArrayStateName) { dialogInterface, i ->
-                stateId = mArrayStateId.get(i)
-                tv_State!!.setText(mArrayStateName.get(i).toString())
-                tv_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
-            }
-
-        }
+//        tv_State.setOnClickListener {
+//
+//            selector("State", mArrayStateName) { dialogInterface, i ->
+//                stateId = mArrayStateId.get(i)
+//                tv_State!!.setText(mArrayStateName.get(i).toString())
+//                tv_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
+//            }
+//
+//        }
 
 
         //=======================================\\
@@ -1010,7 +1010,7 @@ class User_Update_Lead_Details : BaseFragment() {
         paramObject.put("Address2", tv_Address.text.toString())
         paramObject.put("Address3", tv_Address.text.toString())
 
-        paramObject.put("State", stateId)
+        paramObject.put("State", tv_State.text.toString())
         paramObject.put("City", tv_City.text.toString())
         paramObject.put("PinCode", tv_PinCode.text.toString())
         paramObject.put("Company", tv_Company.text.toString())
@@ -1074,6 +1074,28 @@ class User_Update_Lead_Details : BaseFragment() {
                             objUsefullData.showMsgOnUI("Save failed")
                         }
 
+                    tv_Name.setEnabled(false);
+                    tv_Email.setEnabled(false);
+                    tv_Phone.setEnabled(false);
+                    tv_Company.setEnabled(false);
+                    tv_Address.setEnabled(false);
+                    tv_Mobile.setEnabled(false);
+                    tv_City.setEnabled(false);
+                    tv_State.setEnabled(false);
+                    tv_AltMobile.setEnabled(false);
+                    tv_PinCode.setEnabled(false);
+                    et_jobTitle.setEnabled(false);
+                    et_Department.setEnabled(false);
+                    et_SecondaryEmail.setEnabled(false);
+                    et_Skype.setEnabled(false);
+                    et_DealName.setEnabled(false);
+                    et_DealValue.setEnabled(false);
+                    et_ExpectedCloseDate.setEnabled(false);
+                    et_Fax.setEnabled(false);
+                    et_Website.setEnabled(false);
+                    editField = true
+                    btn_Edit.setText("Edit")
+
                 } else {
                     UsefullData.Log("========" + response.code())
                     objUsefullData.getError("" + response.code())
@@ -1136,10 +1158,10 @@ class User_Update_Lead_Details : BaseFragment() {
                                 if (!item.getString("PinCode").equals(null) && !item.getString("PinCode").equals("null") && !item.getString("PinCode").isEmpty()) {
                                     tv_PinCode.setText(item.getString("PinCode"))
                                 }
-
-                                if (!item.getString("StateId").equals(null) && !item.getString("StateId").equals("null") && !item.getString("StateId").isEmpty()) {
-                                    stateId = (item.getString("StateId"))
-                                }
+//
+//                                if (!item.getString("StateId").equals(null) && !item.getString("StateId").equals("null") && !item.getString("StateId").isEmpty()) {
+//                                    stateId = (item.getString("StateId"))
+//                                }
 
                                 if (!item.getString("StateName").equals(null) && !item.getString("StateName").equals("null") && !item.getString("StateName").isEmpty()) {
                                     tv_State.setText(item.getString("StateName"))

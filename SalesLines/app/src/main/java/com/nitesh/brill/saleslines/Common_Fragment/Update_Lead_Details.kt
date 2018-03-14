@@ -105,7 +105,7 @@ class Update_Lead_Details : BaseFragment() {
     private val nameList: MutableList<String> = ArrayList()
 
     private val idList: MutableList<String> = ArrayList()
-    var assignId = ""
+    var assignId:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -185,6 +185,8 @@ class Update_Lead_Details : BaseFragment() {
         et_Website.setEnabled(false);
         et_NextItreaction.setEnabled(false);
         et_Next_Interaction_On.setEnabled(false);
+
+        et_Assign_Employee.setEnabled(false)
         //==================================\\
         getDataFromServer();
 
@@ -375,17 +377,17 @@ class Update_Lead_Details : BaseFragment() {
 
 
         //=======================State=====================\\
-        tv_State.setOnClickListener {
-
-            selector("State", mArrayStateName) { dialogInterface, i ->
-
-                stateId = mArrayStateId.get(i)
-
-                tv_State!!.setText(mArrayStateName.get(i).toString())
-                tv_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
-            }
-
-        }
+//        tv_State.setOnClickListener {
+//
+//            selector("State", mArrayStateName) { dialogInterface, i ->
+//
+//                stateId = mArrayStateId.get(i)
+//
+//                tv_State!!.setText(mArrayStateName.get(i).toString())
+//                tv_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
+//            }
+//
+//        }
 
 
         //=======================================\\
@@ -418,6 +420,7 @@ class Update_Lead_Details : BaseFragment() {
                     et_ExpectedCloseDate.setEnabled(true);
                     et_Fax.setEnabled(true);
                     et_Website.setEnabled(true);
+                    et_Assign_Employee.setEnabled(true)
                     editField = false
                     btn_Edit.setText("Save")
 
@@ -479,14 +482,14 @@ class Update_Lead_Details : BaseFragment() {
 //            mShowAlertDialog(et_NextItreaction, Animals, "Next Interaction")
 //
 //        }
-
-        et_Assign_Employee.setOnClickListener {
-
-
-            mShowDialog(et_Assign_Employee, nameList as ArrayList<String>, "Assign Employee")
+            et_Assign_Employee.setOnClickListener {
 
 
-        }
+                mShowDialog(et_Assign_Employee, nameList as ArrayList<String>, "Assign Employee")
+
+
+            }
+
 
         //=======================Mobile no. check duplicate=====================\\
 
@@ -1000,7 +1003,7 @@ class Update_Lead_Details : BaseFragment() {
     private fun saveAssignEmployee() {
 
 
-        objUsefullData.showProgress("Please Waitt..", "")
+        objUsefullData.showProgress("Please Wait..", "")
         val paramObject = JSONObject()
         paramObject.put("ManagerId", mManagerId)
         paramObject.put("EmployeeCode", assignId)
@@ -1178,107 +1181,138 @@ class Update_Lead_Details : BaseFragment() {
 
     private fun saveLeadDetails() {
 
+        try {
+            val paramObject = JSONObject()
+            paramObject.put("LeadName", tv_Name.text.toString())
+            paramObject.put("Phone", tv_Phone.text.toString())
+            paramObject.put("Company", tv_Company.text.toString())
+            paramObject.put("Status", "Active")
+            Log.e("assign lead", assignId)
+            paramObject.put("UserId", Integer.parseInt(assignId))
 
-        val paramObject = JSONObject()
-        objUsefullData.showProgress("Please Wait...", "")
-        paramObject.put("LeadName", tv_Name.text.toString())
-        paramObject.put("Phone", tv_Phone.text.toString())
-        paramObject.put("Company", tv_Company.text.toString())
-        paramObject.put("Status", "Active")
+            paramObject.put("RoleId", Integer.parseInt(objSaveData.getString(ConstantValue.ROLE_ID)))
+            paramObject.put("ManagerId", Integer.parseInt(objSaveData.getString(ConstantValue.MANAGER_ID)))
 
-        paramObject.put("UserId", Integer.parseInt(assignId))
+            paramObject.put("ModifiedUserId", objSaveData.getString(ConstantValue.USER_ID))
+            paramObject.put("Email", tv_Email.text.toString())
+            paramObject.put("EmployeeCode", assignId)
+            paramObject.put("Address1", tv_Address.text.toString())
+            paramObject.put("Address2", tv_Address.text.toString())
+            paramObject.put("Address3", tv_Address.text.toString())
 
-        paramObject.put("RoleId", Integer.parseInt(objSaveData.getString(ConstantValue.ROLE_ID)))
-        paramObject.put("ManagerId", Integer.parseInt(objSaveData.getString(ConstantValue.MANAGER_ID)))
+            paramObject.put("State", tv_State.text.toString())
+            paramObject.put("City", tv_City.text.toString())
+            paramObject.put("PinCode", tv_PinCode.text.toString())
 
-        paramObject.put("ModifiedUserId", objSaveData.getString(ConstantValue.USER_ID))
-        paramObject.put("Email", tv_Email.text.toString())
-        paramObject.put("EmployeeCode", assignId)
-        paramObject.put("Address1", tv_Address.text.toString())
-        paramObject.put("Address2", tv_Address.text.toString())
-        paramObject.put("Address3", tv_Address.text.toString())
+            paramObject.put("Mobile", tv_Mobile.text.toString())
+            paramObject.put("Alt_Mobile", tv_AltMobile.text.toString())
 
-        paramObject.put("State", stateId)
-        paramObject.put("City", tv_City.text.toString())
-        paramObject.put("PinCode", tv_PinCode.text.toString())
+            paramObject.put("Company", tv_Company.text.toString())
+            paramObject.put("JobTitle", et_jobTitle.text.toString())
+            paramObject.put("Department", et_Department.text.toString())
+            paramObject.put("SecondaryEmail", et_SecondaryEmail.text.toString())
+            paramObject.put("Skype", et_Skype.text.toString())
+            paramObject.put("DealName", et_DealName.text.toString())
+            paramObject.put("DealValue", et_DealValue.text.toString())
+            paramObject.put("ExpectedCloseDate", et_ExpectedCloseDate.text.toString())
+            paramObject.put("Fax", et_Fax.text.toString())
+            paramObject.put("Website", et_Website.text.toString())
+            paramObject.put("ImageName_PC", ImageName_PC)
+            paramObject.put("ContentType_PC", ContentType_PC!!)
+            paramObject.put("Data_PC", Img_PC)
 
-        paramObject.put("Mobile", tv_Mobile.text.toString())
-        paramObject.put("Alt_Mobile", tv_AltMobile.text.toString())
+            paramObject.put("ImageName_VC1", ImageName_VC1)
+            paramObject.put("ContentType_VC1", ContentType_VC1)
+            paramObject.put("Data_VC1", Img_VC1)
 
-        paramObject.put("Company", tv_Company.text.toString())
-        paramObject.put("JobTitle", et_jobTitle.text.toString())
-        paramObject.put("Department", et_Department.text.toString())
-        paramObject.put("SecondaryEmail", et_SecondaryEmail.text.toString())
-        paramObject.put("Skype", et_Skype.text.toString())
-        paramObject.put("DealName", et_DealName.text.toString())
-        paramObject.put("DealValue", et_DealValue.text.toString())
-        paramObject.put("ExpectedCloseDate", et_ExpectedCloseDate.text.toString())
-        paramObject.put("Fax", et_Fax.text.toString())
-        paramObject.put("Website", et_Website.text.toString())
-        paramObject.put("ImageName_PC", ImageName_PC)
-        paramObject.put("ContentType_PC", ContentType_PC!!)
-        paramObject.put("Data_PC", Img_PC)
+            paramObject.put("ImageName_VC2", ImageName_VC2)
+            paramObject.put("ContentType_VC2", ContentType_VC2)
+            paramObject.put("Data_VC2", Img_VC2)
+            paramObject.put("LeadId", mLeadId)
 
-        paramObject.put("ImageName_VC1", ImageName_VC1)
-        paramObject.put("ContentType_VC1", ContentType_VC1)
-        paramObject.put("Data_VC1", Img_VC1)
+            UsefullData.Log("==================" + paramObject.toString())
+            objUsefullData.showProgress("Please Wait...", "")
 
-        paramObject.put("ImageName_VC2", ImageName_VC2)
-        paramObject.put("ContentType_VC2", ContentType_VC2)
-        paramObject.put("Data_VC2", Img_VC2)
-        paramObject.put("LeadId", mLeadId)
+            val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
 
-        UsefullData.Log("==================" + paramObject.toString())
+            val call = apiEndpointInterface!!.mUpdateDetailsLead(mLeadId, body)
+            call.enqueue(object : Callback<JsonElement> {
+                override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                    objUsefullData.dismissProgress()
+                    Log.e("URL", "===" + response!!.raw().request().url())
 
-        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
+                    try {
+                        if (response.isSuccessful) {
 
-        val call = apiEndpointInterface!!.mUpdateDetailsLead(mLeadId, body)
-        call.enqueue(object : Callback<JsonElement> {
-            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
-                objUsefullData.dismissProgress()
-                Log.e("URL", "===" + response!!.raw().request().url())
+                            UsefullData.Log("User_Response =============   " + response.body().toString())
+                            var success = ""
 
-                try {
-                if (response.isSuccessful) {
+                            var array = JSONArray(response!!.body().toString())
+                            for (i in 0..(array.length() - 1)) {
+                                val item = array.getJSONObject(0)
 
-                        UsefullData.Log("User_Response =============   " + response.body().toString())
-                        var success = ""
+                                UsefullData.Log("===" + item)
+                                success = item.optString("Success")
 
-                        var array = JSONArray(response!!.body().toString())
-                        for (i in 0..(array.length() - 1)) {
-                            val item = array.getJSONObject(0)
+                            }
 
-                            UsefullData.Log("===" + item)
-                            success = item.optString("Success")
+                            if (success.equals("1")) {
+                                // objUsefullData.showMsgOnUI("Successfully Saved")
+                                saveAssignEmployee()
 
-                        }
+                            } else {
+                                objUsefullData.showMsgOnUI("Save failed")
+                            }
 
-                        if (success.equals("1")) {
-                            // objUsefullData.showMsgOnUI("Successfully Saved")
-                            saveAssignEmployee()
+                            tv_Name.setEnabled(false);
+                            tv_Email.setEnabled(false);
+                            tv_Phone.setEnabled(false);
+                            tv_Company.setEnabled(false);
+                            tv_Address.setEnabled(false);
+                            tv_Mobile.setEnabled(false);
+                            tv_City.setEnabled(false);
+                            tv_State.setEnabled(false);
+                            tv_AltMobile.setEnabled(false);
+                            tv_PinCode.setEnabled(false);
+                            et_jobTitle.setEnabled(false);
+                            et_Department.setEnabled(false);
+                            et_SecondaryEmail.setEnabled(false);
+                            et_Skype.setEnabled(false);
+                            et_DealName.setEnabled(false);
+                            et_DealValue.setEnabled(false);
+                            et_ExpectedCloseDate.setEnabled(false);
+                            et_Fax.setEnabled(false);
+                            et_Website.setEnabled(false);
+                            et_Assign_Employee.setEnabled(false)
+                            editField = true
+                            btn_Edit.setText("Edit")
 
                         } else {
-                            objUsefullData.showMsgOnUI("Save failed")
+                            UsefullData.Log("========" + response.code())
+                            //objUsefullData.getError("" + response.code())
                         }
-
-                } else {
-                    UsefullData.Log("========" + response.code())
-                    //objUsefullData.getError("" + response.code())
+                    } catch (e: Exception) {
+                        objUsefullData.getException(e)
+                    }
                 }
-                } catch (e: Exception) {
-                    objUsefullData.getException(e)
+
+                override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+
+                    objUsefullData.dismissProgress()
+                    UsefullData.Log("=============" + t)
+                    objUsefullData.showMsgOnUI("Update failed  " + t)
+
                 }
-            }
 
-            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
-
-                objUsefullData.dismissProgress()
-                UsefullData.Log("=============" + t)
-                objUsefullData.showMsgOnUI("Update failed  " + t)
-
-            }
-
-        })
+            })
+        }
+        catch (e:Exception){
+            //e.printStackTrace()
+            sv_update_lead.scrollTo(0,et_Assign_Employee.bottom)
+            et_Assign_Employee.requestFocus()
+            toast("Please assign salesman")
+           // et_Assign_Employee.setError("Please assign an employee")
+        }
 
 
     }
@@ -1324,9 +1358,9 @@ class Update_Lead_Details : BaseFragment() {
                                     tv_PinCode.setText(item.getString("PinCode"))
                                 }
 
-                                if (!item.getString("StateId").equals(null) && !item.getString("StateId").equals("null") && !item.getString("StateId").isEmpty()) {
-                                    stateId = (item.getString("StateId"))
-                                }
+//                                if (!item.getString("StateId").equals(null) && !item.getString("StateId").equals("null") && !item.getString("StateId").isEmpty()) {
+//                                    stateId = (item.getString("StateId"))
+//                                }
 
                                 if (!item.getString("StateName").equals(null) && !item.getString("StateName").equals("null") && !item.getString("StateName").isEmpty()) {
                                     tv_State.setText(item.getString("StateName"))

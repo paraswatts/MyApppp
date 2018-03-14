@@ -261,7 +261,7 @@ class User_Setting_Fragment : BaseFragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_PERMISSION_SETTING) {
             if (checkSelfPermission(getActivity(), __permissionsRequired[0]) == PackageManager.PERMISSION_GRANTED) {

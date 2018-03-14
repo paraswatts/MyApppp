@@ -25,6 +25,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.brill.nitesh.punjabpool.Common.BaseActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.gson.JsonElement
@@ -48,6 +50,8 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
     override fun updateDp(imagePath: String?) {
         Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+                .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
+
                 .into(object: SimpleTarget<Bitmap>(){
                     override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                         Log.e("Resource","is ready")
@@ -61,6 +65,8 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
     lateinit var tv_Name: TextView
     lateinit var tv_Email: TextView
     lateinit var imageView: ImageView
+    lateinit var mHomeImage: ImageView
+
     var navigationView: NavigationView? = null
 
     var dbHelper: AudioDbHelper? = null
@@ -103,7 +109,7 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
 
         dbHelper =  AudioDbHelper(this);
         registerReceiver(myReceiver, IntentFilter(MyFirebaseMessagingService.INTENT_FILTER_MANAGER));
-        //registerReceiver(myReceiver1, IntentFilter(ConstantValue.INTENT_FILTER));
+        registerReceiver(myReceiver1, IntentFilter(ConstantValue.INTENT_FILTER));
 
         getNotCount()
 
@@ -125,7 +131,7 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
 
 
         val toolbar = findViewById(R.id.toolbar) as Toolbar
-        val mHomeImage = toolbar.findViewById(R.id.toolbarLogo) as ImageView
+        mHomeImage = toolbar.findViewById(R.id.toolbarLogo) as ImageView
         val iv_Notifibell = toolbar.findViewById(R.id.iv_Notifibell) as ImageView
         //=======================================\\
         iv_Notifibell.setOnClickListener {
@@ -144,6 +150,7 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
 
         Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
+                .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
                 .into(object: SimpleTarget<Bitmap>(){
                     override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                         Log.e("Resource","is ready")
@@ -186,6 +193,7 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
 
         Glide.with(baseContext).asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+                .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
                 .into(object: SimpleTarget<Bitmap>(){
                     override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
                         Log.e("Resource","is ready")
@@ -338,42 +346,16 @@ class Manager_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSel
 
     val myReceiver1 = object: BroadcastReceiver() {
         override fun onReceive(context: Context, intent:Intent) {
-            navigationView = findViewById(R.id.nav_view) as NavigationView
-            val header = navigationView!!.getHeaderView(0)
-            imageView = header.findViewById(R.id.imageView) as ImageView
-            Log.e("in", "receiverUpdaing dp");
-
-            Log.e("Changing profile ","Profile picture change user home activity " +"http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID));
-
-
-            Glide.with(context).asBitmap()
-                    .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString(ConstantValue.USER_ID))
+            Glide.with(baseContext).asBitmap()
+                    .load("http://console.salelinecrm.com/saleslineapi/GetImage/" + objSaveData.getString(ConstantValue.CLIENT_ID))
+                    .apply(RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(object: SimpleTarget<Bitmap>(){
                         override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
-                            imageView.setImageBitmap(resource)
+                            Log.e("Resource","is ready")
+
+                            mHomeImage.setImageBitmap(resource)
                         }
-
-
                     })
-//            val target = object : Target {
-//                override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
-//                    imageView.setImageBitmap(bitmap)
-//
-//                }
-//
-//                override fun onBitmapFailed(errorDrawable: Drawable) {
-//
-//                }
-//
-//                override fun onPrepareLoad(placeHolderDrawable: Drawable) {
-//
-//                }
-//            }
-//            Picasso.with(baseContext)
-//                    .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/" + objSaveData.getString("user_id"))
-//                    .into(target)
-//
-//            imageView.setTag(target)
 
         }
     }

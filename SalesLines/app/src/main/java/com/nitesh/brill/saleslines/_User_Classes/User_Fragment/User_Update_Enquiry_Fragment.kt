@@ -280,7 +280,29 @@ class User_Update_Enquiry_Fragment : BaseFragment() {
 
                         //=================================\\
                         if (isNetworkConnected)
-                            sendSaleCloseLeadDemoDetails()
+                        {
+                            var mFragment = User_Sale_Clouser_Fragment.newInstance("" + mLeadId,
+                                    "" + mEnqId,
+                                    "" + mDemoId,
+                                    "" + mEnqNumber,
+                                    "" + InteractProduct,
+                                    ""+et_DemoDate.text.toString(),
+                                        ""+LeadStage,
+                                    ""+InteractProduct,
+                                    ""+et_Comments.text.toString(),
+                                    ""+ResponseOfInteraction,
+                                    ""+Rating!!,
+                                    ""+H!!,
+                                    ""+W!!,
+                                    ""+C!!
+
+                                    )
+                            val fragmentManager = fragmentManager
+                            val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
+                            fragmentTransaction.replace(R.id.content_frame, mFragment)
+                            fragmentTransaction.commit()
+                        }
+                            //sendSaleCloseLeadDemoDetails()
                     }
                     negativeButton("No") { }
                 }.show()
@@ -452,81 +474,81 @@ class User_Update_Enquiry_Fragment : BaseFragment() {
     }
 
     //=================================\\
-    private fun sendSaleCloseLeadDemoDetails() {
-
-
-        objUsefullData.showProgress("Please Wait...", "")
-        val paramObject = JSONObject()
-        paramObject.put("LeadId", mLeadId)
-        paramObject.put("DemoDate", et_DemoDate.text.toString())
-        paramObject.put("LeadSource", "")
-        paramObject.put("LeadStage", LeadStage)
-        paramObject.put("InteractProduct", InteractProduct)
-        paramObject.put("Interaction_By", "")
-        paramObject.put("Interaction_On", "1/1/1900 0:00:00")
-        paramObject.put("Comments", et_Comments.text.toString())
-        paramObject.put("ResponseOfInteraction", ResponseOfInteraction)
-        paramObject.put("Rating", Rating!!)
-        paramObject.put("H_Checked", H!!)
-        paramObject.put("W_Checked", W!!)
-        paramObject.put("C_Checked", C!!)
-        paramObject.put("EnquiryId", mEnqId)
-        paramObject.put("DemoId", mDemoId)
-
-        UsefullData.Log("========sendDataToServerForUpdate==========" + paramObject.toString())
-
-
-        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
-
-
-        val mCall = apiEndpointInterface!!.mSaleCloseLeadDemoDetails("" + mDemoId, body)
-
-        mCall.enqueue(object : Callback<JsonElement> {
-            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
-                objUsefullData.dismissProgress()
-                objUsefullData. getThrowableException(t)
-                UsefullData.Log("onFailure ===" + t)
-            }
-
-            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
-                objUsefullData.dismissProgress()
-                Log.d("URL", "===" + response!!.raw().request().url())
-                try {
-
-                    if (response.isSuccessful) {
-                        UsefullData.Log("User_Response    " + response.body().toString())
-
-
-                        var array = JSONArray(response!!.body().toString())
-                        var success = ""
-                        for (i in 0..(array.length() - 1)) {
-                            val item = array.getJSONObject(0)
-                            success = item.optString("Success")
-
-                        }
-                        if (success.equals("1")) {
-                            //objUsefullData.showMsgOnUI("Successfully Saved")
-                            //=================================\\
-                            sendUpdateEnqDetails_()
-
-                        } else {
-                            objUsefullData.showMsgOnUI("Update failed")
-                        }
-                    } else {
-
-                        UsefullData.Log("========" + response.code())
-                        objUsefullData.showMsgOnUI(activity.resources.getString(R.string.server_error))
-
-                    }
-                }catch (e:Exception){
-                    e.printStackTrace()
-                }
-            }
-
-        })
-
-
-    }
+//    private fun sendSaleCloseLeadDemoDetails() {
+//
+//
+//        objUsefullData.showProgress("Please Wait...", "")
+//        val paramObject = JSONObject()
+//        paramObject.put("LeadId", mLeadId)
+//        paramObject.put("DemoDate", et_DemoDate.text.toString())
+//        paramObject.put("LeadSource", "")
+//        paramObject.put("LeadStage", LeadStage)
+//        paramObject.put("InteractProduct", InteractProduct)
+//        paramObject.put("Interaction_By", "")
+//        paramObject.put("Interaction_On", "1/1/1900 0:00:00")
+//        paramObject.put("Comments", et_Comments.text.toString())
+//        paramObject.put("ResponseOfInteraction", ResponseOfInteraction)
+//        paramObject.put("Rating", Rating!!)
+//        paramObject.put("H_Checked", H!!)
+//        paramObject.put("W_Checked", W!!)
+//        paramObject.put("C_Checked", C!!)
+//        paramObject.put("EnquiryId", mEnqId)
+//        paramObject.put("DemoId", mDemoId)
+//
+//        UsefullData.Log("========sendDataToServerForUpdate==========" + paramObject.toString())
+//
+//
+//        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
+//
+//
+//        val mCall = apiEndpointInterface!!.mSaleCloseLeadDemoDetails("" + mDemoId, body)
+//
+//        mCall.enqueue(object : Callback<JsonElement> {
+//            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+//                objUsefullData.dismissProgress()
+//                objUsefullData. getThrowableException(t)
+//                UsefullData.Log("onFailure ===" + t)
+//            }
+//
+//            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+//                objUsefullData.dismissProgress()
+//                Log.d("URL", "===" + response!!.raw().request().url())
+//                try {
+//
+//                    if (response.isSuccessful) {
+//                        UsefullData.Log("User_Response    " + response.body().toString())
+//
+//
+//                        var array = JSONArray(response!!.body().toString())
+//                        var success = ""
+//                        for (i in 0..(array.length() - 1)) {
+//                            val item = array.getJSONObject(0)
+//                            success = item.optString("Success")
+//
+//                        }
+//                        if (success.equals("1")) {
+//                            //objUsefullData.showMsgOnUI("Successfully Saved")
+//                            //=================================\\
+//                            sendUpdateEnqDetails_()
+//
+//                        } else {
+//                            objUsefullData.showMsgOnUI("Update failed")
+//                        }
+//                    } else {
+//
+//                        UsefullData.Log("========" + response.code())
+//                        objUsefullData.showMsgOnUI(activity.resources.getString(R.string.server_error))
+//
+//                    }
+//                }catch (e:Exception){
+//                    e.printStackTrace()
+//                }
+//            }
+//
+//        })
+//
+//
+//    }
 
     //=================================\\
     private fun sendUpdateEnqDetails() {
@@ -600,75 +622,75 @@ class User_Update_Enquiry_Fragment : BaseFragment() {
     }
 
     //=================================\\
-    private fun sendUpdateEnqDetails_() {
-
-        objUsefullData.showProgress("Please Wait...", "")
-        val paramObject = JSONObject()
-        paramObject.put("IneterestProduct", InteractProduct)
-        paramObject.put("LeadStage", LeadStage)
-        paramObject.put("Status", "A")
-        paramObject.put("NextInteractionBy", "")
-        paramObject.put("NextInteractionDate", "1/1/1900 0:00:00")
-        paramObject.put("DemoGivenDate", et_DemoDate.text.toString())
-        paramObject.put("EnquiryId", mEnqId)
-        paramObject.put("LeadId", mLeadId)
-        UsefullData.Log("========sendDataToServerForUpdate==========" + paramObject.toString())
-        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
-
-        val mCall = apiEndpointInterface!!.mUpdateEnquiryDetails("" + mEnqId, "" + mLeadId, body)
-
-        mCall.enqueue(object : Callback<JsonElement> {
-            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
-                objUsefullData.dismissProgress()
-                objUsefullData. getThrowableException(t)
-                UsefullData.Log("onFailure ===" + t)
-            }
-
-            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
-                objUsefullData.dismissProgress()
-                Log.d("URL", "===" + response!!.raw().request().url())
-
-                try {
-                    if (response.isSuccessful) {
-
-                        UsefullData.Log("User_Response    " + response.body().toString())
-
-
-                        var array = JSONArray(response!!.body().toString())
-                        var success = ""
-                        for (i in 0..(array.length() - 1)) {
-                            val item = array.getJSONObject(0)
-                            success = item.optString("Success")
-
-                        }
-
-                        if (success.equals("1")) {
-                            objUsefullData.showMsgOnUI("Successfully Update")
-
-                            var mFragment = User_Sale_Clouser_Fragment.newInstance("" + mLeadId, "" + mEnqId, "" + mDemoId, "" + mEnqNumber, "" + InteractProduct)
-                            val fragmentManager = fragmentManager
-                            val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
-                            fragmentTransaction.replace(R.id.content_frame, mFragment)
-                            fragmentTransaction.commit()
-
-                        } else {
-                            objUsefullData.showMsgOnUI("Update Failed")
-                        }
-                    } else {
-
-                        UsefullData.Log("========" + response.code())
-                        objUsefullData.showMsgOnUI(activity.resources.getString(R.string.server_error))
-
-                    }
-                }catch (e:Exception){
-                    e.printStackTrace()
-                }
-            }
-
-        })
-
-
-    }
+//    private fun sendUpdateEnqDetails_() {
+//
+//        objUsefullData.showProgress("Please Wait...", "")
+//        val paramObject = JSONObject()
+//        paramObject.put("IneterestProduct", InteractProduct)
+//        paramObject.put("LeadStage", LeadStage)
+//        paramObject.put("Status", "A")
+//        paramObject.put("NextInteractionBy", "")
+//        paramObject.put("NextInteractionDate", "1/1/1900 0:00:00")
+//        paramObject.put("DemoGivenDate", et_DemoDate.text.toString())
+//        paramObject.put("EnquiryId", mEnqId)
+//        paramObject.put("LeadId", mLeadId)
+//        UsefullData.Log("========sendDataToServerForUpdate==========" + paramObject.toString())
+//        val body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), paramObject.toString())
+//
+//        val mCall = apiEndpointInterface!!.mUpdateEnquiryDetails("" + mEnqId, "" + mLeadId, body)
+//
+//        mCall.enqueue(object : Callback<JsonElement> {
+//            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+//                objUsefullData.dismissProgress()
+//                objUsefullData. getThrowableException(t)
+//                UsefullData.Log("onFailure ===" + t)
+//            }
+//
+//            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+//                objUsefullData.dismissProgress()
+//                Log.d("URL", "===" + response!!.raw().request().url())
+//
+//                try {
+//                    if (response.isSuccessful) {
+//
+//                        UsefullData.Log("User_Response    " + response.body().toString())
+//
+//
+//                        var array = JSONArray(response!!.body().toString())
+//                        var success = ""
+//                        for (i in 0..(array.length() - 1)) {
+//                            val item = array.getJSONObject(0)
+//                            success = item.optString("Success")
+//
+//                        }
+//
+//                        if (success.equals("1")) {
+//                            objUsefullData.showMsgOnUI("Successfully Update")
+//
+//                            var mFragment = User_Sale_Clouser_Fragment.newInstance("" + mLeadId, "" + mEnqId, "" + mDemoId, "" + mEnqNumber, "" + InteractProduct)
+//                            val fragmentManager = fragmentManager
+//                            val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left,R.anim.exit_to_right).addToBackStack(null)
+//                            fragmentTransaction.replace(R.id.content_frame, mFragment)
+//                            fragmentTransaction.commit()
+//
+//                        } else {
+//                            objUsefullData.showMsgOnUI("Update Failed")
+//                        }
+//                    } else {
+//
+//                        UsefullData.Log("========" + response.code())
+//                        objUsefullData.showMsgOnUI(activity.resources.getString(R.string.server_error))
+//
+//                    }
+//                }catch (e:Exception){
+//                    e.printStackTrace()
+//                }
+//            }
+//
+//        })
+//
+//
+//    }
 
     //=================================\\
     private fun sendDataToServerForUpdate() {

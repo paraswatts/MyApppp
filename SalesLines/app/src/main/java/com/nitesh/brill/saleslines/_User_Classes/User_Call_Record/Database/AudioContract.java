@@ -156,6 +156,8 @@ public final class AudioContract {
 
         public final static String COLUMN_AUDIO_SIZE ="audio_size";
 
+        public final static String COLUMN_AUDIO_DATE ="audio_date";
+
 
         public final static String COLUMN_AUDIO_LEAD_ID ="audio_leadid";
 

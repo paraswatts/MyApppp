@@ -439,20 +439,20 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
         }
 
         //=======================State=====================\\
-        et_State.setOnClickListener {
-
-            selector("State", mArrayStateName) { dialogInterface, i ->
-
-
-                et_State.setBackgroundResource((R.drawable.text_view_border))
-
-                stateId = mArrayStateId.get(i)
-
-                et_State!!.setText(mArrayStateName.get(i).toString())
-                et_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
-            }
-
-        }
+//        et_State.setOnClickListener {
+//
+//            selector("State", mArrayStateName) { dialogInterface, i ->
+//
+//
+//                et_State.setBackgroundResource((R.drawable.text_view_border))
+//
+//                stateId = mArrayStateId.get(i)
+//
+//                et_State!!.setText(mArrayStateName.get(i).toString())
+//                et_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
+//            }
+//
+//        }
 
 
         //=======================Mobile no. check duplicate=====================\\
@@ -814,7 +814,7 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
         paramObject.put("Address1", et_Address.text.toString())
         paramObject.put("Address2", et_Address.text.toString())
         paramObject.put("Address3", et_Address.text.toString())
-        paramObject.put("State", stateId)
+        paramObject.put("State", et_State.text.toString())
         paramObject.put("City", et_City.text.toString())
         paramObject.put("PinCode", et_PinCode.text.toString())
         paramObject.put("Phone", et_Phone.text.toString())
@@ -859,8 +859,8 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
 
 
         if(TextUtils.isEmpty(et_DemoDate.text.toString())) {
-            val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.US)
-            val d = sdf.parse("01/01/1990")
+            val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+            val d = sdf.parse("01/01/1990 02:30 PM")
             Log.e("Paras", "Demo date null" + sdf.format(d))
 
             paramObject.put("DemoDate", sdf.format(d))
@@ -876,7 +876,16 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
         paramObject.put("LeadStage", sp_Spinner_Lead_Stage.text.toString())
         paramObject.put("InteractProduct", sp_Spinner_Interested_Product.text.toString())
         paramObject.put("Interaction_By", sp_Next_Itrection_By.text.toString())
-        paramObject.put("Interaction_On", et_NextInteractionDate.text.toString())
+        if(TextUtils.isEmpty(et_NextInteractionDate.text.toString())) {
+            val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+            val d = sdf.parse("01/01/1990")
+            Log.e("Paras"," Interaction_On null"+sdf.format(d))
+            paramObject.put("Interaction_On", sdf.format(d))
+
+        }
+        else {
+            paramObject.put("Interaction_On", et_NextInteractionDate.text.toString())
+        }
         paramObject.put("Comments", et_Comments.text.toString())
         paramObject.put("ResponseOfInteraction", sp_Response_Of_Iteraction.text.toString())
         paramObject.put("EnquiryNum", EnquiryNum)
@@ -933,7 +942,7 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
 
                     } else {
                         UsefullData.Log("========" + response.code())
-                        objUsefullData.getError("" + response.code())
+                        objUsefullData.showMsgOnUI("Lead added failed")
                     }
                 }
                 catch (e: Exception) {
@@ -1130,109 +1139,109 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
 //            et_Website.requestFocus()
 //            return false
 //        }
-
-        if (objValidation.checkEmpty(et_ExpectedCloseDate, "ExpectedCloseDate ")) {
-            objUsefullData.showMsgOnUI("Rating should not be empty")
-            et_ExpectedCloseDate.requestFocus()
-            return false
-        }
-
-
-
-        if (Rating!!.equals(0)) {
-
-            objUsefullData.showMsgOnUI("Rating should not be empty")
-            ratingBar.setBackgroundResource((R.drawable.red_border))
-            ratingBar.requestFocus()
-            return false
-        }
-        if (!H!! && !W!! && !C!!) {
-
-            objUsefullData.showMsgOnUI("Please select lead status")
-            ll_LeadStatus.setBackgroundResource((R.drawable.red_border))
-            ll_LeadStatus.requestFocus()
-            return false
-
-        }
-
-//        if (objValidation.checkEmpty(et_DemoDate, "DemoDate ")) {
 //
-//            objUsefullData.showMsgOnUI("Please select DemoDate")
-//
-//            et_DemoDate.requestFocus()
+//        if (objValidation.checkEmpty(et_ExpectedCloseDate, "ExpectedCloseDate ")) {
+//            objUsefullData.showMsgOnUI("Rating should not be empty")
+//            et_ExpectedCloseDate.requestFocus()
 //            return false
 //        }
-
-        if (objValidation.checkEmpty(sp_Spinner_Lead_Source, "Lead Source ")) {
-            sp_Spinner_Lead_Source.setError(null)
-            objUsefullData.showMsgOnUI("Please select Lead Source")
-            sp_Spinner_Lead_Source.setBackgroundResource((R.drawable.red_border))
-            sp_Spinner_Lead_Source.requestFocus()
-            return false
-        }
-        if (objValidation.checkEmpty(sp_Spinner_Lead_Stage, "Lead Stage")) {
-            sp_Spinner_Lead_Stage.setError(null)
-            objUsefullData.showMsgOnUI("Please select Lead Stage")
-            sp_Spinner_Lead_Stage.setBackgroundResource((R.drawable.red_border))
-            sp_Spinner_Lead_Stage.requestFocus()
-            return false
-        }
-        if (objValidation.checkEmpty(sp_Spinner_Interested_Product, "Interested Product")) {
-            sp_Spinner_Interested_Product.setError(null)
-            objUsefullData.showMsgOnUI("Please select Interested Product")
-            sp_Spinner_Interested_Product.setBackgroundResource((R.drawable.red_border))
-            sp_Spinner_Interested_Product.requestFocus()
-            return false
-        }
-
-        if (objValidation.checkEmpty(sp_Assign_Manager, " Assign manager")) {
-            sp_Assign_Manager.setError(null)
-            objUsefullData.showMsgOnUI("Please select manager for assigning lead")
-            sp_Assign_Manager.setBackgroundResource((R.drawable.red_border))
-            sp_Assign_Manager.requestFocus()
-            sp_Assign_Manager.isFocusableInTouchMode = true
-            return false
-        }
-
-        if (objValidation.checkEmpty(sp_Assign_Employee, " Assign Employee")) {
-            sp_Assign_Employee.setError(null)
-            objUsefullData.showMsgOnUI("Please select Emplyee for assign lead")
-            sp_Assign_Employee.setBackgroundResource((R.drawable.red_border))
-            sp_Assign_Employee.requestFocus()
-            sp_Assign_Employee.isFocusableInTouchMode = true
-            return false
-        }
-
-
-        if (!nextIntractionDate) {
-            objUsefullData.showMsgOnUI("Please select Next Interaction")
-            sp_Next_Itrection_By.setBackgroundResource((R.drawable.red_border))
-            sp_Next_Itrection_By.requestFocus()
-            return false
-        }
-
-        if (objValidation.checkEmpty(et_NextInteractionDate, "NextInteractionDate On ")) {
-
-            objUsefullData.showMsgOnUI("Please select NextInteractionDate On")
-            et_NextInteractionDate.setBackgroundResource((R.drawable.red_border))
-            et_NextInteractionDate.requestFocus()
-            return false
-        }
-
-        if (objValidation.checkEmpty(sp_Response_Of_Iteraction, " Response Of Iteraction")) {
-            sp_Response_Of_Iteraction.setError(null)
-            objUsefullData.showMsgOnUI("Please select Response of Interaction")
-            sp_Response_Of_Iteraction.setBackgroundResource((R.drawable.red_border))
-            sp_Response_Of_Iteraction.requestFocus()
-            return false
-        }
-
-
-        if (objValidation.checkEmpty(et_Comments, "Comment ")) {
-
-            et_Comments.requestFocus()
-            return false
-        }
+//
+//
+//
+//        if (Rating!!.equals(0)) {
+//
+//            objUsefullData.showMsgOnUI("Rating should not be empty")
+//            ratingBar.setBackgroundResource((R.drawable.red_border))
+//            ratingBar.requestFocus()
+//            return false
+//        }
+//        if (!H!! && !W!! && !C!!) {
+//
+//            objUsefullData.showMsgOnUI("Please select lead status")
+//            ll_LeadStatus.setBackgroundResource((R.drawable.red_border))
+//            ll_LeadStatus.requestFocus()
+//            return false
+//
+//        }
+//
+////        if (objValidation.checkEmpty(et_DemoDate, "DemoDate ")) {
+////
+////            objUsefullData.showMsgOnUI("Please select DemoDate")
+////
+////            et_DemoDate.requestFocus()
+////            return false
+////        }
+//
+//        if (objValidation.checkEmpty(sp_Spinner_Lead_Source, "Lead Source ")) {
+//            sp_Spinner_Lead_Source.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Lead Source")
+//            sp_Spinner_Lead_Source.setBackgroundResource((R.drawable.red_border))
+//            sp_Spinner_Lead_Source.requestFocus()
+//            return false
+//        }
+//        if (objValidation.checkEmpty(sp_Spinner_Lead_Stage, "Lead Stage")) {
+//            sp_Spinner_Lead_Stage.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Lead Stage")
+//            sp_Spinner_Lead_Stage.setBackgroundResource((R.drawable.red_border))
+//            sp_Spinner_Lead_Stage.requestFocus()
+//            return false
+//        }
+//        if (objValidation.checkEmpty(sp_Spinner_Interested_Product, "Interested Product")) {
+//            sp_Spinner_Interested_Product.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Interested Product")
+//            sp_Spinner_Interested_Product.setBackgroundResource((R.drawable.red_border))
+//            sp_Spinner_Interested_Product.requestFocus()
+//            return false
+//        }
+//
+//        if (objValidation.checkEmpty(sp_Assign_Manager, " Assign manager")) {
+//            sp_Assign_Manager.setError(null)
+//            objUsefullData.showMsgOnUI("Please select manager for assigning lead")
+//            sp_Assign_Manager.setBackgroundResource((R.drawable.red_border))
+//            sp_Assign_Manager.requestFocus()
+//            sp_Assign_Manager.isFocusableInTouchMode = true
+//            return false
+//        }
+//
+//        if (objValidation.checkEmpty(sp_Assign_Employee, " Assign Employee")) {
+//            sp_Assign_Employee.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Emplyee for assign lead")
+//            sp_Assign_Employee.setBackgroundResource((R.drawable.red_border))
+//            sp_Assign_Employee.requestFocus()
+//            sp_Assign_Employee.isFocusableInTouchMode = true
+//            return false
+//        }
+//
+//
+//        if (!nextIntractionDate) {
+//            objUsefullData.showMsgOnUI("Please select Next Interaction")
+//            sp_Next_Itrection_By.setBackgroundResource((R.drawable.red_border))
+//            sp_Next_Itrection_By.requestFocus()
+//            return false
+//        }
+//
+//        if (objValidation.checkEmpty(et_NextInteractionDate, "NextInteractionDate On ")) {
+//
+//            objUsefullData.showMsgOnUI("Please select NextInteractionDate On")
+//            et_NextInteractionDate.setBackgroundResource((R.drawable.red_border))
+//            et_NextInteractionDate.requestFocus()
+//            return false
+//        }
+//
+//        if (objValidation.checkEmpty(sp_Response_Of_Iteraction, " Response Of Iteraction")) {
+//            sp_Response_Of_Iteraction.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Response of Interaction")
+//            sp_Response_Of_Iteraction.setBackgroundResource((R.drawable.red_border))
+//            sp_Response_Of_Iteraction.requestFocus()
+//            return false
+//        }
+//
+//
+//        if (objValidation.checkEmpty(et_Comments, "Comment ")) {
+//
+//            et_Comments.requestFocus()
+//            return false
+//        }
 
 
         return true

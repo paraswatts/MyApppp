@@ -363,18 +363,15 @@
                                 android:layout_marginBottom="4dp"
                                 android:background="@drawable/text_view_border"
 
-                                android:editable="false"
                                 android:elevation="3dp"
-                                android:focusable="false"
-                                android:drawableEnd="@drawable/arrow_spinner"
-                                android:drawableRight="@drawable/cursor_"
+                                android:focusable="true"
                                 android:imeOptions="actionNext"
                                 android:paddingBottom="@dimen/paddingBottom"
                                 android:paddingLeft="@dimen/paddingLeft"
                                 android:paddingRight="@dimen/paddingRight"
                                 android:paddingTop="@dimen/paddingTop"
                                 android:singleLine="true"
-                                android:hint="-- Select State --"
+                                android:hint="State"
                                 android:textSize="15dp" />
 
                             <EditText

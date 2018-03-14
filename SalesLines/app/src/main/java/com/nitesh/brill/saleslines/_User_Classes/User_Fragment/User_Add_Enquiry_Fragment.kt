@@ -129,37 +129,39 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
         val view = inflater!!.inflate(R.layout.fragment_user_add_enquiry, container, false)
         view.isFocusableInTouchMode = true
         view.requestFocus()
+
+        Log.e("Add lead","fragment")
 // -- Select --
 
-        view.setOnKeyListener(object : View.OnKeyListener {
-            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
-                if (keyCode == KeyEvent.KEYCODE_BACK && event!!.action == KeyEvent.ACTION_UP) {
-                    val file = File(Environment.getExternalStorageDirectory().toString() + "/SalesLineCallRecordings")
-
-                    val files = file.listFiles()
-
-                    if (files != null) {
-                        for (f in file.listFiles()!!) {
-                            if (f.name.startsWith(objSaveData.getString("MobileNumber"))) {
-                                Log.e("File delete karan laga", f.absolutePath + "")
-                                f.delete()
-                            }
-                        }
-                    }
-                    objSaveData.remove("MobileNumber")
-                    Log.e(tag, "onKey Back listener is working!!!")
-                    val fragment = User_Home_Fragment.newInstance("", "" + objSaveData.getString(ConstantValue.USER_ID))
-                    val fragmentManager = fragmentManager
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.replace(R.id.content_frame, fragment)
-                    fragmentTransaction.commit()
-
-                    return true
-                }
-                return false
-            }
-
-        })
+//        view.setOnKeyListener(object : View.OnKeyListener {
+//            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+//                if (keyCode == KeyEvent.KEYCODE_BACK && event!!.action == KeyEvent.ACTION_UP) {
+//                    val file = File(Environment.getExternalStorageDirectory().toString() + "/SalesLineCallRecordings")
+//
+//                    val files = file.listFiles()
+//
+//                    if (files != null) {
+//                        for (f in file.listFiles()!!) {
+//                            if (f.name.startsWith(objSaveData.getString("MobileNumber"))) {
+//                                Log.e("File delete karan laga", f.absolutePath + "")
+//                                f.delete()
+//                            }
+//                        }
+//                    }
+//                    objSaveData.remove("MobileNumber")
+//                    Log.e(tag, "onKey Back listener is working!!!")
+//                    val fragment = User_Home_Fragment.newInstance("", "" + objSaveData.getString(ConstantValue.USER_ID))
+//                    val fragmentManager = fragmentManager
+//                    val fragmentTransaction = fragmentManager.beginTransaction()
+//                    fragmentTransaction.replace(R.id.content_frame, fragment)
+//                    fragmentTransaction.commit()
+//
+//                    return true
+//                }
+//                return false
+//            }
+//
+//        })
 
 
 
@@ -450,19 +452,19 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
         }
 
         //=======================State=====================\\
-        et_State.setOnClickListener {
-
-            selector("State", mArrayStateName) { dialogInterface, i ->
-
-                et_State.setBackgroundResource((R.drawable.text_view_border))
-
-                stateId = mArrayStateId.get(i)
-
-                et_State!!.setText(mArrayStateName.get(i).toString())
-                et_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
-            }
-
-        }
+//        et_State.setOnClickListener {
+//
+//            selector("State", mArrayStateName) { dialogInterface, i ->
+//
+//                et_State.setBackgroundResource((R.drawable.text_view_border))
+//
+//                stateId = mArrayStateId.get(i)
+//
+//                et_State!!.setText(mArrayStateName.get(i).toString())
+//                et_State.setPadding(objUsefullData.dpToPx(paddingLeft), objUsefullData.dpToPx(paddingTop), objUsefullData.dpToPx(paddingRight), objUsefullData.dpToPx(paddingBottom))
+//            }
+//
+//        }
 
 
         //=================================\\
@@ -602,29 +604,29 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
 //            return false
 //        }
 
-        if (objValidation.checkEmpty(et_ExpectedCloseDate, "ExpectedCloseDate ")) {
-            objUsefullData.showMsgOnUI("Expected close date should not be empty")
-            et_ExpectedCloseDate.requestFocus()
-            return false
-        }
+//        if (objValidation.checkEmpty(et_ExpectedCloseDate, "ExpectedCloseDate ")) {
+//            objUsefullData.showMsgOnUI("Expected close date should not be empty")
+//            et_ExpectedCloseDate.requestFocus()
+//            return false
+//        }
 
 
 
-        if (Rating!!.equals(0.0f)) {
-
-            objUsefullData.showMsgOnUI("Rating should not be empty")
-            ratingBar.setBackgroundResource((R.drawable.red_border))
-            ratingBar.requestFocus()
-            return false
-        }
-        if (!H!! && !W!! && !C!!) {
-
-            objUsefullData.showMsgOnUI("Please select lead status")
-            ll_LeadStatus.setBackgroundResource((R.drawable.red_border))
-            ll_LeadStatus.requestFocus()
-            return false
-
-        }
+//        if (Rating!!.equals(0.0f)) {
+//
+//            objUsefullData.showMsgOnUI("Rating should not be empty")
+//            ratingBar.setBackgroundResource((R.drawable.red_border))
+//            ratingBar.requestFocus()
+//            return false
+//        }
+//        if (!H!! && !W!! && !C!!) {
+//
+//            objUsefullData.showMsgOnUI("Please select lead status")
+//            ll_LeadStatus.setBackgroundResource((R.drawable.red_border))
+//            ll_LeadStatus.requestFocus()
+//            return false
+//
+//        }
 
 
 //        if (objValidation.checkEmpty(et_DemoDate, "DemoDate ")) {
@@ -634,65 +636,65 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
 //            et_DemoDate.requestFocus()
 //            return false
 //        }
-        if (objValidation.checkEmpty(sp_Spinner_Lead_Source, "Lead Source ")) {
-            sp_Spinner_Lead_Source.setError(null)
-            objUsefullData.showMsgOnUI("Please select Lead Source")
-            sp_Spinner_Lead_Source.setBackgroundResource((R.drawable.red_border))
-            sp_Spinner_Lead_Source.requestFocus()
-            return false
-        }
-        if (objValidation.checkEmpty(sp_Spinner_Lead_Stage, "Lead Stage")) {
-            sp_Spinner_Lead_Stage.setError(null)
-            objUsefullData.showMsgOnUI("Please select Lead Stage")
-            sp_Spinner_Lead_Stage.setBackgroundResource((R.drawable.red_border))
-            sp_Spinner_Lead_Stage.requestFocus()
-            return false
-        }
-        if (objValidation.checkEmpty(sp_Spinner_Interested_Product, "Interested Product")) {
-            sp_Spinner_Interested_Product.setError(null)
-            objUsefullData.showMsgOnUI("Please select Interested Product")
-            sp_Spinner_Interested_Product.setBackgroundResource((R.drawable.red_border))
-            sp_Spinner_Interested_Product.requestFocus()
-            return false
-        }
+//        if (objValidation.checkEmpty(sp_Spinner_Lead_Source, "Lead Source ")) {
+//            sp_Spinner_Lead_Source.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Lead Source")
+//            sp_Spinner_Lead_Source.setBackgroundResource((R.drawable.red_border))
+//            sp_Spinner_Lead_Source.requestFocus()
+//            return false
+//        }
+//        if (objValidation.checkEmpty(sp_Spinner_Lead_Stage, "Lead Stage")) {
+//            sp_Spinner_Lead_Stage.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Lead Stage")
+//            sp_Spinner_Lead_Stage.setBackgroundResource((R.drawable.red_border))
+//            sp_Spinner_Lead_Stage.requestFocus()
+//            return false
+//        }
+//        if (objValidation.checkEmpty(sp_Spinner_Interested_Product, "Interested Product")) {
+//            sp_Spinner_Interested_Product.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Interested Product")
+//            sp_Spinner_Interested_Product.setBackgroundResource((R.drawable.red_border))
+//            sp_Spinner_Interested_Product.requestFocus()
+//            return false
+//        }
 
-        if (objValidation.checkEmpty(sp_Assign_Employee, " Assign Employee")) {
-            sp_Assign_Employee.setError(null)
-            objUsefullData.showMsgOnUI("Please select Emplyee for assign lead")
-            sp_Assign_Employee.setBackgroundResource((R.drawable.red_border))
-            sp_Assign_Employee.requestFocus()
-            sp_Assign_Employee.isFocusableInTouchMode = true
-            return false
-        }
+//        if (objValidation.checkEmpty(sp_Assign_Employee, " Assign Employee")) {
+//            sp_Assign_Employee.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Emplyee for assign lead")
+//            sp_Assign_Employee.setBackgroundResource((R.drawable.red_border))
+//            sp_Assign_Employee.requestFocus()
+//            sp_Assign_Employee.isFocusableInTouchMode = true
+//            return false
+//        }
 
-        if (!nextIntractionDate) {
-            objUsefullData.showMsgOnUI("Please select Next Interaction")
-            sp_Next_Itrection_By.setBackgroundResource((R.drawable.red_border))
-            sp_Next_Itrection_By.requestFocus()
-            return false
-        }
+//        if (!nextIntractionDate) {
+//            objUsefullData.showMsgOnUI("Please select Next Interaction")
+//            sp_Next_Itrection_By.setBackgroundResource((R.drawable.red_border))
+//            sp_Next_Itrection_By.requestFocus()
+//            return false
+//        }
+//
+//        if (objValidation.checkEmpty(et_NextInteractionDate, "NextInteractionDate On ")) {
+//
+//            objUsefullData.showMsgOnUI("Please select NextInteractionDate On")
+//            et_NextInteractionDate.setBackgroundResource((R.drawable.red_border))
+//            et_NextInteractionDate.requestFocus()
+//            return false
+//        }
 
-        if (objValidation.checkEmpty(et_NextInteractionDate, "NextInteractionDate On ")) {
+//        if (objValidation.checkEmpty(sp_Response_Of_Iteraction, " Response Of Iteraction")) {
+//            sp_Response_Of_Iteraction.setError(null)
+//            objUsefullData.showMsgOnUI("Please select Response of Interaction")
+//            sp_Response_Of_Iteraction.setBackgroundResource((R.drawable.red_border))
+//            sp_Response_Of_Iteraction.requestFocus()
+//            return false
+//        }
 
-            objUsefullData.showMsgOnUI("Please select NextInteractionDate On")
-            et_NextInteractionDate.setBackgroundResource((R.drawable.red_border))
-            et_NextInteractionDate.requestFocus()
-            return false
-        }
-
-        if (objValidation.checkEmpty(sp_Response_Of_Iteraction, " Response Of Iteraction")) {
-            sp_Response_Of_Iteraction.setError(null)
-            objUsefullData.showMsgOnUI("Please select Response of Interaction")
-            sp_Response_Of_Iteraction.setBackgroundResource((R.drawable.red_border))
-            sp_Response_Of_Iteraction.requestFocus()
-            return false
-        }
-
-        if (objValidation.checkEmpty(et_Comments, "Comment ")) {
-
-            et_Comments.requestFocus()
-            return false
-        }
+//        if (objValidation.checkEmpty(et_Comments, "Comment ")) {
+//
+//            et_Comments.requestFocus()
+//            return false
+//        }
 
 
         return true
@@ -974,7 +976,7 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
         paramObject.put("Address1", et_Address.text.toString())
         paramObject.put("Address2", et_Address.text.toString())
         paramObject.put("Address3", et_Address.text.toString())
-        paramObject.put("State", stateId)
+        paramObject.put("State", et_State.text.toString())
         paramObject.put("City", et_City.text.toString())
         paramObject.put("PinCode", et_PinCode.text.toString())
         paramObject.put("Phone", et_Phone.text.toString())
@@ -1038,7 +1040,16 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
         paramObject.put("LeadStage", sp_Spinner_Lead_Stage.text.toString())
         paramObject.put("InteractProduct", sp_Spinner_Interested_Product.text.toString())
         paramObject.put("Interaction_By", sp_Next_Itrection_By.text.toString())
-        paramObject.put("Interaction_On", et_NextInteractionDate.text.toString())
+        if(TextUtils.isEmpty(et_NextInteractionDate.text.toString())) {
+            val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+            val d = sdf.parse("01/01/1990 02:30 PM")
+            Log.e("Paras"," Interaction_On null"+sdf.format(d))
+            paramObject.put("Interaction_On", sdf.format(d))
+
+        }
+        else {
+            paramObject.put("Interaction_On", et_NextInteractionDate.text.toString())
+        }
         paramObject.put("Comments", et_Comments.text.toString())
         paramObject.put("ResponseOfInteraction", sp_Response_Of_Iteraction.text.toString())
         paramObject.put("EnquiryNum", EnquiryNum)
@@ -1153,7 +1164,7 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
 
                         UsefullData.Log("========" + response.code())
 
-                        objUsefullData.getError("" + response.code())
+                        objUsefullData.showMsgOnUI("Lead added failed")
 
                     }
                 }
@@ -1225,45 +1236,49 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
 
     //==============================================================\\
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+       // super.onActivityResult(requestCode, resultCode, data)
 
 
         UsefullData.Log("====resultCode====" + resultCode)
         UsefullData.Log("" + data + "====Request====" + requestCode)
-
-        if (requestCode == PHOTOCAM && resultCode == Activity.RESULT_OK) {
-
-
-            setImage(img_Photo, myUri, 0)
+        try {
+            if (requestCode == PHOTOCAM && resultCode == Activity.RESULT_OK) {
 
 
-        } else if (requestCode == PHOTOGAL && resultCode == Activity.RESULT_OK && null != data) {
-
-            UsefullData.Log("====photo====" + data.data)
-
-            setImage(img_Photo, data.data, 0)
+                setImage(img_Photo, myUri, 0)
 
 
-        } else if (requestCode == VC1CAM && resultCode == Activity.RESULT_OK) {
-            setImage(img_VC1, myUri, 1)
+            } else if (requestCode == PHOTOGAL && resultCode == Activity.RESULT_OK && null != data) {
+
+                UsefullData.Log("====photo====" + data.data)
+
+                setImage(img_Photo, data.data, 0)
 
 
-        } else if (requestCode == VC1GAL && resultCode == Activity.RESULT_OK && null != data) {
-            setImage(img_VC1, data.data, 1)
-            UsefullData.Log("====VC1====" + data.data)
+            } else if (requestCode == VC1CAM && resultCode == Activity.RESULT_OK) {
+                setImage(img_VC1, myUri, 1)
 
 
-        } else if (requestCode == VC2CAM && resultCode == Activity.RESULT_OK) {
-            setImage(img_VC2, myUri, 2)
+            } else if (requestCode == VC1GAL && resultCode == Activity.RESULT_OK && null != data) {
+                setImage(img_VC1, data.data, 1)
+                UsefullData.Log("====VC1====" + data.data)
 
-        } else if (requestCode == VC2GAL && resultCode == Activity.RESULT_OK && null != data) {
-            setImage(img_VC2, data.data, 2)
-            UsefullData.Log("====VC2====" + data.data)
-        } else {
-            GALLERY = 0
-            CAMERA = 0
-            Toast.makeText(activity, "You haven't picked Image/Video", Toast.LENGTH_LONG).show()
+
+            } else if (requestCode == VC2CAM && resultCode == Activity.RESULT_OK) {
+                setImage(img_VC2, myUri, 2)
+
+            } else if (requestCode == VC2GAL && resultCode == Activity.RESULT_OK && null != data) {
+                setImage(img_VC2, data.data, 2)
+                UsefullData.Log("====VC2====" + data.data)
+            } else {
+                GALLERY = 0
+                CAMERA = 0
+                Toast.makeText(activity, "You haven't picked Image/Video", Toast.LENGTH_LONG).show()
+            }
         }
+            catch(e:Exception){
+                e.printStackTrace()
+            }
 
     }
 
@@ -1420,15 +1435,20 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
 
     private fun mGalleryCall(code: Int) {
 
+        Log.e("in gallery","picker")
         GALLERY = 11
 
 
-        userfile = objUsefullData
-                .createFile("userfile.png")
-        val intent = Intent(
-                Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), code)
+        try {
+            userfile = objUsefullData
+                    .createFile("userfile.png")
+            val intent = Intent(
+                    Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), code)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
 
 
     }
