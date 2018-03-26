@@ -35,6 +35,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -616,6 +617,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         myIntent.putExtra("gifMessage", message);
         myIntent.putExtra("extraMessage", extraMessage);
         myIntent.putExtra("email",email);
+        HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
 
 
         PendingIntent pendingIntent;

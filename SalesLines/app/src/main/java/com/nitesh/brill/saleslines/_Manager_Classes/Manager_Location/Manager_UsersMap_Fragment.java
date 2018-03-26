@@ -37,6 +37,8 @@ import android.widget.Toast;
 
 import com.brill.nitesh.punjabpool.Common.BaseFragment;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -535,6 +537,7 @@ public class Manager_UsersMap_Fragment extends BaseFragment {
         Glide.with(getContext())
                 .asBitmap()
                 .load("http://console.salelinecrm.com/saleslineapi/GetprofileImage/"+userId)
+                .apply(new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {

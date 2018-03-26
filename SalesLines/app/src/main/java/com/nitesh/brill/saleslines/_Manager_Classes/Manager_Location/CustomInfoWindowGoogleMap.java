@@ -3,11 +3,14 @@ package com.nitesh.brill.saleslines._Manager_Classes.Manager_Location;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,6 +18,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.nitesh.brill.saleslines.Common_Files.ConstantValue;
 import com.nitesh.brill.saleslines.R;
 import com.squareup.picasso.Picasso;
 
@@ -68,6 +72,19 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
 
         } else {
             not_first_time_showing_info_window = true;
+//            Glide.with(context).asBitmap()
+//                    .load(infoWindowData.getImage())
+//                    .apply(new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
+//
+//                    .into(new SimpleTarget<Bitmap>(){
+//                        @Override
+//                        public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+//                            img.setImageBitmap(resource);
+//                            marker.showInfoWindow();
+//                        }
+//
+//
+//                    });
             Picasso.with(context).load(infoWindowData.getImage()).into(img, new InfoWindowRefresher(marker));
         }
 //        Picasso.with(context).load(infoWindowData.getImage()).into(img, new com.squareup.picasso.Callback() {

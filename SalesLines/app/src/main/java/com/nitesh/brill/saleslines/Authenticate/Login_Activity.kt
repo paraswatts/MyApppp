@@ -90,7 +90,6 @@ class Login_Activity : BaseActivity() {
 
             if (checkEmail(edt)) {
 
-
                 objUsefullData.showProgress("Please Wait...", "")
                 val mCall = apiEndpointInterface!!.mGetuserid(edt.text.toString().trim())
                 mCall.enqueue(object : Callback<JsonElement> {
@@ -345,15 +344,11 @@ class Login_Activity : BaseActivity() {
 
     private fun checkValidation(): Boolean {
         if (objValidation.checkEmpty(et_Email, "Email ")) {
-
             et_Email.requestFocus()
-
             return false
         }
         if (!objValidation.checkForEmail(et_Email, "Email ")) {
-
             et_Email.requestFocus()
-
             return false
         }
         if (objValidation.checkEmpty(et_Password, "Password ")) {

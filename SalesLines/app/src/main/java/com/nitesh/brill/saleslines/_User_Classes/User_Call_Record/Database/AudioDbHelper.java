@@ -172,6 +172,7 @@ public class AudioDbHelper extends SQLiteOpenHelper {
                 + COLUMN_NOTIFICATIONS_LEAD_GET_TIME + " TEXT,"
                 + COLUMN_NOTIFICATIONS_READ_STATE + " TEXT,"
                 + COLUMN_NOTIFICATIONS_LEAD_GET_DATE + " TEXT " + ")";
+
         SQL_CREATE_COORDINATES_TABLE = "CREATE TABLE " + AudioEntry.TABLE_USER_COORDINATES + " ("
                 + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_USER_LATITUDE+ " TEXT,"

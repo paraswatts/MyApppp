@@ -118,10 +118,9 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         val builder = StrictMode.VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
-        NotificationAsyncTask(baseContext).execute();
+        NotificationAsyncTask(baseContext).execute()
 
-        ReminderAsyncTask(baseContext).execute();
-
+        ReminderAsyncTask(baseContext).execute()
 
         val dispatcher = FirebaseJobDispatcher( GooglePlayDriver(this));
 
@@ -136,7 +135,6 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 .setConstraints(
                         // only run on an unmetered network
                         Constraint.ON_ANY_NETWORK
-                        // only run when the device is charging
                 )
                 .build()
         dispatcher.mustSchedule(myJob);
@@ -941,6 +939,21 @@ class User_Home_Activity : BaseActivity(), NavigationView.OnNavigationItemSelect
 //            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC,
 //                    calendar.timeInMillis, pendingIntent)
 //        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         } else {
             Log.e("Check Alarm", "Alarm Already running")
