@@ -863,7 +863,7 @@
                         android:paddingTop="@dimen/paddingTop"
 
                         android:singleLine="true"
-                        android:text="Assign AGM"
+                        android:hint="Assign AGM"
                         android:textSize="15dp" />
                 </LinearLayout>
                 </LinearLayout>
@@ -910,7 +910,7 @@
                             android:paddingTop="@dimen/paddingTop"
 
                             android:singleLine="true"
-                            android:text="Assign ASM"
+                            android:hint="Assign ASM"
                             android:textSize="15dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -958,7 +958,7 @@
                             android:paddingTop="@dimen/paddingTop"
 
                             android:singleLine="true"
-                            android:text="Assign Manager"
+                            android:hint="Assign Manager"
                             android:textSize="15dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -998,7 +998,7 @@
                         android:paddingTop="@dimen/paddingTop"
 
                         android:singleLine="true"
-                        android:text="Assign Employee"
+                        android:hint="Assign Employee"
                         android:textSize="15dp" />
                 </LinearLayout>
 

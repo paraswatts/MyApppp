@@ -103,7 +103,7 @@ public class CustomDialog extends AppCompatActivity implements ConstantValue {
                 });
                 bt_no.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-
+                       saveData.saveBoolean(getIntent().getStringExtra("phoneNumber"),true);
 //
                         finish();
                     }

@@ -19,6 +19,9 @@ import com.nitesh.brill.saleslines.Common_Fragment.Update_Lead_Details
 import com.nitesh.brill.saleslines.R
 import com.nitesh.brill.saleslines._User_Classes.User_Fragment.User_Update_Lead_Details
 import com.nitesh.brill.saleslines._User_Classes.User_PojoClass.GetAllLeadsData
+import android.view.animation.ScaleAnimation
+
+
 
 /**
  * Created by Web Designing Brill on 04-07-2017.
@@ -28,6 +31,7 @@ class Search_Adapter(mContext: Activity, private val albumList: List<GetAllLeads
     private val mContext: Context
     private var filterAlbumbList: List<GetAllLeadsData>? = null
     var lastPosition = -1
+    var FADE_DURATION:Long = 400; //FADE_DURATION in milliseconds
 
     init {
 
@@ -122,9 +126,10 @@ class Search_Adapter(mContext: Activity, private val albumList: List<GetAllLeads
         }
         val animation: Animation = AnimationUtils.loadAnimation(mContext,if(position>lastPosition){ R.anim.up_from_bottom}else {R.anim.down_from_top})
 
-        holder.itemView.startAnimation(animation);
-        lastPosition = position;
+//        holder.itemView.startAnimation(animation);
+//        lastPosition = position;
 
+        setScaleAnimation(holder.itemView);
 
         holder.rl_RootLayput.setOnClickListener {
 
@@ -136,6 +141,22 @@ class Search_Adapter(mContext: Activity, private val albumList: List<GetAllLeads
             fragmentTransaction.replace(R.id.content_frame, mFragment)
             fragmentTransaction.commit()
         }
+    }
+
+//    private fun setAnimation(viewToAnimate: View, position: Int) {
+//        // If the bound view wasn't previously displayed on screen, it's animated
+//        if (position > lastPosition) {
+//            val animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_out_right)
+//            viewToAnimate.startAnimation(animation)
+//            lastPosition = position
+//        }
+//    }
+
+    private fun setScaleAnimation(view: View) {
+
+        val anim = ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        anim.duration = FADE_DURATION
+        view.startAnimation(anim)
     }
 
     override fun getItemCount(): Int {

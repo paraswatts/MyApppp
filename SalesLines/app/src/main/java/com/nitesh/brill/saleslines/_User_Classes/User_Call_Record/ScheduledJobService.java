@@ -52,7 +52,7 @@ public class ScheduledJobService extends JobService {
         String time1 = new SimpleDateFormat("hh:mm:ss aa").format(Calendar.getInstance().getTime());
 
        // Toast.makeText(this,"Job fired "+time1, Toast.LENGTH_SHORT).show();
-       // Log.e("Job Fired","Job Fired" +time1);
+       Log.e("Job Fired","Job Fired" +time1);
         AudioDbHelper dbHelper = new AudioDbHelper(this);
         SaveData objSaveData = new SaveData(this);
 

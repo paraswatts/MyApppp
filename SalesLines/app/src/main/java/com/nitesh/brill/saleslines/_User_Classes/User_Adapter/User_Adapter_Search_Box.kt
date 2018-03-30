@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.animation.ScaleAnimation
 import android.widget.*
 import com.nitesh.brill.saleslines.Common_Files.UsefullData
 import com.nitesh.brill.saleslines.R
@@ -33,6 +34,8 @@ class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:
     public var filterAlbumbList:  List<GetAllLeadsData>? = null
     public var filterSelectedList:  List<GetAllLeadsData>? = null
     var lastPosition = -1
+    var FADE_DURATION:Long = 400; //FADE_DURATION in milliseconds
+
     init {
 
         this.mContext = mContext
@@ -129,10 +132,12 @@ class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:
             holder.iv_ImageView.setImageBitmap(decodedByte)
         }
 
-        val animation: Animation = AnimationUtils.loadAnimation(mContext,if(position>lastPosition){ R.anim.up_from_bottom}else {R.anim.down_from_top})
+//        val animation: Animation = AnimationUtils.loadAnimation(mContext,if(position>lastPosition){ R.anim.up_from_bottom}else {R.anim.down_from_top})
+//
+//             holder.itemView.startAnimation(animation);
+//             lastPosition = position;
+        setScaleAnimation(holder.itemView);
 
-             holder.itemView.startAnimation(animation);
-             lastPosition = position;
 
         holder.rl_RootLayput.setOnClickListener {
 
@@ -155,6 +160,13 @@ class User_Adapter_Search_Box(mContext: FragmentActivity, private val albumList:
         }
 
 
+    }
+
+    private fun setScaleAnimation(view: View) {
+
+        val anim = ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        anim.duration = FADE_DURATION
+        view.startAnimation(anim)
     }
 
     override fun getItemCount(): Int {

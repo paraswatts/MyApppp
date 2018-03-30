@@ -39,7 +39,9 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.nitesh.brill.saleslines.Common_Files.SaveData;
 import com.nitesh.brill.saleslines.R;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioContract;
@@ -537,11 +539,23 @@ public class AlarmGIFActivity extends AppCompatActivity {
                     @Override
                     public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
                         progressBar.setVisibility(View.GONE);
-                        return false;
+                        return true;
                     }
 //
                 })
                 .into(gif);
+
+//        Glide
+//                .with(this)
+//                .asGif()
+//                .load(gifUrl)
+//                .into(new SimpleTarget<GifDrawable>() {
+//                    @Override
+//                    public void onResourceReady(GifDrawable resource, Transition<? super GifDrawable> transition) {
+//                        progressBar.setVisibility(View.GONE);
+//                        gif.setImageDrawable(resource);
+//                    }
+//                });
     }
 
     private void playSound(Context context, Uri alert) {

@@ -37,9 +37,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.JsonElement;
+import com.nitesh.brill.saleslines.Authenticate.Login_Activity;
 import com.nitesh.brill.saleslines.Common_Files.SaveData;
 import com.nitesh.brill.saleslines.R;
 import com.nitesh.brill.saleslines.Ritrofit.ApiEndpointInterface;
+import com.nitesh.brill.saleslines._AGM_Classes.AGM_Activity.AGM_Home_Activity;
+import com.nitesh.brill.saleslines._ASM_Classes.ASM_Activity.ASM_Home_Activity;
+import com.nitesh.brill.saleslines._GM_Classes.GM_Activity.GM_Home_Activity;
+import com.nitesh.brill.saleslines._Manager_Classes.Manager_Activity.Manager_Home_Activity;
 import com.nitesh.brill.saleslines._User_Classes.User_Activity.User_Home_Activity;
 import com.nitesh.brill.saleslines._User_Classes.User_Call_Record.Database.AudioDbHelper;
 
@@ -378,12 +383,14 @@ public class RecordService extends Service {
 //                                  //  Log.e("Key Removed", objSaveData.getString("MobileNumber"));
 //                                }
 //                            } else {
-                        Intent addLeadYesOrNo = new Intent(RecordService.this, CustomDialog.class);
-                        addLeadYesOrNo.putExtra("phoneNumber", phoneNumber);
-                        //addLeadYesOrNo.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        addLeadYesOrNo.putExtra("leadExist", "no");
-                        addLeadYesOrNo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(addLeadYesOrNo);
+                        if(!objSaveData.getBoolean(phoneNumber)) {
+                            Intent addLeadYesOrNo = new Intent(RecordService.this, CustomDialog.class);
+                            addLeadYesOrNo.putExtra("phoneNumber", phoneNumber);
+                            //addLeadYesOrNo.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            addLeadYesOrNo.putExtra("leadExist", "no");
+                            addLeadYesOrNo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(addLeadYesOrNo);
+                        }
 //                            }
 //                        } else {
 //
@@ -739,13 +746,35 @@ public class RecordService extends Service {
     private void startService() {
         if (!onForeground) {
             Log.d(Constants.TAG, "RecordService startService");
-            Intent intent = new Intent(this, User_Home_Activity.class);
-            // intent.setAction(Intent.ACTION_VIEW);
-            // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            PendingIntent pendingIntent = PendingIntent.getActivity(
-                    getBaseContext(), 0, intent, 0);
+            PendingIntent pendingIntent;
+            Intent intent = null;
+            if(objSaveData.getBoolean("loginState")) {
+                if(objSaveData.getString("role_id").equals("5")) {
+                    intent = new Intent(this, User_Home_Activity.class);
+                }
+                if(objSaveData.getString("role_id").equals("4")) {
+                    intent = new Intent(this, Manager_Home_Activity.class);
+                }
+                if(objSaveData.getString("role_id").equals("3")) {
+                    intent = new Intent(this, ASM_Home_Activity.class);
+                }
+                if(objSaveData.getString("role_id").equals("2")) {
+                    intent = new Intent(this, AGM_Home_Activity.class);
+                }
+                if(objSaveData.getString("role_id").equals("1")) {
+                    intent = new Intent(this, GM_Home_Activity.class);
+                }
+                // intent.setAction(Intent.ACTION_VIEW);
+                // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
+            }
+            else{
+                intent = new Intent(this,Login_Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            }
+            pendingIntent = PendingIntent.getActivity(
+                    getBaseContext(), 0, intent, 0);
             Notification notification = new NotificationCompat.Builder(
                     getBaseContext())
                     .setContentTitle(
@@ -756,7 +785,7 @@ public class RecordService extends Service {
                     .setContentIntent(pendingIntent).setOngoing(true)
                     .getNotification();
 
-            notification.flags = Notification.FLAG_NO_CLEAR;
+            notification.flags = Notification.FLAG_AUTO_CANCEL;
 
             startForeground(1337, notification);
             onForeground = true;

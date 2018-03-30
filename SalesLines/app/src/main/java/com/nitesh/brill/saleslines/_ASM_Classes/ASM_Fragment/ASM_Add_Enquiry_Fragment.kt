@@ -829,7 +829,15 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
         paramObject.put("Skype", et_Skype.text.toString())
         paramObject.put("DealName", et_DealName.text.toString())
         paramObject.put("DealValue", et_DealValue.text.toString())
-        paramObject.put("ExpectedCloseDate", et_ExpectedCloseDate.text.toString())
+        if(TextUtils.isEmpty(et_ExpectedCloseDate.text.toString())) {
+            val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+            val d = sdf.parse("01/01/1990")
+            paramObject.put("ExpectedCloseDate", sdf.format(d))
+
+        }
+        else {
+            paramObject.put("ExpectedCloseDate", et_ExpectedCloseDate.text.toString())
+        }
         paramObject.put("Fax", et_Fax.text.toString())
         paramObject.put("Website", et_Website.text.toString())
         paramObject.put("UserId", Integer.parseInt(objSaveData.getString(ConstantValue.USER_ID)))
@@ -1194,23 +1202,27 @@ class ASM_Add_Enquiry_Fragment : BaseFragment() {
 //            return false
 //        }
 //
-//        if (objValidation.checkEmpty(sp_Assign_Manager, " Assign manager")) {
-//            sp_Assign_Manager.setError(null)
-//            objUsefullData.showMsgOnUI("Please select manager for assigning lead")
-//            sp_Assign_Manager.setBackgroundResource((R.drawable.red_border))
-//            sp_Assign_Manager.requestFocus()
-//            sp_Assign_Manager.isFocusableInTouchMode = true
-//            return false
-//        }
-//
-//        if (objValidation.checkEmpty(sp_Assign_Employee, " Assign Employee")) {
-//            sp_Assign_Employee.setError(null)
-//            objUsefullData.showMsgOnUI("Please select Emplyee for assign lead")
-//            sp_Assign_Employee.setBackgroundResource((R.drawable.red_border))
-//            sp_Assign_Employee.requestFocus()
-//            sp_Assign_Employee.isFocusableInTouchMode = true
-//            return false
-//        }
+        if (sp_Assign_Manager.text.equals("Assign Manager")) {
+            scrollView.scrollTo(0,sp_Assign_Manager.bottom)
+
+            sp_Assign_Manager.setError(null)
+            objUsefullData.showMsgOnUI("Please select manager for assigning lead")
+            sp_Assign_Manager.setBackgroundResource((R.drawable.red_border))
+            sp_Assign_Manager.requestFocus()
+            sp_Assign_Manager.isFocusableInTouchMode = true
+            return false
+        }
+
+        if (sp_Assign_Employee.text.equals("Assign Employee")) {
+            scrollView.scrollTo(0,sp_Assign_Employee.bottom)
+
+            sp_Assign_Employee.setError(null)
+            objUsefullData.showMsgOnUI("Please select Emplyee for assigning lead")
+            sp_Assign_Employee.setBackgroundResource((R.drawable.red_border))
+            sp_Assign_Employee.requestFocus()
+            sp_Assign_Employee.isFocusableInTouchMode = true
+            return false
+        }
 //
 //
 //        if (!nextIntractionDate) {

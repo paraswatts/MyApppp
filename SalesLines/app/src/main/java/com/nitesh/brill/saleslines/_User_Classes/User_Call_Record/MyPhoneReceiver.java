@@ -48,78 +48,78 @@ public class MyPhoneReceiver extends BroadcastReceiver {
         //Notification();
 
         objSaveData = new SaveData(context);
+        if(objSaveData.getString("role_id").equals("5")) {
+            phoneNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+            String extraState = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
 
-        phoneNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-		String extraState = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
 
+            //	if (updateExternalStorageState() == Constants.MEDIA_MOUNTED) {
+            try {
+                SharedPreferences settings = context.getSharedPreferences(
+                        Constants.LISTEN_ENABLED, 0);
+                //boolean silent = settings.getBoolean("silentMode", true);
+                if (extraState != null) {
+                    if (extraState.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
 
-	//	if (updateExternalStorageState() == Constants.MEDIA_MOUNTED) {
-			try {
-				SharedPreferences settings = context.getSharedPreferences(
-						Constants.LISTEN_ENABLED, 0);
-				//boolean silent = settings.getBoolean("silentMode", true);
-				if (extraState != null) {
-					if (extraState.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+                        Log.e("State", "Offhook");
 
-						Log.e("State","Offhook");
+                        Intent myIntent = new Intent(context,
+                                RecordService.class);
+                        myIntent.putExtra("commandType",
+                                Constants.STATE_CALL_START);
+                        context.startService(myIntent);
+                    } else if (extraState
+                            .equals(TelephonyManager.EXTRA_STATE_IDLE)) {
 
-						Intent myIntent = new Intent(context,
-								RecordService.class);
-						myIntent.putExtra("commandType",
-								Constants.STATE_CALL_START);
-						context.startService(myIntent);
-					} else if (extraState
-							.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+                        Log.e("State", "Idle");
 
-						Log.e("State","Idle");
-
-						NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+                        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.cancelAll();
-						Intent myIntent = new Intent(context,
-								RecordService.class);
-						myIntent.putExtra("commandType",
-								Constants.STATE_CALL_END);
-						context.startService(myIntent);
-					} else if (extraState
-							.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-						if (phoneNumber == null)
-							phoneNumber = intent
-									.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+                        Intent myIntent = new Intent(context,
+                                RecordService.class);
+                        myIntent.putExtra("commandType",
+                                Constants.STATE_CALL_END);
+                        context.startService(myIntent);
+                    } else if (extraState
+                            .equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+                        if (phoneNumber == null)
+                            phoneNumber = intent
+                                    .getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
 
-						Log.e("State","Ringing");
+                        Log.e("State", "Ringing");
 
-                        objSaveData.save("phoneNumber",phoneNumber);
-						Intent myIntent = new Intent(context,
-								RecordService.class);
-						myIntent.putExtra("commandType",
-								Constants.STATE_INCOMING_NUMBER);
+                        objSaveData.save("phoneNumber", phoneNumber);
+                        Intent myIntent = new Intent(context,
+                                RecordService.class);
+                        myIntent.putExtra("commandType",
+                                Constants.STATE_INCOMING_NUMBER);
 
-						myIntent.putExtra("phoneNumber", phoneNumber);
-
-
-						///myIntent.putExtra("silentMode", silent);
+                        myIntent.putExtra("phoneNumber", phoneNumber);
 
 
+                        ///myIntent.putExtra("silentMode", silent);
 
-						context.startService(myIntent);
-					}
-				} else if (phoneNumber != null) {
-                    Log.e("Outgoing call",""+phoneNumber);
 
-                    objSaveData.save("phoneNumber",phoneNumber);
+                        context.startService(myIntent);
+                    }
+                } else if (phoneNumber != null) {
+                    Log.e("Outgoing call", "" + phoneNumber);
 
-					Intent myIntent = new Intent(context, RecordService.class);
-					myIntent.putExtra("commandType",
-							Constants.STATE_INCOMING_NUMBER);
-					myIntent.putExtra("phoneNumber", phoneNumber);
-					//myIntent.putExtra("silentMode", silent);
-					context.startService(myIntent);
-				}
-			} catch (Exception e) {
-				Log.e(Constants.TAG, "Exception");
-				e.printStackTrace();
-			}
+                    objSaveData.save("phoneNumber", phoneNumber);
+
+                    Intent myIntent = new Intent(context, RecordService.class);
+                    myIntent.putExtra("commandType",
+                            Constants.STATE_INCOMING_NUMBER);
+                    myIntent.putExtra("phoneNumber", phoneNumber);
+                    //myIntent.putExtra("silentMode", silent);
+                    context.startService(myIntent);
+                }
+            } catch (Exception e) {
+                Log.e(Constants.TAG, "Exception");
+                e.printStackTrace();
+            }
+        }
 	//	}
 	}
 

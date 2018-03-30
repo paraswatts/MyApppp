@@ -224,7 +224,7 @@ class Search_Fragment : BaseFragment() {
                         objUsefullData.showMsgOnUI("" + e)
 
                     }
-                    objUsefullData.dismissProgress()
+                    //objUsefullData.dismissProgress()
 
 
                 } else {

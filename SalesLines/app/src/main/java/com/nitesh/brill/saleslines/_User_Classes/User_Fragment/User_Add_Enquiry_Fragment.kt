@@ -993,7 +993,15 @@ class User_Add_Enquiry_Fragment : BaseFragment() {
         paramObject.put("Skype", et_Skype.text.toString())
         paramObject.put("DealName", et_DealName.text.toString())
         paramObject.put("DealValue", et_DealValue.text.toString())
-        paramObject.put("ExpectedCloseDate", et_ExpectedCloseDate.text.toString())
+        if(TextUtils.isEmpty(et_ExpectedCloseDate.text.toString())) {
+            val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+            val d = sdf.parse("01/01/1990")
+            paramObject.put("ExpectedCloseDate", sdf.format(d))
+
+        }
+        else {
+            paramObject.put("ExpectedCloseDate", et_ExpectedCloseDate.text.toString())
+        }
         paramObject.put("Fax", et_Fax.text.toString())
         paramObject.put("Website", et_Website.text.toString())
 
