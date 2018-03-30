@@ -479,8 +479,6 @@ class User_Sale_Clouser_Fragment : BaseFragment() {
 
                         if (success.equals("1")) {
                             objUsefullData.showMsgOnUI("Successfully Sale Closed")
-
-
                         } else {
                             objUsefullData.showMsgOnUI("Sale Closed failed")
                         }
